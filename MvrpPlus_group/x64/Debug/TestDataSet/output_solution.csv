@@ -1,0 +1,16 @@
+number of physical nodes =,6
+number of physical links =,18
+number of passengers=, 2
+number of vehicles =,2
+Least Travel Time for Pax,Pax 1,Pax 2,
+,5.00,5.00,
+Modified Vehilce Time,begining, endinging
+virtual30,74
+virtual40,74
+Reduced Search Space Perc for Veh,Veh 1,Veh 2,Veh 3,Veh 4,
+,0.00%,0.00%,0.00%,0.00%,
+,
+v,p1,p2,
+1,9,14,
+2,9,14,
+CPU Running Time =,46, milliseconds

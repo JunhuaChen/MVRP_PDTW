@@ -1,0 +1,26 @@
+B 2 C o m p i l a t i o n
+B 5699 Include File Summary
+B 5713 Equation Listing    SOLVE model_group Using MIP From line 5683
+D 5714 obj_main
+D 7940 p_once_constrain
+D 8017 p_in_group_constrain
+D 8091 g_number_constrain
+D 8112 xy_connect
+B 8185 Column Listing      SOLVE model_group Using MIP From line 5683
+E 8186 x
+E 8211 y
+E 8233 z
+B 8242 Model Statistics    SOLVE model_group Using MIP From line 5683
+B 8258 Solution Report     SOLVE model_group Using MIP From line 5683
+F 8297 obj_main
+F 8303 p_once_constrain
+F 8383 p_in_group_constrain
+F 8461 g_number_constrain
+F 8467 xy_connect
+G 8542 x
+G 14172 y
+G 14252 z
+B 14263 E x e c u t i o n
+I 14264 x
+I 14349 y
+I 14356 z

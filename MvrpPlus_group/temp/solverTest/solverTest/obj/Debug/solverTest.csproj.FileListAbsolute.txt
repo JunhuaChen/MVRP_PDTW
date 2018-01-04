@@ -1,0 +1,9 @@
+E:\3 PrgStudy\MvrpPlus_group\temp\solverTest\solverTest\bin\Debug\solverTest.exe.config
+E:\3 PrgStudy\MvrpPlus_group\temp\solverTest\solverTest\obj\Debug\solverTest.csprojResolveAssemblyReference.cache
+E:\3 PrgStudy\MvrpPlus_group\temp\solverTest\solverTest\obj\Debug\solverTest.Form1.resources
+E:\3 PrgStudy\MvrpPlus_group\temp\solverTest\solverTest\obj\Debug\solverTest.Properties.Resources.resources
+E:\3 PrgStudy\MvrpPlus_group\temp\solverTest\solverTest\obj\Debug\solverTest.csproj.GenerateResource.Cache
+E:\3 PrgStudy\MvrpPlus_group\temp\solverTest\solverTest\bin\Debug\solverTest.exe
+E:\3 PrgStudy\MvrpPlus_group\temp\solverTest\solverTest\bin\Debug\solverTest.pdb
+E:\3 PrgStudy\MvrpPlus_group\temp\solverTest\solverTest\obj\Debug\solverTest.exe
+E:\3 PrgStudy\MvrpPlus_group\temp\solverTest\solverTest\obj\Debug\solverTest.pdb

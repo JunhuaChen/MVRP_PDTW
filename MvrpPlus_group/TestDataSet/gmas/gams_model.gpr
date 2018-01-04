@@ -1,0 +1,48 @@
+[PROJECT]
+
+[RP:VRPTW]
+1=
+
+[RP:TIMETABLING_STOPPLAN]
+1=
+
+[RP:LOCOMOTIVE_ROUTING_PROBLEM]
+1=
+
+[RP:CASE6]
+1=
+
+[RP:UNTITLED_1]
+1=
+
+[RP:SET_GROUP_3]
+1=
+
+[RP:GP_GROUP_SMALL]
+1=
+
+[RP:GP_GROUP]
+1=
+
+[RP:LR_SET_PARTITION]
+1=
+
+[MRUFILES]
+1=E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\set_group_3.lst
+2=E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\set_group_3.gms
+3=E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\lr_set_partition.gms
+4=E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\gp_group_small.gms
+5=E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\Untitled_1.gms
+6=E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\gp_group.lst
+7=E:\2 PaperStu\locomotiveRouting+trainScheduling\case6.gms
+
+[OPENWINDOW_1]
+FILE0=E:\3 PrgStudy\MrpPlus_dominate\MvrpLite\bin\Debug\gmas\lr_set_partition.gms
+FILE1=E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\gp_group.gms
+FILE2=E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\lr_set_partition.lst
+FILE3=E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\lr_set_partition.lst
+MAXIM=0
+TOP=4
+LEFT=70
+HEIGHT=881
+WIDTH=1432

@@ -1,0 +1,10 @@
+number of passengers=, 0
+number of vehicles =,0
+network has 0 nodes, 0 links, 0 toll records, 0  passengers, 0 vehicles
+--- travel time and cancelation cost ($)----
+Least Travel Time for Pax,
+,
+Modified Vehilce Time,begining, endinging
+
+g_v_p_shortest_path_maxtrix[v,p],
+v,

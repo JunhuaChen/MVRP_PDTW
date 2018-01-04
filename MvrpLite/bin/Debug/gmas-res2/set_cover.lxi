@@ -1,0 +1,20 @@
+B 2 C o m p i l a t i o n
+B 154 Equation Listing    SOLVE model_assignment Using MIP From line 143
+D 155 obj_main
+D 199 assign_cover
+D 216 low_capacity
+D 242 up_capacity
+B 270 Column Listing      SOLVE model_assignment Using MIP From line 143
+E 271 x
+E 297 z
+B 306 Model Statistics    SOLVE model_assignment Using MIP From line 143
+B 322 Solution Report     SOLVE model_assignment Using MIP From line 143
+F 361 obj_main
+F 367 assign_cover
+F 393 low_capacity
+F 403 up_capacity
+G 408 x
+G 518 z
+B 529 E x e c u t i o n
+I 530 x
+I 558 z

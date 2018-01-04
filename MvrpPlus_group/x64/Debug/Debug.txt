@@ -1,0 +1,92 @@
+network has 10 nodes, 26 links, 0 toll records, 2  passengers, 4 vehicles
+passenger 1 starts from node 2 to node 1, start time 4->5, ending time 8->10
+passenger 2 starts from node 3 to node 6, start time 4->6, ending time 11->14
+vehicle 1 starts from node 4 to node 1, start time 1->2, ending time 30->31
+vehicle 2 starts from node 4 to node 1, start time 1->2, ending time 30->31
+vehicle 3 starts from node 2 to node 2, start time 0->0, ending time 40->40
+vehicle 4 starts from node 3 to node 3, start time 0->0, ending time 40->40
+--- travel time and cancelation cost ($)----
+pax no.1, Departure Time = 4 (min), Travel Time = 5.00 (min), Earliest Arrival Time = 6.00, cost = $2.50
+pax no.2, Departure Time = 4 (min), Travel Time = 5.00 (min), Earliest Arrival Time = 6.00, cost = $2.50
+step 0: initialization 
+
+ **********************  Start Group = 1 ***************************
+
+g(v)=1 + *3 + *4 + 
+g(p)=1 + 2 + 
+stage:1, service state no. 0:(0,0) _ _ ; outgoing state list:0,1,2,
+stage:1, service state no. 1:(0,1) _1_ ; outgoing state list:1,3,4,
+stage:1, service state no. 2:(0,1) _ _1; outgoing state list:2,4,5,
+stage:1, service state no. 3:(1,0) _2_ ; outgoing state list:3,6,
+stage:1, service state no. 4:(0,2) _1_1; outgoing state list:4,6,7,
+stage:1, service state no. 5:(1,0) _ _2; outgoing state list:5,7,
+stage:1, service state no. 6:(1,1) _2_1; outgoing state list:6,8,
+stage:1, service state no. 7:(1,1) _1_2; outgoing state list:7,8,
+stage:1, service state no. 8:(2,0) _2_2; outgoing state list:8,
+-----
+Relay stage 1(1)-2(3): relaying state no. 0:(0) _ _ , with label cost 4.000000
+Relay stage 1(1)-2(3): relaying state no. 3:(0) _2_ , with label cost 8.000000
+Relay stage 1(1)-2(3): relaying state no. 5:(0) _ _2, with label cost 12.750000
+stage:2, service state no. 0:(0,0) _ _ ; outgoing state list:0,1,
+stage:2, service state no. 1:(0,1) _1_ ; outgoing state list:1,2,
+stage:2, service state no. 2:(0,0) _2_ ; outgoing state list:2,
+stage:2, service state no. 3:(0,0) _ _2; outgoing state list:3,4,
+stage:2, service state no. 4:(0,1) _1_2; outgoing state list:4,5,
+stage:2, service state no. 5:(0,0) _2_2; outgoing state list:5,
+-----
+Relay stage 2(3)-3(4): relaying state no. 0:(0) _ _ , with label cost 4.000000
+Relay stage 2(3)-3(4): relaying state no. 2:(0) _2_ , with label cost 8.000000
+Relay stage 2(3)-3(4): relaying state no. 3:(0) _ _2, with label cost 12.750000
+Relay stage 2(3)-3(4): relaying state no. 5:(0) _2_2, with label cost 139.416656
+stage:3, service state no. 0:(0,0) _ _ ; outgoing state list:0,1,
+stage:3, service state no. 1:(0,1) _ _1; outgoing state list:1,2,
+stage:3, service state no. 2:(0,0) _ _2; outgoing state list:2,
+stage:3, service state no. 3:(0,0) _2_ ; outgoing state list:3,4,
+stage:3, service state no. 4:(0,1) _2_1; outgoing state list:4,5,
+stage:3, service state no. 5:(0,0) _2_2; outgoing state list:5,
+-----
+Relay stage 3(4)-4(0): relaying state no. 5:(0) _2_2, with label cost 134.666656
+-----
+index 0, Vehicle 1, time = 1, node = 4, state = _ _ , cost = 0.000000
+index 1, Vehicle 1, time = 3, node = 2, state = _ _ , cost = 2.000000
+index 2, Vehicle 1, time = 4, node = 7, state = _1_ , cost = 3.000000
+index 3, Vehicle 1, time = 5, node = 2, state = _1_ , cost = 4.000000
+index 4, Vehicle 1, time = 7, node = 1, state = _1_ , cost = 6.000000
+index 5, Vehicle 1, time = 8, node = 8, state = _2_ , cost = 7.000000
+index 6, Vehicle 1, time = 9, node = 1, state = _2_ , cost = 8.000000
+index 106, Vehicle 4, time = 4, node = 9, state = _2_1, cost = 28.833332
+index 107, Vehicle 4, time = 5, node = 3, state = _2_1, cost = 49.666664
+index 111, Vehicle 4, time = 10, node = 6, state = _2_1, cost = 71.333328
+index 112, Vehicle 4, time = 11, node = 10, state = _2_2, cost = 92.166664
+index 113, Vehicle 4, time = 12, node = 6, state = _2_2, cost = 113.000000
+index 174, Vehicle 5, time = 0, node = 1, state = _2_2, cost = 134.666656
+
+ **********************  Start Group = 2 ***************************
+
+g(v)=2 + *3 + 
+g(p)=1 + 
+stage:1, service state no. 0:(0,0) _ _2; outgoing state list:0,1,
+stage:1, service state no. 1:(0,1) _1_2; outgoing state list:1,2,
+stage:1, service state no. 2:(1,0) _2_2; outgoing state list:2,
+-----
+Relay stage 1(2)-2(3): relaying state no. 0:(0) _ _2, with label cost 4.000000
+Relay stage 1(2)-2(3): relaying state no. 2:(0) _2_2, with label cost 8.000000
+stage:2, service state no. 0:(0,0) _ _2; outgoing state list:0,1,
+stage:2, service state no. 1:(0,1) _1_2; outgoing state list:1,2,
+stage:2, service state no. 2:(0,0) _2_2; outgoing state list:2,
+-----
+Relay stage 2(3)-3(0): relaying state no. 0:(0) _ _2, with label cost 4.000000
+Relay stage 2(3)-3(0): relaying state no. 2:(0) _2_2, with label cost 8.000000
+stage:3, service state no. 0:(0,0) _ _2; outgoing state list:0,1,
+stage:3, service state no. 1:(0,1) _1_2; outgoing state list:1,2,
+stage:3, service state no. 2:(0,0) _2_2; outgoing state list:2,
+-----
+index 0, Vehicle 2, time = 1, node = 4, state = _ _2, cost = 0.000000
+index 1, Vehicle 2, time = 3, node = 2, state = _ _2, cost = 2.000000
+index 2, Vehicle 2, time = 4, node = 7, state = _1_2, cost = 3.000000
+index 3, Vehicle 2, time = 5, node = 2, state = _1_2, cost = 4.000000
+index 4, Vehicle 2, time = 7, node = 1, state = _1_2, cost = 6.000000
+index 5, Vehicle 2, time = 8, node = 8, state = _2_2, cost = 7.000000
+index 6, Vehicle 2, time = 9, node = 1, state = _2_2, cost = 8.000000
+
+CPU Running Time = 37 milliseconds

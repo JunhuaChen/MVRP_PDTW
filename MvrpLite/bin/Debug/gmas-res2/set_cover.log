@@ -1,0 +1,87 @@
+
+--- Job set_cover.gms Start 04/06/16 10:41:06 24.4.3 r51699 WEX-WEI x86 64bit/MS Windows
+GAMS 24.4.3   Copyright (C) 1987-2015 GAMS Development. All rights reserved
+Licensee: School of Sustainable Engineering              G150407:1621AO-WIN
+          Arizona State University                                  DC11708
+          License for teaching and research at degree granting institutions
+--- Starting compilation
+--- set_cover.gms(146) 3 Mb
+--- Starting execution: elapsed 0:00:00.003
+--- Generating MIP model model_assignment
+--- set_cover.gms(143) 4 Mb
+---   32 rows  106 columns  421 non-zeroes
+---   105 discrete-columns
+--- Executing CPLEX: elapsed 0:00:00.007
+
+IBM ILOG CPLEX   24.4.3 r51699 Released Apr  2, 2015 WEI x86 64bit/MS Windows 
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.6.1.0
+
+Reading data...
+Starting Cplex...
+Space for names approximately 0.00 Mb
+Use option 'names no' to turn use of names off
+Found incumbent of value -1990.000000 after 0.00 sec. (0.01 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 1 rows and 1 columns.
+Reduced MIP has 31 rows, 105 columns, and 315 nonzeros.
+Reduced MIP has 105 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.14 ticks)
+Probing time = 0.00 sec. (0.03 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 31 rows, 105 columns, and 315 nonzeros.
+Reduced MIP has 105 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.14 ticks)
+Probing time = 0.00 sec. (0.03 ticks)
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Tried aggregator 1 time.
+No LP presolve or aggregator reductions.
+Presolve time = 0.02 sec. (0.04 ticks)
+
+Iteration log . . .
+Iteration:     1   Dual objective     =           128.000000
+Root relaxation solution time = 0.02 sec. (0.07 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                        -1990.0000      134.0000           106.73%
+Found incumbent of value -1990.000000 after 0.02 sec. (0.52 ticks)
+*     0     0      integral     0      106.0000      106.0000        7    0.00%
+Elapsed time = 0.02 sec. (0.53 ticks, tree = 0.00 MB, solutions = 2)
+Found incumbent of value 106.000000 after 0.02 sec. (0.53 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.02 sec. (0.54 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.02 sec. (0.54 ticks)
+MIP status(101): integer optimal solution
+Cplex Time: 0.02sec (det. 0.54 ticks)
+Fixing integer variables, and solving final LP...
+Tried aggregator 1 time.
+LP Presolve eliminated 32 rows and 106 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.03 ticks)
+Fixed MIP status(1): optimal
+Cplex Time: 0.00sec (det. 0.04 ticks)
+
+Proven optimal solution.
+
+MIP Solution:          106.000000    (7 iterations, 0 nodes)
+Final Solve:           106.000000    (0 iterations)
+
+Best possible:         106.000000
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+--- Restarting execution
+--- set_cover.gms(143) 2 Mb
+--- Reading solution for model model_assignment
+--- Executing after solve: elapsed 0:00:00.643
+--- set_cover.gms(145) 3 Mb
+*** Status: Normal completion
+--- Job set_cover.gms Stop 04/06/16 10:41:07 elapsed 0:00:00.644

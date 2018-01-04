@@ -1,0 +1,495 @@
+GAMS 24.4.3  r51699 Released Apr  2, 2015 WEX-WEI x86 64bit/MS Windows 04/01/16 13:42:58 Page 1
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+C o m p i l a t i o n
+
+
+       
+          set partition problem based on LR
+          junhua Chen.   cjh@bjtu.edu.cn
+          3/31,2016
+       
+   8   
+   9  set g 'group';
+  10  set s 'states patter';
+  11  set p 'passenger';
+  12   
+  13  parameter c(g,s);
+  14  parameter a(g,p,s);
+  15  **parameter initx(g,s);
+  16   
+  17  *input data
+INCLUDE    E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\../input_gams_data.txt
+  19  set g/1*2/;
+  20  set s/1*4/;
+  21  set p/1*2/;
+  22  parameter c(g,s)/
+  23  1.    1    4
+  24  1.    2    8
+  25  1.    3    12
+  26  1.    4    99999
+  27  2.    1    4
+  28  2.    2    8
+  29  2.    3    99999
+  30  2.    4    99999
+  31  /;
+  32  parameter a(g,p,s)/
+  33  1.1.    2    1
+  34  1.1.    4    1
+  35  1.2.    3    1
+  36  1.2.    4    1
+  37  2.1.    2    1
+  38  /;
+  39   
+  40  *--------------------------------------------------------------------
+  41  * standard MIP problem formulation
+  42  * solve as RMIP to get initial values for the duals
+  43  *--------------------------------------------------------------------
+  44  binary variable x(g,s);
+  45  variable z;
+  46   
+  47  equations
+  48           obj_main
+  49           assign_pattern(g)
+  50           assign_passenger(p)
+  51  ;
+  52  obj_main..
+  53           z=e=sum((g,s),c(g,s)*x(g,s));
+  54  assign_pattern(g)..
+  55           sum(s,x(g,s))=e=1;
+  56  assign_passenger(p)..
+  57           sum((g,s),a(g,p,s)*x(g,s))=e=1;
+  58   
+  59  option optcr=0;
+  60  model model_main /obj_main,assign_pattern,assign_passenger/;
+  61  solve model_main using rmip minimizing z;
+  62   
+  63  *---------------------------------------------------------------------
+  64  * Lagrangian dual
+  65  * Let assign_passenger be the complicating constraint
+  66  *---------------------------------------------------------------------
+  67  parameter u(p);
+  68  variable z_bound;
+  69  equation obj_lr;
+  70  obj_lr..
+  71           z_bound=e=sum((g,s),c(g,s)*x(g,s))
+  72                   +sum(p,u(p)*(1-sum((g,s),a(g,p,s)*x(g,s))));
+  73  model model_lr /obj_lr,assign_pattern/;
+  74  *---------------------------------------------------------------------
+  75  * subgradient iterations
+  76  *---------------------------------------------------------------------
+  77   
+  78  set iter /iter1*iter50/;
+  79  scalar continue /1/;
+  80  parameter stepsize;
+  81  scalar theta /2/;
+  82  scalar noimprovement /0/;
+  83  scalar bestbound /-INF/;
+  84  parameter gamma(p);
+  85  scalar norm;
+  86  scalar upperbound;
+  87  parameter uprevious(p);
+  88  scalar deltau;
+  89  parameter results(iter,*);
+  90  *
+  91  * initialize u with relaxed duals
+  92  *
+  93  u(p) = assign_passenger.m(p);
+  94  display u;
+  95   
+  96  *
+  97  * an upperbound on L
+  98  *
+  99  scalar bFeasibleFlag;
+ 100   
+ 101  *upperbound = sum((g,s),c(g,s)*initx(g,s));
+ 102  upperbound=9999;
+ 103  display upperbound;
+ 104   
+ 105  loop(iter$continue,
+ 106  *
+ 107  * solve the lagrangian dual problem
+ 108  *
+ 109      option optcr=0;
+ 110      option limrow = 0;
+ 111      option limcol = 0;
+ 112  *    model_lr.solprint = 0;
+ 113      solve  model_lr using mip minimizing z_bound;
+ 114      results(iter,'dual_bound') = z_bound.l;
+ 115   
+ 116   
+ 117      if (z_bound.l > bestbound,
+ 118           bestbound = z_bound.l;
+ 119           display bestbound;
+ 120           noimprovement = 0;
+ 121      else
+ 122           noimprovement = noimprovement + 1;
+ 123           if (noimprovement > 1,
+ 124              theta = theta/2;
+ 125              noimprovement = 0;
+ 126           );
+ 127      );
+ 128   
+ 129      results(iter,'noimprov') = noimprovement;
+ 130      results(iter,'theta') = theta;
+ 131  *
+ 132  * calculate step size
+ 133  *
+ 134      gamma(p) = 1-sum((g,s),a(g,p,s)*x.l(g,s));
+ 135      norm = sum(p,sqr(gamma(p)));
+ 136      stepsize = theta*(upperbound-z_bound.l)/norm;
+ 137      results(iter,'norm') = norm;
+ 138      results(iter,'step') = stepsize;
+ 139   
+ 140      bFeasibleFlag=1;
+ 141      if (norm <> 0,
+ 142         bFeasibleFlag = -1;
+ 143      else
+ 144         upperbound=z_bound.l;
+ 145      );
+ 146      results(iter,'low_bound') = bestbound;
+ 147  *    results(iter,'feasible')=bFeasibleFlag;
+ 148      results(iter,'up_bound')=upperbound;
+ 149  *
+ 150  * update duals u
+ 151  *
+ 152      uprevious(p) = u(p);
+ 153      u(p) = max(0, u(p)+stepsize*gamma(p));
+ 154      display u;
+ 155  *
+ 156  * converged ?
+ 157  *
+ 158      deltau = smax(p,abs(uprevious(p)-u(p)));
+ 159      results(iter,'deltau') = deltau;
+ 160      if( deltau < 0.01,
+ 161           display "Converged";
+ 162           display x.l;
+ 163           continue = 0;
+ 164      );
+ 165  );
+ 166   
+ 167  display results;
+ 168   
+ 169  ****out put
+ 170  File output_results_x  /'gams_out_x.txt'/;
+ 171  put output_results_x;
+ 172  loop((g,s)$(x.l(g,s)=1), put @1, g.tl, @5,s.tl, @10,x.l(g,s)/);
+ 173   
+ 174  File output_results_lr /'gams_out_lr.txt'/;
+ 175  put output_results_lr;
+ 176  put          @1,'iter',@10,'dual_bound',@24,'low_bound',@45,'up_bound' /;
+ 177  loop(iter,
+ 178           put @1,iter.tl, @10,results(iter,'dual_bound'), @20, results(iter
+      ,'low_bound') ,@40, results(iter,'up_bound') /
+ 179      );
+GAMS 24.4.3  r51699 Released Apr  2, 2015 WEX-WEI x86 64bit/MS Windows 04/01/16 13:42:58 Page 2
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Include File Summary
+
+
+   SEQ   GLOBAL TYPE      PARENT   LOCAL  FILENAME
+
+     1        1 INPUT          0       0  E:\3 PrgStudy\MvrpPlus_group\TestDataS
+                                          et\gmas\lr_set_partition.gms
+     2       18 INCLUDE        1      18  .E:\3 PrgStudy\MvrpPlus_group\TestData
+                                           Set\gmas\../input_gams_data.txt
+
+
+COMPILATION TIME     =        0.016 SECONDS      3 MB  24.4.3 r51699 WEX-WEI
+GAMS 24.4.3  r51699 Released Apr  2, 2015 WEX-WEI x86 64bit/MS Windows 04/01/16 13:42:58 Page 3
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE model_main Using RMIP From line 61
+
+
+---- obj_main  =E=  
+
+obj_main..  - 4*x(1,1) - 8*x(1,2) - 12*x(1,3) - 99999*x(1,4) - 4*x(2,1)
+     
+      - 8*x(2,2) - 99999*x(2,3) - 99999*x(2,4) + z =E= 0 ; (LHS = 0)
+     
+
+---- assign_pattern  =E=  
+
+assign_pattern(1)..  x(1,1) + x(1,2) + x(1,3) + x(1,4) =E= 1 ;
+     
+      (LHS = 0, INFES = 1 ****)
+     
+assign_pattern(2)..  x(2,1) + x(2,2) + x(2,3) + x(2,4) =E= 1 ;
+     
+      (LHS = 0, INFES = 1 ****)
+     
+
+---- assign_passenger  =E=  
+
+assign_passenger(1)..  x(1,2) + x(1,4) + x(2,2) =E= 1 ; (LHS = 0
+     , INFES = 1 ****)
+     
+assign_passenger(2)..  x(1,3) + x(1,4) =E= 1 ; (LHS = 0, INFES = 1 ****)
+     
+GAMS 24.4.3  r51699 Released Apr  2, 2015 WEX-WEI x86 64bit/MS Windows 04/01/16 13:42:58 Page 4
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Column Listing      SOLVE model_main Using RMIP From line 61
+
+
+---- x  
+
+x(1,1)
+                (.LO, .L, .UP, .M = 0, 0, 1, 0)
+       -4       obj_main
+        1       assign_pattern(1)
+
+x(1,2)
+                (.LO, .L, .UP, .M = 0, 0, 1, 0)
+       -8       obj_main
+        1       assign_pattern(1)
+        1       assign_passenger(1)
+
+x(1,3)
+                (.LO, .L, .UP, .M = 0, 0, 1, 0)
+      -12       obj_main
+        1       assign_pattern(1)
+        1       assign_passenger(2)
+
+REMAINING 5 ENTRIES SKIPPED
+
+---- z  
+
+z
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+        1       obj_main
+
+GAMS 24.4.3  r51699 Released Apr  2, 2015 WEX-WEI x86 64bit/MS Windows 04/01/16 13:42:58 Page 5
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Model Statistics    SOLVE model_main Using RMIP From line 61
+
+
+MODEL STATISTICS
+
+BLOCKS OF EQUATIONS           3     SINGLE EQUATIONS            5
+BLOCKS OF VARIABLES           2     SINGLE VARIABLES            9
+NON ZERO ELEMENTS            22     DISCRETE VARIABLES          8
+
+
+GENERATION TIME      =        0.000 SECONDS      4 MB  24.4.3 r51699 WEX-WEI
+
+
+EXECUTION TIME       =        0.000 SECONDS      4 MB  24.4.3 r51699 WEX-WEI
+GAMS 24.4.3  r51699 Released Apr  2, 2015 WEX-WEI x86 64bit/MS Windows 04/01/16 13:42:58 Page 6
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE model_main Using RMIP From line 61
+
+
+               S O L V E      S U M M A R Y
+
+     MODEL   model_main          OBJECTIVE  z
+     TYPE    RMIP                DIRECTION  MINIMIZE
+     SOLVER  CPLEX               FROM LINE  61
+
+**** SOLVER STATUS     1 Normal Completion         
+**** MODEL STATUS      1 Optimal                   
+**** OBJECTIVE VALUE               20.0000
+
+ RESOURCE USAGE, LIMIT          0.016      1000.000
+ ITERATION COUNT, LIMIT         0    2000000000
+
+IBM ILOG CPLEX   24.4.3 r51699 Released Apr  2, 2015 WEI x86 64bit/MS Windows 
+Cplex 12.6.1.0
+
+Space for names approximately 0.00 Mb
+Use option 'names no' to turn use of names off
+LP status(1): optimal
+Cplex Time: 0.00sec (det. 0.01 ticks)
+Optimal solution found.
+Objective :          20.000000
+
+
+                       LOWER     LEVEL     UPPER    MARGINAL
+
+---- EQU obj_main        .         .         .        1.000      
+
+---- EQU assign_pattern  
+
+     LOWER     LEVEL     UPPER    MARGINAL
+
+1     1.000     1.000     1.000 -1.000E+5      
+2     1.000     1.000     1.000     4.000      
+
+---- EQU assign_passenger  
+
+     LOWER     LEVEL     UPPER    MARGINAL
+
+1     1.000     1.000     1.000 99987.000      
+2     1.000     1.000     1.000 99991.000      
+
+---- VAR x  
+
+       LOWER     LEVEL     UPPER    MARGINAL
+
+1.1      .         .        1.000 99983.000      
+1.2      .         .        1.000      .         
+1.3      .        1.000     1.000      .         
+1.4      .         .        1.000      .         
+2.1      .         .        1.000      .         
+2.2      .        1.000     1.000 -1.000E+5      
+2.3      .         .        1.000 99995.000      
+2.4      .         .        1.000 99995.000      
+
+                       LOWER     LEVEL     UPPER    MARGINAL
+
+---- VAR z              -INF     20.000     +INF       .         
+
+
+**** REPORT SUMMARY :        0     NONOPT
+                             0 INFEASIBLE
+                             0  UNBOUNDED
+GAMS 24.4.3  r51699 Released Apr  2, 2015 WEX-WEI x86 64bit/MS Windows 04/01/16 13:42:58 Page 7
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+E x e c u t i o n
+
+
+----     94 PARAMETER u  
+
+1 99987.000,    2 99991.000
+
+
+----    103 PARAMETER upperbound           =     9999.000  
+GAMS 24.4.3  r51699 Released Apr  2, 2015 WEX-WEI x86 64bit/MS Windows 04/01/16 13:42:58 Page 8
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Model Statistics    SOLVE model_lr Using MIP From line 113
+
+
+LOOPS                                 iter   iter1
+
+
+MODEL STATISTICS
+
+BLOCKS OF EQUATIONS           2     SINGLE EQUATIONS            3
+BLOCKS OF VARIABLES           2     SINGLE VARIABLES            9
+NON ZERO ELEMENTS            17     DISCRETE VARIABLES          8
+
+
+GENERATION TIME      =        0.000 SECONDS      3 MB  24.4.3 r51699 WEX-WEI
+
+
+EXECUTION TIME       =        0.000 SECONDS      3 MB  24.4.3 r51699 WEX-WEI
+               L O O P S               iter iter1
+
+GAMS 24.4.3  r51699 Released Apr  2, 2015 WEX-WEI x86 64bit/MS Windows 04/01/16 13:42:58 Page 9
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE model_lr Using MIP From line 113
+
+
+               S O L V E      S U M M A R Y
+
+     MODEL   model_lr            OBJECTIVE  z_bound
+     TYPE    MIP                 DIRECTION  MINIMIZE
+     SOLVER  CPLEX               FROM LINE  113
+
+**** SOLVER STATUS     1 Normal Completion         
+**** MODEL STATUS      1 Optimal                   
+**** OBJECTIVE VALUE               20.0000
+
+ RESOURCE USAGE, LIMIT          0.046      1000.000
+ ITERATION COUNT, LIMIT         0    2000000000
+
+IBM ILOG CPLEX   24.4.3 r51699 Released Apr  2, 2015 WEI x86 64bit/MS Windows 
+Cplex 12.6.1.0
+
+Space for names approximately 0.00 Mb
+Use option 'names no' to turn use of names off
+MIP status(101): integer optimal solution
+Cplex Time: 0.00sec (det. 0.01 ticks)
+Fixing integer variables, and solving final LP...
+Fixed MIP status(1): optimal
+Cplex Time: 0.00sec (det. 0.00 ticks)
+Proven optimal solution.
+
+MIP Solution:           20.000000    (0 iterations, 0 nodes)
+Final Solve:            20.000000    (0 iterations)
+
+Best possible:          20.000000
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+
+                       LOWER     LEVEL     UPPER    MARGINAL
+
+---- EQU obj_lr     1.9998E+5 1.9998E+5 1.9998E+5     1.000      
+
+---- EQU assign_pattern  
+
+     LOWER     LEVEL     UPPER    MARGINAL
+
+1     1.000     1.000     1.000      .         
+2     1.000     1.000     1.000      .         
+
+---- VAR x  
+
+       LOWER     LEVEL     UPPER    MARGINAL
+
+1.1      .         .        1.000     4.000      
+1.2      .         .        1.000 -1.000E+5      
+1.3      .        1.000     1.000 -1.000E+5      
+1.4      .         .        1.000 -1.000E+5      
+2.1      .         .        1.000     4.000      
+2.2      .        1.000     1.000 -1.000E+5      
+2.3      .         .        1.000 99999.000      
+2.4      .         .        1.000 99999.000      
+
+                       LOWER     LEVEL     UPPER    MARGINAL
+
+---- VAR z_bound        -INF     20.000     +INF       .         
+
+
+**** REPORT SUMMARY :        0     NONOPT
+                             0 INFEASIBLE
+                             0  UNBOUNDED
+GAMS 24.4.3  r51699 Released Apr  2, 2015 WEX-WEI x86 64bit/MS Windows 04/01/16 13:42:58 Page 10
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+E x e c u t i o n
+
+
+----    119 PARAMETER bestbound            =       20.000  
+**** Exec Error at line 136: division by zero (0)
+
+----    154 PARAMETER u  
+
+1 UNDF,    2 UNDF
+
+
+----    161 Converged
+
+----    162 VARIABLE x.L  
+
+            2           3
+
+1                   1.000
+2       1.000
+
+
+----    167 PARAMETER results  
+
+       dual_bound       theta        step   low_bound    up_bound      deltau
+
+iter1      20.000       2.000        UNDF      20.000      20.000        UNDF
+
+
+**** REPORT FILE SUMMARY
+
+output_results_x E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\gams_out_x.txt
+output_results_lr E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\gams_out_lr.txt
+
+
+EXECUTION TIME       =        0.016 SECONDS      3 MB  24.4.3 r51699 WEX-WEI
+
+
+USER: School of Sustainable Engineering              G150407:1621AO-WIN
+      Arizona State University                                  DC11708
+      License for teaching and research at degree granting institutions
+
+
+**** FILE SUMMARY
+
+Input      E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\lr_set_partition.gms
+Output     E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\lr_set_partition.lst
+
+**** USER ERROR(S) ENCOUNTERED

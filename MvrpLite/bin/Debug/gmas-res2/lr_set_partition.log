@@ -1,0 +1,99 @@
+
+--- Job lr_set_partition.gms Start 04/04/16 11:40:57 24.4.3 r51699 WEX-WEI x86 64bit/MS Windows
+GAMS 24.4.3   Copyright (C) 1987-2015 GAMS Development. All rights reserved
+Licensee: School of Sustainable Engineering              G150407:1621AO-WIN
+          Arizona State University                                  DC11708
+          License for teaching and research at degree granting institutions
+--- Starting compilation
+--- lr_set_partition.gms(18) 2 Mb
+--- .../input_gams_data.txt(20) 3 Mb
+--- lr_set_partition.gms(159) 3 Mb
+--- Starting execution: elapsed 0:00:00.003
+--- lr_set_partition.gms(59) 4 Mb
+--- Generating RMIP model model_main
+--- lr_set_partition.gms(61) 4 Mb
+---   5 rows  9 columns  22 non-zeroes
+---   8 discrete-columns
+--- Executing CPLEX: elapsed 0:00:00.007
+
+IBM ILOG CPLEX   24.4.3 r51699 Released Apr  2, 2015 WEI x86 64bit/MS Windows 
+Cplex 12.6.1.0
+
+Reading data...
+Starting Cplex...
+Space for names approximately 0.00 Mb
+Use option 'names no' to turn use of names off
+Tried aggregator 1 time.
+LP Presolve eliminated 4 rows and 8 columns.
+Aggregator did 1 substitutions.
+All rows and columns eliminated.
+Presolve time = 0.01 sec. (0.01 ticks)
+LP status(1): optimal
+Cplex Time: 0.01sec (det. 0.01 ticks)
+
+Optimal solution found.
+Objective :          20.750000
+
+--- Restarting execution
+--- lr_set_partition.gms(61) 2 Mb
+--- Reading solution for model model_main
+--- Executing after solve: elapsed 0:00:00.124
+--- lr_set_partition.gms(105) 3 Mb
+--- Generating MIP model model_lr
+--- lr_set_partition.gms(113) 3 Mb
+--- LOOPS iter = iter1
+---   3 rows  9 columns  17 non-zeroes
+---   8 discrete-columns
+--- Executing CPLEX: elapsed 0:00:00.127
+
+IBM ILOG CPLEX   24.4.3 r51699 Released Apr  2, 2015 WEI x86 64bit/MS Windows 
+Cplex 12.6.1.0
+
+Reading data...
+Starting Cplex...
+Space for names approximately 0.00 Mb
+Use option 'names no' to turn use of names off
+Found incumbent of value 199985.250000 after 0.00 sec. (0.00 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 3 rows and 9 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.01 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.01 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.01 ticks)
+MIP status(101): integer optimal solution
+Cplex Time: 0.00sec (det. 0.01 ticks)
+Fixing integer variables, and solving final LP...
+Tried aggregator 1 time.
+LP Presolve eliminated 3 rows and 9 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.00 ticks)
+Fixed MIP status(1): optimal
+Cplex Time: 0.00sec (det. 0.00 ticks)
+
+Proven optimal solution.
+
+MIP Solution:           20.750000    (0 iterations, 0 nodes)
+Final Solve:            20.750000    (0 iterations)
+
+Best possible:          20.750000
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+--- Restarting execution
+--- lr_set_partition.gms(113) 2 Mb
+--- Reading solution for model model_lr
+--- Executing after solve: elapsed 0:00:00.307
+--- lr_set_partition.gms(105) 3 Mb
+*** Error at line 136: division by zero (0)
+--- lr_set_partition.gms(177) 3 Mb 1 Error
+--- Putfile output_results_x E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\gams_out_x.txt
+--- Putfile output_results_lr E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\gams_out_lr.txt
+--- lr_set_partition.gms(177) 3 Mb 1 Error
+*** Status: Execution error(s)
+--- Job lr_set_partition.gms Stop 04/04/16 11:40:58 elapsed 0:00:00.309
+Exit code = 3

@@ -1,0 +1,341 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+using Microsoft.SolverFoundation.Common;
+using Microsoft.SolverFoundation.Services;
+namespace MvrpLite.adminFuc
+{
+    class CostDef
+    {
+        public int Group { get; set; }
+        public int State { get; set; }
+        public double Price { get; set; }
+        public double X_int { get; set; }
+        public CostDef(int group, int state, float price)
+        {
+            Group = group;
+            State = state;
+            Price = price;
+            X_int = 0;
+        }
+    }
+    class AssignDef
+    {
+        public int Group { get; set; }
+        public int Passenger { get; set; }
+        public int State { get; set; }
+        public int Value { get; set; }
+
+        public AssignDef(int group, int passenger, int state, int value)
+        {
+            Group = group;
+            Passenger = passenger;
+            State = state;
+            Value = value;
+        }
+    }
+
+    class PiDef
+    {
+        public int Passenger { get; set; }
+        public double Pi { get; set; }
+        public PiDef(int passenger,double pi)
+        {
+            Passenger = passenger;
+            Pi = pi;
+        }
+    }
+
+    class Model_SetPartition
+    {
+        public int[,] X{ get; set; }
+        public string String_Report { get; set; }
+        public double[] g_lowbound { get; set; }
+        public double[] g_upbound { get; set; }
+        public int g_stop_inter { get;set;}
+
+        private CostDef[] Cost_data_list;
+        private AssignDef[] Assign_data_list;
+        private PiDef[] Pi_data_list;
+
+         public void g_algorithmn_mip(float[,] cost_value, int[, ,] assign_value, int num_g, int num_p, int num_s)
+        {
+            input_data(cost_value, assign_value, num_g, num_p, num_s);////init cost value and assign matrix
+            solver_main();
+            get_decision_x(num_g,num_s);
+        }
+
+        public void g_algorithmn_lr(int up_bound_value, float[,] cost_value, int[, ,] assign_value, int num_g, int num_p, int num_s)
+        {
+            int iter_number = 50;
+            g_lowbound = new double[iter_number + 1]; g_upbound = new double[iter_number + 1];
+            double best_bound = 0, up_bound = up_bound_value;
+            g_lowbound[0] = best_bound; g_upbound[0] = up_bound; g_stop_inter = iter_number;
+            double theta = 2, step_size,norm, deltau=0;
+
+            //up_bound = 200;////debug
+
+            double[] gamma=new double[num_p+1]; 
+            int  noimprovement = 0;
+
+            input_data(cost_value,assign_value,num_g,num_p,num_s);////init cost value and assign matrix
+
+            double[] pi_value = new double[num_p + 1];double[] pi_previous_value = new double[num_p + 1];
+            for (int p = 1; p <= num_p; p++)
+                pi_value[p] = 2;
+            this.update_pi_data(pi_value,num_p);
+
+            for(int iter=1;iter<=iter_number;iter++)
+            {
+
+                double z_bound= this.solver_lr();
+                if (z_bound - best_bound>0.01)
+                {
+                    best_bound = z_bound; noimprovement = 0;
+                }
+                else
+                {
+                    noimprovement++;
+                    if(noimprovement>1)
+                    {
+                        theta = theta / 2; noimprovement = 0;
+                    }
+                }
+                /////computer gamma[]
+                for (int p = 1; p <= num_p; p++) 
+                    gamma[p] = 0;
+                norm=0;
+                for (int i = 0; i < Cost_data_list.Length; i++)
+                {
+                    int g = Cost_data_list[i].Group;
+                    int s = Cost_data_list[i].State;
+                    for (int p = 1; p <= num_p; p++) 
+                       gamma[p] += assign_value[g,p,s]*Cost_data_list[i].X_int;
+                }
+                for (int p = 1; p <= num_p; p++) 
+                {
+                    gamma[p]=1-gamma[p];
+                    norm +=Math.Sqrt(Math.Abs(gamma[p]));
+                }
+                
+                step_size = theta * (up_bound - z_bound) / norm;
+                if (norm == 0) 
+                { 
+                    up_bound = z_bound; 
+                    get_decision_x(num_g, num_s);
+                    g_stop_inter = iter;
+                }               
+                
+                ///update for g
+                g_lowbound[iter] = best_bound;
+                g_upbound[iter] = up_bound;
+                if (norm == 0) return;
+
+                ////update pi
+                 for (int p = 1; p <= num_p; p++) 
+                    pi_previous_value[p]=pi_value[p];
+               
+                for (int p = 1; p <= num_p; p++)
+                    pi_value[p] = Math.Max(0, pi_value[p]+step_size*gamma[p]);
+                this.update_pi_data(pi_value,num_p);
+
+                for (int p = 1; p <= num_p; p++) 
+                {
+                    if(deltau<Math.Abs(pi_value[p]-pi_previous_value[p]))deltau=Math.Abs(pi_value[p]-pi_previous_value[p]);
+                }
+                if (deltau < 0.01)
+                {
+                    get_decision_x(num_g, num_s); g_stop_inter = iter; g_upbound[iter] = z_bound; return;
+                }
+            }
+            get_decision_x(num_g, num_s);
+
+        }
+
+        private void get_decision_x(int num_g,int num_s)
+        {
+            X=new int[num_g+1,num_s+1];
+            for (int i = 0; i < Cost_data_list.Length; i++)
+            {
+                int g = Cost_data_list[i].Group;
+                int s = Cost_data_list[i].State;
+                double value=Cost_data_list[i].X_int;
+                X[g, s] = (int)value;    
+            }
+        }
+
+        private void update_pi_data(double[]pi_value,  int num_p)
+        {
+            Pi_data_list = new PiDef[num_p];
+            int n_count = 0;
+            for (int p = 1; p <= num_p; p++)
+            {
+                PiDef pi_data_one = new PiDef(p, pi_value[p]);
+                Pi_data_list[n_count] = pi_data_one;
+                n_count++;
+            }
+        }
+
+
+        private void input_data(float[,] cost_value,int[,,] assign_value,int num_g,int num_p,int num_s)
+        {
+            Cost_data_list = new CostDef[num_g * num_s];
+
+            int n_count = 0;
+            for(int g=1;g<=num_g;g++)
+            for(int s=1;s<=num_s;s++)
+            {                
+                CostDef cost_data_one = new CostDef(g, s, cost_value[g, s]);
+                Cost_data_list[n_count] = cost_data_one;
+                n_count++;
+            }
+
+            Assign_data_list = new AssignDef[num_g *num_p* num_s];
+            n_count = 0;
+            for (int g = 1; g <= num_g; g++)
+            for (int p = 1; p <= num_p; p++)
+            for (int s = 1; s <= num_s; s++)
+            {               
+                AssignDef assign_data_one = new AssignDef(g,p, s, assign_value[g,p,s]);
+                Assign_data_list[n_count] = assign_data_one;
+                n_count++;
+            }
+        }
+        private void solver_main()
+        {
+            SolverContext context = SolverContext.GetContext();
+            context.ClearModel();
+            Model model = context.CreateModel();
+
+            Set Groups = new Set(Domain.IntegerNonnegative, "groups");
+            Set Passengers = new Set(Domain.IntegerNonnegative, "passengers");
+            Set States = new Set(Domain.IntegerNonnegative, "states");
+
+            Decision x = new Decision(Domain.IntegerRange(0,1),"x_g_s",Groups,States);
+            x.SetBinding(Cost_data_list, "X_int", "Group", "State"); ////also can ignore
+            model.AddDecisions(x);
+
+            Parameter cost = new Parameter(Domain.RealNonnegative, "Price", Groups, States);
+            Parameter assign = new Parameter(Domain.IntegerNonnegative, "Value", Groups,Passengers, States);
+
+            cost.SetBinding(Cost_data_list, "Price", "Group", "State");
+            assign.SetBinding(Assign_data_list, "Value", "Group","Passenger", "State");
+
+            model.AddParameters(cost, assign);
+
+
+            model.AddConstraint("select_one_states_in_each_group",
+                Model.ForEach(
+                Groups, g =>
+                Model.Sum(Model.ForEach(States, s => x[g, s])) 
+                        == 1)
+                );
+
+            model.AddConstraint("select_one_group_state_for_each_passenger",
+                Model.ForEach(
+                Passengers, p =>
+                Model.Sum(Model.ForEach(Groups, g =>
+                    Model.Sum(Model.ForEach(States, s => assign[g, p, s] * x[g, s]))))
+                             == 1)
+                );
+
+            Goal z_main= model.AddGoal("z_main", GoalKind.Minimize,
+                Model.Sum(Model.ForEach(
+                    Groups, g =>
+                    Model.Sum(Model.ForEach(States, s => cost[g, s] * x[g, s]))
+                             ))
+                         );
+
+            //SimplexDirective directive = new SimplexDirective();
+            SolverFoundation.Plugin.LpSolve.LpSolveDirective directive = new SolverFoundation.Plugin.LpSolve.LpSolveDirective();
+            //directive.Arithmetic = Arithmetic.Default;//.Exact;
+            Solution solution = context.Solve(directive);
+            context.PropagateDecisions();
+
+            
+
+            Report report = solution.GetReport();
+            this.String_Report += report.ToString();
+            //System.Windows.Forms.MessageBox.Show(z_main.ToDouble().ToString() +  "\n" + report.ToString());
+            
+            context.ClearModel();
+
+        }
+
+
+        private double solver_lr()
+        {
+            SolverContext context = SolverContext.GetContext();
+            context.ClearModel();
+            Model model = context.CreateModel();
+
+            Set Groups = new Set(Domain.IntegerNonnegative, "groups");
+            Set Passengers = new Set(Domain.IntegerNonnegative, "passengers");
+            Set States = new Set(Domain.IntegerNonnegative, "states");
+
+            Decision x = new Decision(Domain.RealNonnegative, "x_g_s", Groups, States);
+            x.SetBinding(Cost_data_list, "X_int", "Group", "State");
+            model.AddDecisions(x);
+
+            Parameter pi = new Parameter(Domain.RealNonnegative, "Pi_p", Passengers);
+            pi.SetBinding(Pi_data_list, "Pi", "Passenger");
+          
+
+            Parameter cost = new Parameter(Domain.RealNonnegative, "Price", Groups, States);
+            Parameter assign = new Parameter(Domain.IntegerNonnegative, "Value", Groups, Passengers, States);
+
+            cost.SetBinding(Cost_data_list, "Price", "Group", "State");
+            assign.SetBinding(Assign_data_list, "Value", "Group", "Passenger", "State");
+
+            model.AddParameters(pi,cost, assign);
+
+
+            model.AddConstraint("select_one_states_in_each_group",
+                Model.ForEach(
+                Groups, g =>
+                Model.Sum(Model.ForEach(States, s => x[g, s]))
+                        == 1)
+                );
+
+         
+           Goal z_lr= model.AddGoal("z_lr", GoalKind.Minimize,
+                Model.Sum(Model.ForEach(
+                    Groups, g =>
+                    Model.Sum(Model.ForEach(States, s => cost[g, s] * x[g, s]))
+                             ))
+                    +
+                Model.Sum(Model.ForEach(
+                    Passengers, p =>
+                    pi[p]*(1-Model.Sum(Model.ForEach(Groups, g =>
+                        Model.Sum(Model.ForEach(States, s => assign[g, p, s] * x[g, s]))))
+                           )
+                         ))
+                );
+
+            //SimplexDirective directive = new SimplexDirective();
+            SolverFoundation.Plugin.LpSolve.LpSolveDirective directive = new SolverFoundation.Plugin.LpSolve.LpSolveDirective();
+            try
+            {
+                directive.Arithmetic = Arithmetic.Exact;
+            }
+            catch(Exception ex)
+            {
+                ex.ToString();
+            }
+            Solution solution = context.Solve(directive);
+            context.PropagateDecisions();
+
+            
+
+            Report report = solution.GetReport();
+            this.String_Report += report.ToString();
+            //System.Windows.Forms.MessageBox.Show(report.ToString());
+
+            context.ClearModel();
+            return z_lr.ToDouble();
+
+        }
+    }
+}

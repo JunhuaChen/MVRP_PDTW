@@ -1,0 +1,58 @@
+E:\3 PrgStudy\MrpPlus_dominate\VisualRoute\bin\Debug\transAnalyze.exe.config
+E:\3 PrgStudy\MrpPlus_dominate\VisualRoute\bin\Debug\transAnalyze.exe
+E:\3 PrgStudy\MrpPlus_dominate\VisualRoute\bin\Debug\transAnalyze.pdb
+E:\3 PrgStudy\MrpPlus_dominate\VisualRoute\bin\Debug\ZedGraph.dll
+E:\3 PrgStudy\MrpPlus_dominate\VisualRoute\obj\Debug\MvrpLite.csprojResolveAssemblyReference.cache
+E:\3 PrgStudy\MrpPlus_dominate\VisualRoute\obj\Debug\Interop.Scripting.dll
+E:\3 PrgStudy\MrpPlus_dominate\VisualRoute\obj\Debug\MvrpLite.csproj.ResolveComReference.cache
+E:\3 PrgStudy\MrpPlus_dominate\VisualRoute\obj\Debug\MvrpLite.adminFuc.panelView.resources
+E:\3 PrgStudy\MrpPlus_dominate\VisualRoute\obj\Debug\MvrpLite.adminFuc.panelRealData.resources
+E:\3 PrgStudy\MrpPlus_dominate\VisualRoute\obj\Debug\MvrpLite.formMain.resources
+E:\3 PrgStudy\MrpPlus_dominate\VisualRoute\obj\Debug\transAnalyze.Properties.Resources.resources
+E:\3 PrgStudy\MrpPlus_dominate\VisualRoute\obj\Debug\MvrpLite.csproj.GenerateResource.Cache
+E:\3 PrgStudy\MrpPlus_dominate\VisualRoute\obj\Debug\transAnalyze.exe
+E:\3 PrgStudy\MrpPlus_dominate\VisualRoute\obj\Debug\transAnalyze.pdb
+E:\3 PrgStudy\MrpPlus_dominate\MvrpLite\obj\Debug\Interop.Scripting.dll
+E:\3 PrgStudy\MrpPlus_dominate\MvrpLite\obj\Debug\MvrpLite.csproj.ResolveComReference.cache
+E:\3 PrgStudy\MrpPlus_dominate\MvrpLite\obj\Debug\MvrpLite.adminFuc.panelView.resources
+E:\3 PrgStudy\MrpPlus_dominate\MvrpLite\obj\Debug\MvrpLite.adminFuc.panelRealData.resources
+E:\3 PrgStudy\MrpPlus_dominate\MvrpLite\obj\Debug\MvrpLite.formMain.resources
+E:\3 PrgStudy\MrpPlus_dominate\MvrpLite\obj\Debug\MvrpLite.csproj.GenerateResource.Cache
+E:\3 PrgStudy\MrpPlus_dominate\MvrpLite\obj\Debug\MvrpLite.Properties.Resources.resources
+E:\3 PrgStudy\MrpPlus_dominate\MvrpLite\bin\Debug\MvrpLite.exe.config
+E:\3 PrgStudy\MrpPlus_dominate\MvrpLite\bin\Debug\MvrpLite.exe
+E:\3 PrgStudy\MrpPlus_dominate\MvrpLite\bin\Debug\MvrpLite.pdb
+E:\3 PrgStudy\MrpPlus_dominate\MvrpLite\obj\Debug\MvrpLite.exe
+E:\3 PrgStudy\MrpPlus_dominate\MvrpLite\obj\Debug\MvrpLite.pdb
+E:\3 PrgStudy\MrpPlus_dominate\MvrpLite\obj\Debug\MvrpLite.csprojResolveAssemblyReference.cache
+E:\3 PrgStudy\MrpPlus_dominate\MvrpLite\bin\Debug\LpSolvePlugIn.dll
+E:\2 PrgStudy\MrpPlus_dominate\MvrpLite\obj\Debug\MvrpLite.csprojResolveAssemblyReference.cache
+E:\2 PrgStudy\MrpPlus_dominate\MvrpLite\obj\Debug\Interop.Scripting.dll
+E:\2 PrgStudy\MrpPlus_dominate\MvrpLite\obj\Debug\MvrpLite.csproj.ResolveComReference.cache
+E:\2 PrgStudy\MrpPlus_dominate\MvrpLite\obj\Debug\MvrpLite.adminFuc.panelView.resources
+E:\2 PrgStudy\MrpPlus_dominate\MvrpLite\obj\Debug\MvrpLite.adminFuc.panelRealData.resources
+E:\2 PrgStudy\MrpPlus_dominate\MvrpLite\obj\Debug\MvrpLite.formMain.resources
+E:\2 PrgStudy\MrpPlus_dominate\MvrpLite\obj\Debug\MvrpLite.Properties.Resources.resources
+E:\2 PrgStudy\MrpPlus_dominate\MvrpLite\obj\Debug\MvrpLite.csproj.GenerateResource.Cache
+E:\2 PrgStudy\MrpPlus_dominate\MvrpLite\obj\Debug\MvrpLite.exe
+E:\2 PrgStudy\MrpPlus_dominate\MvrpLite\obj\Debug\MvrpLite.pdb
+E:\2 PrgStudy\MrpPlus_dominate\MvrpLite\bin\Debug\MvrpLite.exe.config
+E:\2 PrgStudy\MrpPlus_dominate\MvrpLite\bin\Debug\MvrpLite.exe
+E:\2 PrgStudy\MrpPlus_dominate\MvrpLite\bin\Debug\MvrpLite.pdb
+E:\2 PrgStudy\MrpPlus_dominate\MvrpLite\bin\Debug\LpSolvePlugIn.dll
+E:\2 PrgStudy\MrpPlus_dominate\MvrpLite\obj\Debug\MvrpLite.csproj.CoreCompileInputs.cache
+E:\new_pro\AA300_dominate\MvrpLite\bin\Debug\MvrpLite.exe.config
+E:\new_pro\AA300_dominate\MvrpLite\bin\Debug\MvrpLite.exe
+E:\new_pro\AA300_dominate\MvrpLite\bin\Debug\MvrpLite.pdb
+E:\new_pro\AA300_dominate\MvrpLite\bin\Debug\LpSolvePlugIn.dll
+E:\new_pro\AA300_dominate\MvrpLite\obj\Debug\MvrpLite.csprojResolveAssemblyReference.cache
+E:\new_pro\AA300_dominate\MvrpLite\obj\Debug\Interop.Scripting.dll
+E:\new_pro\AA300_dominate\MvrpLite\obj\Debug\MvrpLite.csproj.ResolveComReference.cache
+E:\new_pro\AA300_dominate\MvrpLite\obj\Debug\MvrpLite.adminFuc.panelView.resources
+E:\new_pro\AA300_dominate\MvrpLite\obj\Debug\MvrpLite.adminFuc.panelRealData.resources
+E:\new_pro\AA300_dominate\MvrpLite\obj\Debug\MvrpLite.formMain.resources
+E:\new_pro\AA300_dominate\MvrpLite\obj\Debug\MvrpLite.Properties.Resources.resources
+E:\new_pro\AA300_dominate\MvrpLite\obj\Debug\MvrpLite.csproj.GenerateResource.Cache
+E:\new_pro\AA300_dominate\MvrpLite\obj\Debug\MvrpLite.csproj.CoreCompileInputs.cache
+E:\new_pro\AA300_dominate\MvrpLite\obj\Debug\MvrpLite.exe
+E:\new_pro\AA300_dominate\MvrpLite\obj\Debug\MvrpLite.pdb

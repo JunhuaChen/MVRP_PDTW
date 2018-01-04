@@ -1,0 +1,29 @@
+B 2 C o m p i l a t i o n
+B 116 Equation Listing    SOLVE model_group Using MINLP From line 105
+D 117 obj_main
+D 129 v_in_group_constrain
+D 146 g_for_v_constrain
+D 163 capacity_constrain_1
+D 170 capacity_constrain_2
+D 175 xy_connect
+D 192 xy_connect_2
+B 208 Column Listing      SOLVE model_group Using MINLP From line 105
+E 209 x
+E 236 y
+E 261 z
+B 270 Model Statistics    SOLVE model_group Using MINLP From line 105
+B 288 Solution Report     SOLVE model_group Using MINLP From line 105
+F 342 obj_main
+F 348 v_in_group_constrain
+F 358 g_for_v_constrain
+F 366 capacity_constrain_1
+F 367 capacity_constrain_2
+F 373 xy_connect
+F 383 xy_connect_2
+G 388 x
+G 418 y
+G 428 z
+B 440 E x e c u t i o n
+I 441 x
+I 453 y
+I 459 z

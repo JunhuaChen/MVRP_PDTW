@@ -1,0 +1,22 @@
+
+--- Job gams_exe_route.gms Start 05/29/16 14:45:30 24.4.3 r51699 WEX-WEI x86 64bit/MS Windows
+GAMS 24.4.3   Copyright (C) 1987-2015 GAMS Development. All rights reserved
+Licensee: School of Sustainable Engineering              G150407:1621AO-WIN
+          Arizona State University                                  DC11708
+          License for teaching and research at degree granting institutions
+--- Starting compilation
+--- gams_exe_route.gms(18) 2 Mb
+--- .../gams_route_input.txt(4277) 3 Mb
+--- gams_exe_route.gms(47) 3 Mb
+--- Starting execution: elapsed 0:00:00.008
+--- gams_exe_route.gms(4315) 4 Mb
+--- Generating RMIP model model_main
+--- gams_exe_route.gms(4312) 4 Mb
+*** Error at line 4312: Equation infeasible due to rhs value
+--- gams_exe_route.gms(4317) 4 Mb 1 Error
+*** SOLVE aborted
+--- Executing CPLEX: elapsed 0:00:00.009
+--- gams_exe_route.gms(4317) 4 Mb 1 Error
+*** Status: Execution error(s)
+--- Job gams_exe_route.gms Stop 05/29/16 14:45:30 elapsed 0:00:00.009
+Exit code = 3

@@ -1,0 +1,15 @@
+B 2 C o m p i l a t i o n
+B 107 Equation Listing    SOLVE model_group Using MINLP From line 96
+D 108 obj_main
+D 152 uv_in_group_constrain
+D 169 constraint_1
+D 180 constraint_2
+D 195 constraint_3
+B 211 Column Listing      SOLVE model_group Using MINLP From line 96
+E 212 x
+E 271 z
+B 280 Model Statistics    SOLVE model_group Using MINLP From line 96
+B 298 Solution Report     SOLVE model_group Using MINLP From line 96
+B 320 E x e c u t i o n
+I 323 x
+I 328 z

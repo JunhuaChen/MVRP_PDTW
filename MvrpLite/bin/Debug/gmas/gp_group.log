@@ -1,0 +1,94 @@
+
+--- Job gp_group.gms Start 04/06/16 10:48:39 24.4.3 r51699 WEX-WEI x86 64bit/MS Windows
+GAMS 24.4.3   Copyright (C) 1987-2015 GAMS Development. All rights reserved
+Licensee: School of Sustainable Engineering              G150407:1621AO-WIN
+          Arizona State University                                  DC11708
+          License for teaching and research at degree granting institutions
+--- Starting compilation
+--- gp_group.gms(167) 3 Mb
+--- Starting execution: elapsed 0:00:00.003
+--- gp_group.gms(131) 4 Mb
+--- Generating MINLP model model_group
+--- gp_group.gms(164) 6 Mb
+---   58 rows  381 columns  1,361 non-zeroes
+---   0 nl-code  0 nl-non-zeroes
+---   380 discrete-columns
+--- gp_group.gms(164) 4 Mb
+--- Executing BARON: elapsed 0:00:00.010
+
+GAMS/BARON       24.4.3 r51699 Released Apr  2, 2015 WEI x86 64bit/MS Windows 
+
+===========================================================================
+ BARON version 14.4.0. Built: WIN-64 Tue Dec 2 07:54:16 EST 2014 
+
+ If you use this software, please cite:
+ Tawarmalani, M. and N. V. Sahinidis, A polyhedral
+ branch-and-cut approach to global optimization,
+ Mathematical Programming, 103(2), 225-249, 2005.
+
+ BARON is a product of The Optimization Firm, LLC. http://www.minlp.com/
+ Parts of the BARON software were created at the
+ University of Illinois at Urbana-Champaign.
+===========================================================================
+ This BARON run may utilize the following subsolver(s)
+ For LP/MIP: ILOG CPLEX                                      
+===========================================================================
+ Doing local search
+ Solving bounding LP
+ Preprocessing found feasible solution with value  98296.6064924     
+ Starting multi-start local search
+ Preprocessing found feasible solution with value  11.0000000000     
+ Done with local search
+===========================================================================
+  Iteration    Open nodes       Total time    Lower bound      Upper bound
+          1             1        000:00:00     3.80000          11.0000    
+*         1             0        000:00:00     3.80000          4.00000    
+          1             0        000:00:00     3.80000          4.00000    
+
+ Cleaning up
+
+                         *** Normal completion ***            
+
+  LP  subsolver time:        000:00:00,    in seconds:          0.02
+  MIP subsolver time:        000:00:00,    in seconds:          0.02
+  NLP subsolver time:        000:00:00,    in seconds:          0.00
+  Cutting time:              000:00:00,    in seconds:          0.00
+  All other time:            000:00:00,    in seconds:          0.11
+
+  Total time elapsed:        000:00:00,    in seconds:          0.14
+       on parsing:           000:00:00,    in seconds:          0.02
+       on preprocessing:     000:00:00,    in seconds:          0.05
+       on navigating:        000:00:00,    in seconds:          0.03
+       on relaxed:           000:00:00,    in seconds:          0.02
+       on local:             000:00:00,    in seconds:          0.00
+       on tightening:        000:00:00,    in seconds:          0.03
+       on marginals:         000:00:00,    in seconds:          0.00
+       on probing:           000:00:00,    in seconds:          0.00
+       on IIS detection:     000:00:00,    in seconds:          0.00
+
+  Total no. of BaR iterations:       1
+  Best solution found at node:       1
+  Max. no. of nodes in memory:       1
+
+  Cut generation statistics (number of cuts / CPU sec)
+    Bilinear                         0         0.00
+    LD-Envelopes                     0         0.00
+    Multilinears                     0         0.00
+    Convexity                        0         0.00
+    Integrality                     14         0.03
+
+ All done
+===========================================================================
+
+Solution      = 4  found at node 1
+Best possible = 3.8
+Absolute gap  = 0.2  optca = 1E-9
+Relative gap  = 0.05000  optcr = 0.1
+
+--- Restarting execution
+--- gp_group.gms(164) 2 Mb
+--- Reading solution for model model_group
+--- Executing after solve: elapsed 0:00:00.928
+--- gp_group.gms(167) 3 Mb
+*** Status: Normal completion
+--- Job gp_group.gms Stop 04/06/16 10:48:40 elapsed 0:00:00.928

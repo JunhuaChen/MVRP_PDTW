@@ -1,0 +1,474 @@
+GAMS 24.4.3  r51699 Released Apr  2, 2015 WEX-WEI x86 64bit/MS Windows 04/05/16 10:12:02 Page 1
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+C o m p i l a t i o n
+
+
+       
+          vehicle and passenger partition problem
+          junhua Chen.   cjh@bjtu.edu.cn
+          4/4,2016
+       
+   8   
+   9  set v 'group'/1*5/;
+  10  set p 'passenger'/1*8/;
+  11  alias (v,g);
+  12   
+  13  parameter d(v,p);
+  14   
+  15  parameter d(v,p)/
+  16  1.1 100
+  17  1.2 100
+  18  1.3 100
+  19  1.4 100
+  20  1.5 2
+  21  1.6 2
+  22  1.7 2
+  23  1.8 2
+  24  2.1 100
+  25  2.2 100
+  26  2.3 100
+  27  2.4 100
+  28  2.5 2
+  29  2.6 2
+  30  2.7 2
+  31  2.8 2
+  32  3.1 2
+  33  3.2 2
+  34  3.3 2
+  35  3.4 2
+  36  3.5 100
+  37  3.6 100
+  38  3.7 100
+  39  3.8 100
+  40  4.1 2
+  41  4.2 2
+  42  4.3 2
+  43  4.4 2
+  44  4.5 100
+  45  4.6 100
+  46  4.7 100
+  47  4.8 100
+  48  5.1 100
+  49  5.2 100
+  50  5.3 100
+  51  5.4 100
+  52  5.5 4
+  53  5.6 4
+  54  5.7 4
+  55  5.8 4
+  56  /;
+  57   
+  58  parameter c(v,g);
+  59  c(v,g)=(sum(p,(d(v,p)-d(g,p))*(d(v,p)-d(g,p))));
+  60   
+  61  parameter matrix_v_e_g(v,g);
+  62            matrix_v_e_g(v,v)=1;
+  63   
+  64  scalar capacity_v/4/;
+  65  scalar max_g/2/;
+  66  scalar min_g/2/;
+  67   
+  68  binary variable x(v,g);
+  69  binary variable y(g);
+  70  variable z;
+  71   
+  72  equations
+  73           obj_main
+  74           v_in_group_constrain(v)
+  75           g_for_v_constrain(g)
+  76           capacity_constrain_1
+  77           capacity_constrain_2
+  78           xy_connect(g),
+  79           xy_connect_2(g)
+  80  ;
+  81  obj_main..
+  82           z=e=sum((v,g),c(v,g)*x(v,g));
+  83  v_in_group_constrain(v)..
+  84           sum(g,x(v,g))=e=1;
+  85  g_for_v_constrain(g)..
+  86           sum(v,x(v,g))=l=3;
+  87  capacity_constrain_1..
+  88           sum(g,y(g))=g=min_g;
+  89  capacity_constrain_2..
+  90           sum(g,y(g))=l=max_g;
+  91  xy_connect(g)..
+  92           sum(v,x(v,g))=g=y(g);
+  93  xy_connect_2(g)..
+  94           sum(v,x(v,g))-y(g)*1000=l=0;
+  95  model model_group /obj_main,
+  96           v_in_group_constrain,
+  97           g_for_v_constrain,
+  98           capacity_constrain_1,
+  99           capacity_constrain_2,
+ 100           xy_connect,
+ 101           xy_connect_2
+ 102   
+ 103           /;
+ 104   
+ 105  solve model_group minimizing z using minlp;
+ 106  display x.l;
+ 107  display y.l;
+ 108  display z.l;
+
+
+COMPILATION TIME     =        0.000 SECONDS      3 MB  24.4.3 r51699 WEX-WEI
+GAMS 24.4.3  r51699 Released Apr  2, 2015 WEX-WEI x86 64bit/MS Windows 04/05/16 10:12:02 Page 2
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE model_group Using MINLP From line 105
+
+
+---- obj_main  =E=  
+
+obj_main..  - 76832*x(1,3) - 76832*x(1,4) - 16*x(1,5) - 76832*x(2,3)
+     
+      - 76832*x(2,4) - 16*x(2,5) - 76832*x(3,1) - 76832*x(3,2) - 75280*x(3,5)
+     
+      - 76832*x(4,1) - 76832*x(4,2) - 75280*x(4,5) - 16*x(5,1) - 16*x(5,2)
+     
+      - 75280*x(5,3) - 75280*x(5,4) + z =E= 0 ; (LHS = 0)
+     
+
+---- v_in_group_constrain  =E=  
+
+v_in_group_constrain(1)..  x(1,1) + x(1,2) + x(1,3) + x(1,4) + x(1,5) =E= 1 ;
+     
+      (LHS = 0, INFES = 1 ****)
+     
+v_in_group_constrain(2)..  x(2,1) + x(2,2) + x(2,3) + x(2,4) + x(2,5) =E= 1 ;
+     
+      (LHS = 0, INFES = 1 ****)
+     
+v_in_group_constrain(3)..  x(3,1) + x(3,2) + x(3,3) + x(3,4) + x(3,5) =E= 1 ;
+     
+      (LHS = 0, INFES = 1 ****)
+     
+REMAINING 2 ENTRIES SKIPPED
+
+
+---- g_for_v_constrain  =L=  
+
+g_for_v_constrain(1)..  x(1,1) + x(2,1) + x(3,1) + x(4,1) + x(5,1) =L= 3 ;
+     
+      (LHS = 0)
+     
+g_for_v_constrain(2)..  x(1,2) + x(2,2) + x(3,2) + x(4,2) + x(5,2) =L= 3 ;
+     
+      (LHS = 0)
+     
+g_for_v_constrain(3)..  x(1,3) + x(2,3) + x(3,3) + x(4,3) + x(5,3) =L= 3 ;
+     
+      (LHS = 0)
+     
+REMAINING 2 ENTRIES SKIPPED
+
+
+---- capacity_constrain_1  =G=  
+
+capacity_constrain_1..  y(1) + y(2) + y(3) + y(4) + y(5) =G= 2 ;
+     
+      (LHS = 0, INFES = 2 ****)
+     
+
+---- capacity_constrain_2  =L=  
+
+capacity_constrain_2..  y(1) + y(2) + y(3) + y(4) + y(5) =L= 2 ; (LHS = 0)
+     
+
+---- xy_connect  =G=  
+
+xy_connect(1)..  x(1,1) + x(2,1) + x(3,1) + x(4,1) + x(5,1) - y(1) =G= 0 ;
+     
+      (LHS = 0)
+     
+xy_connect(2)..  x(1,2) + x(2,2) + x(3,2) + x(4,2) + x(5,2) - y(2) =G= 0 ;
+     
+      (LHS = 0)
+     
+xy_connect(3)..  x(1,3) + x(2,3) + x(3,3) + x(4,3) + x(5,3) - y(3) =G= 0 ;
+     
+      (LHS = 0)
+     
+REMAINING 2 ENTRIES SKIPPED
+
+
+---- xy_connect_2  =L=  
+
+xy_connect_2(1)..  x(1,1) + x(2,1) + x(3,1) + x(4,1) + x(5,1) - 1000*y(1) =L= 0
+      ; (LHS = 0)
+     
+xy_connect_2(2)..  x(1,2) + x(2,2) + x(3,2) + x(4,2) + x(5,2) - 1000*y(2) =L= 0
+      ; (LHS = 0)
+     
+xy_connect_2(3)..  x(1,3) + x(2,3) + x(3,3) + x(4,3) + x(5,3) - 1000*y(3) =L= 0
+      ; (LHS = 0)
+     
+REMAINING 2 ENTRIES SKIPPED
+
+GAMS 24.4.3  r51699 Released Apr  2, 2015 WEX-WEI x86 64bit/MS Windows 04/05/16 10:12:02 Page 3
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Column Listing      SOLVE model_group Using MINLP From line 105
+
+
+---- x  
+
+x(1,1)
+                (.LO, .L, .UP, .M = 0, 0, 1, 0)
+        1       v_in_group_constrain(1)
+        1       g_for_v_constrain(1)
+        1       xy_connect(1)
+        1       xy_connect_2(1)
+
+x(1,2)
+                (.LO, .L, .UP, .M = 0, 0, 1, 0)
+        1       v_in_group_constrain(1)
+        1       g_for_v_constrain(2)
+        1       xy_connect(2)
+        1       xy_connect_2(2)
+
+x(1,3)
+                (.LO, .L, .UP, .M = 0, 0, 1, 0)
+   -76832       obj_main
+        1       v_in_group_constrain(1)
+        1       g_for_v_constrain(3)
+        1       xy_connect(3)
+        1       xy_connect_2(3)
+
+REMAINING 22 ENTRIES SKIPPED
+
+---- y  
+
+y(1)
+                (.LO, .L, .UP, .M = 0, 0, 1, 0)
+        1       capacity_constrain_1
+        1       capacity_constrain_2
+       -1       xy_connect(1)
+    -1000       xy_connect_2(1)
+
+y(2)
+                (.LO, .L, .UP, .M = 0, 0, 1, 0)
+        1       capacity_constrain_1
+        1       capacity_constrain_2
+       -1       xy_connect(2)
+    -1000       xy_connect_2(2)
+
+y(3)
+                (.LO, .L, .UP, .M = 0, 0, 1, 0)
+        1       capacity_constrain_1
+        1       capacity_constrain_2
+       -1       xy_connect(3)
+    -1000       xy_connect_2(3)
+
+REMAINING 2 ENTRIES SKIPPED
+
+---- z  
+
+z
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+        1       obj_main
+
+GAMS 24.4.3  r51699 Released Apr  2, 2015 WEX-WEI x86 64bit/MS Windows 04/05/16 10:12:02 Page 4
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Model Statistics    SOLVE model_group Using MINLP From line 105
+
+
+MODEL STATISTICS
+
+BLOCKS OF EQUATIONS           7     SINGLE EQUATIONS           23
+BLOCKS OF VARIABLES           3     SINGLE VARIABLES           31
+NON ZERO ELEMENTS           137     NON LINEAR N-Z              0
+DERIVATIVE POOL              20     CONSTANT POOL              16
+CODE LENGTH                   0     DISCRETE VARIABLES         30
+
+
+GENERATION TIME      =        0.000 SECONDS      4 MB  24.4.3 r51699 WEX-WEI
+
+
+EXECUTION TIME       =        0.000 SECONDS      4 MB  24.4.3 r51699 WEX-WEI
+GAMS 24.4.3  r51699 Released Apr  2, 2015 WEX-WEI x86 64bit/MS Windows 04/05/16 10:12:02 Page 5
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE model_group Using MINLP From line 105
+
+
+               S O L V E      S U M M A R Y
+
+     MODEL   model_group         OBJECTIVE  z
+     TYPE    MINLP               DIRECTION  MINIMIZE
+     SOLVER  DICOPT              FROM LINE  105
+
+**** SOLVER STATUS     1 Normal Completion         
+**** MODEL STATUS      1 Optimal                   
+**** OBJECTIVE VALUE               16.0000
+
+ RESOURCE USAGE, LIMIT          0.078      1000.000
+ ITERATION COUNT, LIMIT        12    2000000000
+ EVALUATION ERRORS              0             0
+
+ ------------------------------------------------------------------
+Dicopt           24.4.3 r51699 Released Apr  2, 2015 WEI x86 64bit/MS Windows 
+ ------------------------------------------------------------------
+     Aldo Vecchietti and Ignacio E. Grossmann                      
+     Engineering Design Research Center                            
+     Carnegie Mellon University                                    
+     Pittsburgh, Pennsylvania 15213                                
+ ------------------------------------------------------------------
+--- DICOPT: No non-linearities found: executing the MIP solver
+
+      The model is linear (possibly with integer variables).
+      We will call the MIP solver to solve it for you.
+
+      Advice: use a MIP solver to solve this problem.
+
+IBM ILOG CPLEX   24.4.3 r51699 Released Apr  2, 2015 WEI x86 64bit/MS Windows 
+Cplex 12.6.1.0
+
+Space for names approximately 0.00 Mb
+Use option 'names no' to turn use of names off
+MIP status(101): integer optimal solution
+Cplex Time: 0.08sec (det. 0.51 ticks)
+Fixing integer variables, and solving final LP...
+Fixed MIP status(1): optimal
+Cplex Time: 0.00sec (det. 0.02 ticks)
+Proven optimal solution.
+
+MIP Solution:           16.000000    (12 iterations, 0 nodes)
+Final Solve:            16.000000    (0 iterations)
+
+Best possible:          16.000000
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+
+                       LOWER     LEVEL     UPPER    MARGINAL
+
+---- EQU obj_main        .         .         .        1.000      
+
+---- EQU v_in_group_constrain  
+
+     LOWER     LEVEL     UPPER    MARGINAL
+
+1     1.000     1.000     1.000      .         
+2     1.000     1.000     1.000      .         
+3     1.000     1.000     1.000      .         
+4     1.000     1.000     1.000      .         
+5     1.000     1.000     1.000      .         
+
+---- EQU g_for_v_constrain  
+
+     LOWER     LEVEL     UPPER    MARGINAL
+
+1     -INF      3.000     3.000      .         
+2     -INF       .        3.000      .         
+3     -INF       .        3.000      .         
+4     -INF      2.000     3.000      .         
+5     -INF       .        3.000      .         
+
+                       LOWER     LEVEL     UPPER    MARGINAL
+
+---- EQU capacity_~     2.000     2.000     +INF       .         
+---- EQU capacity_~     -INF      2.000     2.000      .         
+
+---- EQU xy_connect  
+
+     LOWER     LEVEL     UPPER    MARGINAL
+
+1      .        2.000     +INF       .         
+2      .         .        +INF       .         
+3      .         .        +INF       .         
+4      .        1.000     +INF       .         
+5      .         .        +INF       .         
+
+---- EQU xy_connect_2  
+
+     LOWER     LEVEL     UPPER    MARGINAL
+
+1     -INF   -997.000      .         .         
+2     -INF       .         .         .         
+3     -INF       .         .         .         
+4     -INF   -998.000      .         .         
+5     -INF       .         .         .         
+
+---- VAR x  
+
+       LOWER     LEVEL     UPPER    MARGINAL
+
+1.1      .        1.000     1.000      EPS       
+1.2      .         .        1.000      EPS       
+1.3      .         .        1.000 76832.000      
+1.4      .         .        1.000 76832.000      
+1.5      .         .        1.000    16.000      
+2.1      .        1.000     1.000      EPS       
+2.2      .         .        1.000      EPS       
+2.3      .         .        1.000 76832.000      
+2.4      .         .        1.000 76832.000      
+2.5      .         .        1.000    16.000      
+3.1      .         .        1.000 76832.000      
+3.2      .         .        1.000 76832.000      
+3.3      .         .        1.000      EPS       
+3.4      .        1.000     1.000      EPS       
+3.5      .         .        1.000 75280.000      
+4.1      .         .        1.000 76832.000      
+4.2      .         .        1.000 76832.000      
+4.3      .         .        1.000      EPS       
+4.4      .        1.000     1.000      EPS       
+4.5      .         .        1.000 75280.000      
+5.1      .        1.000     1.000    16.000      
+5.2      .         .        1.000    16.000      
+5.3      .         .        1.000 75280.000      
+5.4      .         .        1.000 75280.000      
+5.5      .         .        1.000      EPS       
+
+---- VAR y  
+
+     LOWER     LEVEL     UPPER    MARGINAL
+
+1      .        1.000     1.000      EPS       
+2      .         .        1.000      EPS       
+3      .         .        1.000      EPS       
+4      .        1.000     1.000      EPS       
+5      .         .        1.000      EPS       
+
+                       LOWER     LEVEL     UPPER    MARGINAL
+
+---- VAR z              -INF     16.000     +INF       .         
+
+
+**** REPORT SUMMARY :        0     NONOPT
+                             0 INFEASIBLE
+                             0  UNBOUNDED
+                             0     ERRORS
+GAMS 24.4.3  r51699 Released Apr  2, 2015 WEX-WEI x86 64bit/MS Windows 04/05/16 10:12:02 Page 6
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+E x e c u t i o n
+
+
+----    106 VARIABLE x.L  
+
+            1           4
+
+1       1.000
+2       1.000
+3                   1.000
+4                   1.000
+5       1.000
+
+
+----    107 VARIABLE y.L  
+
+1 1.000,    4 1.000
+
+
+----    108 VARIABLE z.L                   =       16.000  
+
+
+EXECUTION TIME       =        0.000 SECONDS      3 MB  24.4.3 r51699 WEX-WEI
+
+
+USER: School of Sustainable Engineering              G150407:1621AO-WIN
+      Arizona State University                                  DC11708
+      License for teaching and research at degree granting institutions
+
+
+**** FILE SUMMARY
+
+Input      E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\gp_group_small.gms
+Output     E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\gp_group_small.lst

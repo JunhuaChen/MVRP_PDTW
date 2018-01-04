@@ -1,0 +1,89 @@
+number of physical nodes =,61
+number of physical links =,3660
+number of passengers=, 3
+number of vehicles =,3
+network has 67 nodes, 3672 links, 0 toll records, 3  passengers, 4 vehicles
+passenger 1 starts from node 1 to node 31, start time 175->235, ending time 209->269
+passenger 2 starts from node 2 to node 32, start time 522->528, ending time 562->622
+passenger 3 starts from node 3 to node 33, start time 556->562, ending time 561->621
+vehicle 1 starts from node 61 to node 61, start time 1->1001, ending time 1->1001
+vehicle 2 starts from node 61 to node 61, start time 1->1001, ending time 1->1001
+vehicle 3 starts from node 61 to node 61, start time 1->1001, ending time 1->1001
+vehicle 4 starts from node 1 to node 1, start time 0->0, ending time 1010->1010
+--- travel time and cancelation cost ($)----
+pax no.1, Departure Time = 175 (min), Travel Time = 34.00 (min), Earliest Arrival Time = 209.00, cost = $17.00
+modified arrival time window for pax no.1 [0,0]  
+pax no.2, Departure Time = 522 (min), Travel Time = 40.00 (min), Earliest Arrival Time = 562.00, cost = $20.00
+modified arrival time window for pax no.2 [0,0]  
+pax no.3, Departure Time = 556 (min), Travel Time = 5.00 (min), Earliest Arrival Time = 561.00, cost = $2.50
+modified arrival time window for pax no.3 [0,0]  
+step 0: initialization 
+
+ **********************  Start Group = 1 ***************************
+
+g(v)=1 + 
+g(p)=1 + 
+
+  stage 1, total states number:3
+stage:1, service state no. 0:(0,0) _ _ _ ; outgoing state list:0,1,
+stage:1, service state no. 1:(0,1) _1_ _ ; outgoing state list:1,2,
+stage:1, service state no. 2:(1,0) _2_ _ ; outgoing state list:2,
+-----
+Relay stage 1(1)-2(4): relaying state no. 2->0 _2_ _ , with label cost 72.000000
+group 1,index 0,stage 1, Vehicle 1,[g,s]=[1,1]: time = 1,p=0, node = 61, state[0] = _ _ _ , cost = 0.000000,routeType=a
+group 1,index 164,stage 1, Vehicle 1,[g,s]=[1,1]: time = 174,p=0, node = 1, state[0] = _ _ _ , cost = 10.000000,routeType=a
+group 1,index 165,stage 1, Vehicle 1,[g,s]=[1,1]: time = 175,p=1, node = 62, state[1] = _1_ _ , cost = 11.000000,routeType=b
+group 1,index 166,stage 1, Vehicle 1,[g,s]=[1,1]: time = 176,p=0, node = 1, state[1] = _1_ _ , cost = 12.000000,routeType=b
+group 1,index 167,stage 1, Vehicle 1,[g,s]=[1,1]: time = 210,p=0, node = 31, state[1] = _1_ _ , cost = 46.000000,routeType=b
+group 1,index 168,stage 1, Vehicle 1,[g,s]=[1,1]: time = 211,p=1, node = 63, state[2] = _2_ _ , cost = 47.000000,routeType=c0
+group 1,index 169,stage 1, Vehicle 1,[g,s]=[1,1]: time = 212,p=0, node = 31, state[2] = _2_ _ , cost = 48.000000,routeType=c
+group 1,index 935,stage 1, Vehicle 1,[g,s]=[1,1]: time = 1001,p=0, node = 61, state[2] = _2_ _ , cost = 72.000000,routeType=c
+
+ **********************  Start Group = 2 ***************************
+
+g(v)=2 + 3 + 
+g(p)=2 + 3 + 
+
+  stage 1, total states number:8
+stage:1, service state no. 0:(0,0) _ _ _ ; outgoing state list:0,1,2,
+stage:1, service state no. 1:(0,1) _ _1_ ; outgoing state list:1,3,
+stage:1, service state no. 2:(0,1) _ _ _1; outgoing state list:2,4,
+stage:1, service state no. 3:(1,0) _ _2_ ; outgoing state list:3,5,
+stage:1, service state no. 4:(1,0) _ _ _2; outgoing state list:4,6,
+stage:1, service state no. 5:(1,1) _ _2_1; outgoing state list:5,7,
+stage:1, service state no. 6:(1,1) _ _1_2; outgoing state list:6,7,
+stage:1, service state no. 7:(2,0) _ _2_2; outgoing state list:7,
+-----
+Relay stage 1(2)-2(3): relaying state no. 3->0 _ _2_ , with label cost 84.000000
+Relay stage 1(2)-2(3): relaying state no. 4->1 _ _ _2, with label cost 61.000000
+
+  stage 2, total states number:5
+stage:2, service state no. 0:(1,0) _ _2_ ; outgoing state list:0,2,
+stage:2, service state no. 1:(1,0) _ _ _2; outgoing state list:1,3,
+stage:2, service state no. 2:(1,1) _ _2_1; outgoing state list:2,4,
+stage:2, service state no. 3:(1,1) _ _1_2; outgoing state list:3,4,
+stage:2, service state no. 4:(2,0) _ _2_2; outgoing state list:4,
+-----
+Relay stage 2(3)-3(4): relaying state no. 4->0 _ _2_2, with label cost 145.000000
+group 2,index 0,stage 1, Vehicle 2,[g,s]=[2,1]: time = 1,p=0, node = 61, state[0] = _ _ _ , cost = 0.000000,routeType=a
+group 2,index 531,stage 1, Vehicle 2,[g,s]=[2,1]: time = 555,p=0, node = 3, state[0] = _ _ _ , cost = 24.000000,routeType=a
+group 2,index 532,stage 1, Vehicle 2,[g,s]=[2,1]: time = 556,p=3, node = 66, state[2] = _ _ _1, cost = 25.000000,routeType=b
+group 2,index 533,stage 1, Vehicle 2,[g,s]=[2,1]: time = 557,p=0, node = 3, state[2] = _ _ _1, cost = 26.000000,routeType=b
+group 2,index 534,stage 1, Vehicle 2,[g,s]=[2,1]: time = 562,p=0, node = 33, state[2] = _ _ _1, cost = 31.000000,routeType=b
+group 2,index 535,stage 1, Vehicle 2,[g,s]=[2,1]: time = 563,p=3, node = 67, state[4] = _ _ _2, cost = 32.000000,routeType=c0
+group 2,index 536,stage 1, Vehicle 2,[g,s]=[2,1]: time = 564,p=0, node = 33, state[4] = _ _ _2, cost = 33.000000,routeType=c
+group 2,index 946,stage 1, Vehicle 2,[g,s]=[2,1]: time = 992,p=0, node = 47, state[4] = _ _ _2, cost = 52.000000,routeType=c
+group 2,index 947,stage 1, Vehicle 2,[g,s]=[2,1]: time = 1001,p=0, node = 61, state[4] = _ _ _2, cost = 61.000000,routeType=c
+group 2,index 948,stage 2, Vehicle 3,[g,s]=[2,1]: time = 1,p=0, node = 61, state[1] = _ _ _2, cost = 61.000000,routeType=a
+group 2,index 1446,stage 2, Vehicle 3,[g,s]=[2,1]: time = 514,p=0, node = 46, state[1] = _ _ _2, cost = 77.000000,routeType=a
+group 2,index 1447,stage 2, Vehicle 3,[g,s]=[2,1]: time = 521,p=0, node = 2, state[1] = _ _ _2, cost = 84.000000,routeType=a
+group 2,index 1448,stage 2, Vehicle 3,[g,s]=[2,1]: time = 522,p=2, node = 64, state[3] = _ _1_2, cost = 85.000000,routeType=b
+group 2,index 1449,stage 2, Vehicle 3,[g,s]=[2,1]: time = 523,p=0, node = 2, state[3] = _ _1_2, cost = 86.000000,routeType=b
+group 2,index 1450,stage 2, Vehicle 3,[g,s]=[2,1]: time = 550,p=0, node = 4, state[3] = _ _1_2, cost = 113.000000,routeType=b
+group 2,index 1451,stage 2, Vehicle 3,[g,s]=[2,1]: time = 563,p=0, node = 32, state[3] = _ _1_2, cost = 126.000000,routeType=b
+group 2,index 1452,stage 2, Vehicle 3,[g,s]=[2,1]: time = 564,p=2, node = 65, state[4] = _ _2_2, cost = 127.000000,routeType=c0
+group 2,index 1453,stage 2, Vehicle 3,[g,s]=[2,1]: time = 565,p=0, node = 32, state[4] = _ _2_2, cost = 128.000000,routeType=c
+group 2,index 1873,stage 2, Vehicle 3,[g,s]=[2,1]: time = 1001,p=0, node = 61, state[4] = _ _2_2, cost = 145.000000,routeType=c
+
+-------------------------------------------------------
+CPU Running Time = 1517 milliseconds

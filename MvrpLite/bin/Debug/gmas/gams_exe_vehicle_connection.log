@@ -1,0 +1,71 @@
+
+--- Job gams_exe_vehicle_connection.gms Start 06/03/16 15:12:10 24.4.3 r51699 WEX-WEI x86 64bit/MS Windows
+GAMS 24.4.3   Copyright (C) 1987-2015 GAMS Development. All rights reserved
+Licensee: School of Sustainable Engineering              G150407:1621AO-WIN
+          Arizona State University                                  DC11708
+          License for teaching and research at degree granting institutions
+--- Starting compilation
+--- gams_exe_vehicle_connection.gms(39) 2 Mb
+--- .gams_vehicle_connection_input.txt(14) 3 Mb
+--- gams_exe_vehicle_connection.gms(53) 3 Mb
+--- Starting execution: elapsed 0:00:00.002
+--- gams_exe_vehicle_connection.gms(55) 4 Mb
+--- Generating MIP model model_group
+--- gams_exe_vehicle_connection.gms(58) 4 Mb
+---   7 rows  10 columns  25 non-zeroes
+---   9 discrete-columns
+--- Executing CPLEX: elapsed 0:00:00.006
+
+IBM ILOG CPLEX   24.4.3 r51699 Released Apr  2, 2015 WEI x86 64bit/MS Windows 
+Cplex 12.6.1.0
+
+Reading data...
+Starting Cplex...
+Space for names approximately 0.00 Mb
+Use option 'names no' to turn use of names off
+Found incumbent of value 101521.000000 after 0.00 sec. (0.00 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 4 rows and 5 columns.
+Reduced MIP has 3 rows, 5 columns, and 7 nonzeros.
+Reduced MIP has 5 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.01 ticks)
+Probing time = 0.00 sec. (0.00 ticks)
+Tried aggregator 2 times.
+MIP Presolve eliminated 1 rows and 3 columns.
+Aggregator did 2 substitutions.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.01 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.03 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.03 ticks)
+MIP status(101): integer optimal solution
+Cplex Time: 0.00sec (det. 0.03 ticks)
+Fixing integer variables, and solving final LP...
+Tried aggregator 1 time.
+LP Presolve eliminated 7 rows and 10 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.00 ticks)
+Fixed MIP status(1): optimal
+Cplex Time: 0.00sec (det. 0.01 ticks)
+
+Proven optimal solution.
+
+MIP Solution:         1778.000000    (0 iterations, 0 nodes)
+Final Solve:          1778.000000    (0 iterations)
+
+Best possible:        1778.000000
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+--- Restarting execution
+--- gams_exe_vehicle_connection.gms(58) 2 Mb
+--- Reading solution for model model_group
+--- Executing after solve: elapsed 0:00:00.194
+--- gams_exe_vehicle_connection.gms(67) 3 Mb
+--- Putfile output_results_x E:\3 PrgStudy\MrpPlus_dominate\MvrpLite\bin\Debug\gams_vehicle_connection_output.txt
+*** Status: Normal completion
+--- Job gams_exe_vehicle_connection.gms Stop 06/03/16 15:12:10 elapsed 0:00:00.194

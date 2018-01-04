@@ -1,0 +1,179 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+using Microsoft.SolverFoundation.Common;
+using Microsoft.SolverFoundation.Services;
+//using SolverFoundation.Plugin.LpSolve;
+
+namespace MvrpLite.adminFuc
+{
+    class Cost_gv_Def
+    {
+        public int Vehicle { get; set; }
+        public int Group { get; set; }       
+        public double Price { get; set; }
+        public double X_int { get; set; }
+        public Cost_gv_Def( int vehicle,int group, float price)
+        {
+            Group = group;
+            Vehicle = vehicle;
+            Price = price;
+            X_int = 0;
+        }
+    }
+    class YDef
+    {
+        public int Group { get; set; }
+     
+        public double Value { get; set; }
+
+        public YDef(int group, double value)
+        {
+            Group = group;
+            Value = value;
+        }
+    }
+
+
+    class Model_GroupVehicle
+    {
+        public double[,] X{ get; set; }
+        public string String_Report { get; set; }
+       
+
+        private Cost_gv_Def[] Cost_data_list;
+        private YDef[] Y_data_list;
+        private int Max_v_in_group;
+        private int Max_group_number;
+
+         public void g_algorithmn_mip(float[,] cost_value,int max_group_number,  int max_v_in_group,int num_g,int num_v)
+        {
+            input_data(cost_value,max_group_number, max_v_in_group, num_g,num_v);////init cost value and assign matrix
+            solver_main();
+            get_decision_x(num_v,num_g);
+        }
+
+
+        private void get_decision_x(int num_v,int num_g)
+        {
+            X=new double[num_v+1,num_g+1];
+            for (int i = 0; i < Cost_data_list.Length; i++)
+            {
+                int g = Cost_data_list[i].Group;
+                int v = Cost_data_list[i].Vehicle;
+                double value=Cost_data_list[i].X_int;
+                X[v, g] = value;    
+            }
+        }
+
+
+        private void input_data(float[,] cost_value,int max_group_number, int max_v_in_group, int num_g,int num_v)
+        {
+            Max_v_in_group = max_v_in_group;
+            Max_group_number = max_group_number;
+
+            Cost_data_list =new Cost_gv_Def[num_g * num_v];
+            int n_count = 0;
+            for(int v=1;v<=num_v;v++)
+            for(int g=1;g<=num_g;g++)            
+            {
+                Cost_gv_Def cost_data_one = new Cost_gv_Def(v,g,cost_value[v, g]);
+                Cost_data_list[n_count] = cost_data_one;
+                n_count++;
+            }
+
+            Y_data_list = new YDef[num_g];
+            n_count = 0;
+            for (int g = 1; g <= num_g; g++)           
+            {
+                YDef assign_data_one = new YDef(g, 0);
+                Y_data_list[n_count] = assign_data_one;
+                n_count++;
+            }
+        }
+        private void solver_main()
+        {
+            SolverContext context = SolverContext.GetContext();
+            context.ClearModel();
+            Model model = context.CreateModel();
+
+            Set Vehicles = new Set(Domain.IntegerNonnegative, "vehicles");
+            Set Groups = new Set(Domain.IntegerNonnegative, "groups");           
+
+            Decision x = new Decision(Domain.IntegerRange(0, 1), "x_v_g", Vehicles,Groups);
+            x.SetBinding(Cost_data_list, "X_int", "Vehicle","Group"); ////
+            model.AddDecisions(x);
+
+            Decision y = new Decision(Domain.IntegerRange(0, 1), "y_g", Groups);
+            y.SetBinding(Y_data_list, "Value",  "Group"); ////
+            model.AddDecisions(y);
+
+            Parameter cost = new Parameter(Domain.RealNonnegative, "Price", Vehicles, Groups);
+            cost.SetBinding(Cost_data_list, "Price", "Vehicle", "Group");           
+            model.AddParameters(cost);
+
+
+            model.AddConstraint("select_one_group_for_each_vehicle",
+                Model.ForEach(
+                Vehicles, v =>
+                Model.Sum(Model.ForEach(Groups, g => x[v, g])) 
+                        == 1)
+                );
+
+            model.AddConstraint("max_vehicle_number_in_one_group",
+                Model.ForEach(
+                Groups, g =>
+                Model.Sum(Model.ForEach(Vehicles, v => x[v, g]))
+                        <= Max_v_in_group*y[g])
+                );
+
+            model.AddConstraint("max_group_number",
+               Model.Sum(Model.ForEach(Groups, g => y[g]))
+                       <= Max_group_number
+               );
+
+            model.AddConstraint("x_y_connection_constraint_1",
+                Model.ForEach(
+                Groups, g =>
+                Model.Sum(Model.ForEach(Vehicles, v => x[v, g]))
+                        >= y[g])
+                );
+
+
+
+
+            Goal z_main= model.AddGoal("z_main", GoalKind.Minimize,
+                Model.Sum(Model.ForEach(
+                    Groups, g =>
+                    Model.Sum(Model.ForEach(Vehicles, v => cost[v, g] * x[v, g]))
+                             ))
+                    +
+                 Model.Sum(Model.ForEach(Groups, g => y[g])) 
+                     );
+
+            //SimplexDirective directive = new SimplexDirective();
+            SolverFoundation.Plugin.LpSolve.LpSolveDirective directive = new SolverFoundation.Plugin.LpSolve.LpSolveDirective();
+            directive.GetSensitivity = true;
+            
+            //directive.Arithmetic = Arithmetic.Exact;
+            try
+            {
+                Solution solution = context.Solve(directive); 
+                //Report report = solution.GetReport();
+                //this.String_Report += report.ToString();
+                //System.Windows.Forms.MessageBox.Show(z_main.ToDouble().ToString() +  "\n" + report.ToString());
+            }
+            catch(Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+            }
+            context.PropagateDecisions();
+
+                        
+            context.ClearModel();
+
+        }
+    }
+}

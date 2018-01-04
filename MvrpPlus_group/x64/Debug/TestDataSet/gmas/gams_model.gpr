@@ -1,0 +1,32 @@
+[PROJECT]
+
+[RP:VRPTW]
+1=
+
+[RP:TIMETABLING_STOPPLAN]
+1=
+
+[RP:LOCOMOTIVE_ROUTING_PROBLEM]
+1=
+
+[RP:CASE6]
+1=
+
+[RP:LR_SET_PARTITION]
+1=
+
+[MRUFILES]
+1=E:\2 PaperStu\locomotiveRouting+trainScheduling\locomotive_routing_problem.gms
+2=E:\3 PrgStudy\gams-study\timetabling+stopPlan\timetabling_stopPlan.gms
+3=E:\3 PrgStudy\gams-study\VRPTW\vrptw.gms
+
+[OPENWINDOW_1]
+FILE0=E:\2 PaperStu\locomotiveRouting+trainScheduling\case6.gms
+FILE1=E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\lr_set_partition.gms
+FILE2=E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\lr_set_partition.lst
+FILE3=E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\lr_set_partition.lst
+MAXIM=0
+TOP=50
+LEFT=50
+HEIGHT=733
+WIDTH=1138

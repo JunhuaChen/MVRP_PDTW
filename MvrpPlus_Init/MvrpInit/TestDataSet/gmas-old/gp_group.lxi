@@ -1,0 +1,25 @@
+B 2 C o m p i l a t i o n
+B 175 E x e c u t i o n
+I 176 c
+B 256 Equation Listing    SOLVE model_group Using MINLP From line 164
+D 257 obj_main
+D 487 v_once_constrain
+D 516 v_in_group_constrain
+D 542 xy_connect
+B 567 Column Listing      SOLVE model_group Using MINLP From line 164
+E 568 x
+E 591 y
+E 613 z
+B 622 Model Statistics    SOLVE model_group Using MINLP From line 164
+B 640 Solution Report     SOLVE model_group Using MINLP From line 164
+F 712 obj_main
+F 718 v_once_constrain
+F 742 v_in_group_constrain
+F 766 xy_connect
+G 785 x
+G 1151 y
+G 1175 z
+B 1187 E x e c u t i o n
+I 1188 x
+I 1214 y
+I 1220 z

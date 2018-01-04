@@ -1,0 +1,160 @@
+B 2 C o m p i l a t i o n
+B 554 Include File Summary
+B 569 Equation Listing    SOLVE model_main Using RMIP From line 423
+D 570 obj_main
+D 620 assign_pattern
+D 659 assign_passenger
+B 692 Column Listing      SOLVE model_main Using RMIP From line 423
+E 693 x
+E 719 z
+B 728 Model Statistics    SOLVE model_main Using RMIP From line 423
+B 744 Solution Report     SOLVE model_main Using RMIP From line 423
+F 773 obj_main
+F 779 assign_pattern
+F 786 assign_passenger
+G 796 x
+G 915 z
+B 926 E x e c u t i o n
+I 927 u
+I 935 upperbound
+B 938 Model Statistics    SOLVE model_lr Using MIP From line 477
+B 959 Solution Report     SOLVE model_lr Using MIP From line 477
+F 998 obj_lr
+F 1004 assign_pattern
+G 1006 x
+G 1125 z_bound
+B 1136 E x e c u t i o n
+I 1139 bestbound
+I 1140 gamma
+I 1146 u
+B 1154 Model Statistics    SOLVE model_lr Using MIP From line 477
+B 1175 Solution Report     SOLVE model_lr Using MIP From line 477
+F 1214 obj_lr
+F 1220 assign_pattern
+G 1222 x
+G 1341 z_bound
+B 1352 E x e c u t i o n
+I 1355 bestbound
+I 1356 gamma
+I 1361 u
+B 1369 Model Statistics    SOLVE model_lr Using MIP From line 477
+B 1390 Solution Report     SOLVE model_lr Using MIP From line 477
+F 1429 obj_lr
+F 1435 assign_pattern
+G 1437 x
+G 1556 z_bound
+B 1567 E x e c u t i o n
+I 1568 gamma
+I 1574 u
+B 1582 Model Statistics    SOLVE model_lr Using MIP From line 477
+B 1603 Solution Report     SOLVE model_lr Using MIP From line 477
+F 1642 obj_lr
+F 1648 assign_pattern
+G 1650 x
+G 1769 z_bound
+B 1780 E x e c u t i o n
+I 1783 bestbound
+I 1784 gamma
+I 1789 u
+B 1797 Model Statistics    SOLVE model_lr Using MIP From line 477
+B 1818 Solution Report     SOLVE model_lr Using MIP From line 477
+F 1857 obj_lr
+F 1863 assign_pattern
+G 1865 x
+G 1984 z_bound
+B 1995 E x e c u t i o n
+I 1996 gamma
+I 2002 u
+B 2010 Model Statistics    SOLVE model_lr Using MIP From line 477
+B 2031 Solution Report     SOLVE model_lr Using MIP From line 477
+F 2070 obj_lr
+F 2076 assign_pattern
+G 2078 x
+G 2197 z_bound
+B 2208 E x e c u t i o n
+I 2209 gamma
+I 2215 u
+B 2223 Model Statistics    SOLVE model_lr Using MIP From line 477
+B 2244 Solution Report     SOLVE model_lr Using MIP From line 477
+F 2283 obj_lr
+F 2289 assign_pattern
+G 2291 x
+G 2410 z_bound
+B 2421 E x e c u t i o n
+I 2422 gamma
+I 2428 u
+B 2436 Model Statistics    SOLVE model_lr Using MIP From line 477
+B 2457 Solution Report     SOLVE model_lr Using MIP From line 477
+F 2496 obj_lr
+F 2502 assign_pattern
+G 2504 x
+G 2623 z_bound
+B 2634 E x e c u t i o n
+I 2635 gamma
+I 2641 u
+B 2649 Model Statistics    SOLVE model_lr Using MIP From line 477
+B 2670 Solution Report     SOLVE model_lr Using MIP From line 477
+F 2709 obj_lr
+F 2715 assign_pattern
+G 2717 x
+G 2836 z_bound
+B 2847 E x e c u t i o n
+I 2848 gamma
+I 2854 u
+B 2862 Model Statistics    SOLVE model_lr Using MIP From line 477
+B 2883 Solution Report     SOLVE model_lr Using MIP From line 477
+F 2922 obj_lr
+F 2928 assign_pattern
+G 2930 x
+G 3049 z_bound
+B 3060 E x e c u t i o n
+I 3061 gamma
+I 3067 u
+B 3075 Model Statistics    SOLVE model_lr Using MIP From line 477
+B 3096 Solution Report     SOLVE model_lr Using MIP From line 477
+F 3135 obj_lr
+F 3141 assign_pattern
+G 3143 x
+G 3262 z_bound
+B 3273 E x e c u t i o n
+I 3274 gamma
+I 3280 u
+B 3288 Model Statistics    SOLVE model_lr Using MIP From line 477
+B 3309 Solution Report     SOLVE model_lr Using MIP From line 477
+F 3348 obj_lr
+F 3354 assign_pattern
+G 3356 x
+G 3475 z_bound
+B 3486 E x e c u t i o n
+I 3487 gamma
+I 3493 u
+B 3501 Model Statistics    SOLVE model_lr Using MIP From line 477
+B 3522 Solution Report     SOLVE model_lr Using MIP From line 477
+F 3561 obj_lr
+F 3567 assign_pattern
+G 3569 x
+G 3688 z_bound
+B 3699 E x e c u t i o n
+I 3700 gamma
+I 3706 u
+B 3714 Model Statistics    SOLVE model_lr Using MIP From line 477
+B 3735 Solution Report     SOLVE model_lr Using MIP From line 477
+F 3774 obj_lr
+F 3780 assign_pattern
+G 3782 x
+G 3901 z_bound
+B 3912 E x e c u t i o n
+I 3913 gamma
+I 3919 u
+B 3927 Model Statistics    SOLVE model_lr Using MIP From line 477
+B 3948 Solution Report     SOLVE model_lr Using MIP From line 477
+F 3987 obj_lr
+F 3993 assign_pattern
+G 3995 x
+G 4114 z_bound
+B 4125 E x e c u t i o n
+I 4128 bestbound
+I 4131 gamma
+I 4135 u
+I 4143 x
+I 4151 results

@@ -1,0 +1,570 @@
+GAMS 24.7.3  r58181 Released Jul 11, 2016 WEX-WEI x86 64bit/MS Windows                                                                                                                                                                 12/27/17 09:14:02 Page 1
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+C o m p i l a t i o n
+
+
+       
+          vehicle and passenger partition problem
+          junhua Chen.   cjh@bjtu.edu.cn
+          5/27,2016
+       
+   8   
+   9  set u 'vehicle';
+  10  scalar M;
+  11  scalar Infinite;
+  12  alias(u,v);
+  13  parameter c(u,v);
+  14  parameter matrix_u_v(u,v);
+  15   
+  16   
+  17  binary variable x(u,v);
+  18  variable z;
+  19   
+  20  equations
+  21           obj_main,
+  22           out_constrain(u),
+  23           in_constrain(v)
+  24  ;
+  25  obj_main..
+  26           z=e=sum((u,v),c(u,v)*x(u,v));
+  27  out_constrain(u)..
+  28           sum(v$(matrix_u_v(u,v)=0),x(u,v))=l=1;
+  29  in_constrain(v)..
+  30           sum(u,x(u,v))=e=1;
+  31   
+  32  model model_group / obj_main,
+  33           out_constrain,
+  34           in_constrain
+  35           /;
+  36   
+  37  *****input data
+  38   
+INCLUDE    E:\new_pro\AA300_dominate\MvrpLite\bin\Debug\gams_vehicle_connection_input.txt
+  40  set u /8,1,4,6,11,14,18,21,24,27,29/;
+  41  scalar M /1000/;
+  42  scalar Infinite /99999/;
+  43  parameter c(u,v) /
+  44  8.8 1000
+  45  8.1 31
+  46  8.4 35
+  47  8.6 38
+  48  8.11 30
+  49  8.14 8
+  50  8.18 7
+  51  8.21 24
+  52  8.24 99999
+  53  8.27 99999
+  54  8.29 99999
+  55  1.8 99999
+GAMS 24.7.3  r58181 Released Jul 11, 2016 WEX-WEI x86 64bit/MS Windows                                                                                                                                                                 12/27/17 09:14:02 Page 2
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+C o m p i l a t i o n
+
+
+  56  1.1 1000
+  57  1.4 99999
+  58  1.6 99999
+  59  1.11 99999
+  60  1.14 99999
+  61  1.18 99999
+  62  1.21 99999
+  63  1.24 99999
+  64  1.27 99999
+  65  1.29 99999
+  66  4.8 99999
+  67  4.1 99999
+  68  4.4 1000
+  69  4.6 99999
+  70  4.11 99999
+  71  4.14 99999
+  72  4.18 99999
+  73  4.21 99999
+  74  4.24 99999
+  75  4.27 99999
+  76  4.29 99999
+  77  6.8 99999
+  78  6.1 99999
+  79  6.4 99999
+  80  6.6 1000
+  81  6.11 99999
+  82  6.14 99999
+  83  6.18 99999
+  84  6.21 99999
+  85  6.24 99999
+  86  6.27 99999
+  87  6.29 99999
+  88  11.8 99999
+  89  11.1 99999
+  90  11.4 99999
+  91  11.6 99999
+  92  11.11 1000
+  93  11.14 99999
+  94  11.18 99999
+  95  11.21 99999
+  96  11.24 99999
+  97  11.27 99999
+  98  11.29 99999
+  99  14.8 99999
+ 100  14.1 99999
+ 101  14.4 99999
+ 102  14.6 99999
+ 103  14.11 99999
+ 104  14.14 1000
+ 105  14.18 99999
+ 106  14.21 99999
+ 107  14.24 99999
+ 108  14.27 99999
+GAMS 24.7.3  r58181 Released Jul 11, 2016 WEX-WEI x86 64bit/MS Windows                                                                                                                                                                 12/27/17 09:14:02 Page 3
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+C o m p i l a t i o n
+
+
+ 109  14.29 99999
+ 110  18.8 99999
+ 111  18.1 21
+ 112  18.4 25
+ 113  18.6 30
+ 114  18.11 4
+ 115  18.14 26
+ 116  18.18 1000
+ 117  18.21 99999
+ 118  18.24 99999
+ 119  18.27 99999
+ 120  18.29 99999
+ 121  21.8 99999
+ 122  21.1 14
+ 123  21.4 9
+ 124  21.6 4
+ 125  21.11 99999
+ 126  21.14 99999
+ 127  21.18 99999
+ 128  21.21 1000
+ 129  21.24 99999
+ 130  21.27 99999
+ 131  21.29 99999
+ 132  24.8 99999
+ 133  24.1 49
+ 134  24.4 53
+ 135  24.6 59
+ 136  24.11 32
+ 137  24.14 34
+ 138  24.18 42
+ 139  24.21 38
+ 140  24.24 1000
+ 141  24.27 99999
+ 142  24.29 99999
+ 143  27.8 99999
+ 144  27.1 16
+ 145  27.4 19
+ 146  27.6 24
+ 147  27.11 9
+ 148  27.14 29
+ 149  27.18 36
+ 150  27.21 14
+ 151  27.24 99999
+ 152  27.27 1000
+ 153  27.29 99999
+ 154  29.8 99999
+ 155  29.1 30
+ 156  29.4 34
+ 157  29.6 40
+ 158  29.11 17
+ 159  29.14 15
+ 160  29.18 24
+ 161  29.21 19
+GAMS 24.7.3  r58181 Released Jul 11, 2016 WEX-WEI x86 64bit/MS Windows                                                                                                                                                                 12/27/17 09:14:02 Page 4
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+C o m p i l a t i o n
+
+
+ 162  29.24 99999
+ 163  29.27 99999
+ 164  29.29 1000
+ 165  /;
+ 166  matrix_u_v(u,v)=0;
+ 167  matrix_u_v(u,u)=1;
+ 168  ************
+ 169   
+ 170  solve model_group minimizing z using MIP;
+ 171  display x.l;
+ 172  display z.l;
+ 173   
+ 174  *************************************
+ 175  **output
+ 176   
+ 177  File output_results_x  /'..\gams_vehicle_connection_output.txt'/;
+ 178  put output_results_x;
+ 179  loop((u,v)$(x.l(u,v)=1), put @1, u.tl, @5,v.tl, @10, x.l(u,v)/);
+GAMS 24.7.3  r58181 Released Jul 11, 2016 WEX-WEI x86 64bit/MS Windows                                                                                                                                                                 12/27/17 09:14:02 Page 5
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Include File Summary
+
+
+   SEQ   GLOBAL TYPE      PARENT   LOCAL  FILENAME
+
+     1        1 INPUT          0       0  E:\new_pro\AA300_dominate\MvrpLite\bin\Debug\gmas\gams_exe_vehicle_connection.gms
+     2       39 INCLUDE        1      39  .E:\new_pro\AA300_dominate\MvrpLite\bin\Debug\gams_vehicle_connection_input.txt
+
+
+COMPILATION TIME     =        0.000 SECONDS      3 MB  24.7.3 r58181 WEX-WEI
+GAMS 24.7.3  r58181 Released Jul 11, 2016 WEX-WEI x86 64bit/MS Windows                                                                                                                                                                 12/27/17 09:14:02 Page 6
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE model_group Using MIP From line 170
+
+
+---- obj_main  =E=  
+
+obj_main..  - 1000*x(8,8) - 31*x(8,1) - 35*x(8,4) - 38*x(8,6) - 30*x(8,11) - 8*x(8,14) - 7*x(8,18) - 24*x(8,21) - 99999*x(8,24) - 99999*x(8,27) - 99999*x(8,29) - 99999*x(1,8) - 1000*x(1,1) - 99999*x(1,4) - 99999*x(1,6) - 99999*x(1,11) - 99999*x(1,14)
+     
+      - 99999*x(1,18) - 99999*x(1,21) - 99999*x(1,24) - 99999*x(1,27) - 99999*x(1,29) - 99999*x(4,8) - 99999*x(4,1) - 1000*x(4,4) - 99999*x(4,6) - 99999*x(4,11) - 99999*x(4,14) - 99999*x(4,18) - 99999*x(4,21) - 99999*x(4,24) - 99999*x(4,27)
+     
+      - 99999*x(4,29) - 99999*x(6,8) - 99999*x(6,1) - 99999*x(6,4) - 1000*x(6,6) - 99999*x(6,11) - 99999*x(6,14) - 99999*x(6,18) - 99999*x(6,21) - 99999*x(6,24) - 99999*x(6,27) - 99999*x(6,29) - 99999*x(11,8) - 99999*x(11,1) - 99999*x(11,4)
+     
+      - 99999*x(11,6) - 1000*x(11,11) - 99999*x(11,14) - 99999*x(11,18) - 99999*x(11,21) - 99999*x(11,24) - 99999*x(11,27) - 99999*x(11,29) - 99999*x(14,8) - 99999*x(14,1) - 99999*x(14,4) - 99999*x(14,6) - 99999*x(14,11) - 1000*x(14,14) - 99999*x(14,18)
+     
+      - 99999*x(14,21) - 99999*x(14,24) - 99999*x(14,27) - 99999*x(14,29) - 99999*x(18,8) - 21*x(18,1) - 25*x(18,4) - 30*x(18,6) - 4*x(18,11) - 26*x(18,14) - 1000*x(18,18) - 99999*x(18,21) - 99999*x(18,24) - 99999*x(18,27) - 99999*x(18,29) - 99999*x(21,8)
+     
+      - 14*x(21,1) - 9*x(21,4) - 4*x(21,6) - 99999*x(21,11) - 99999*x(21,14) - 99999*x(21,18) - 1000*x(21,21) - 99999*x(21,24) - 99999*x(21,27) - 99999*x(21,29) - 99999*x(24,8) - 49*x(24,1) - 53*x(24,4) - 59*x(24,6) - 32*x(24,11) - 34*x(24,14)
+     
+      - 42*x(24,18) - 38*x(24,21) - 1000*x(24,24) - 99999*x(24,27) - 99999*x(24,29) - 99999*x(27,8) - 16*x(27,1) - 19*x(27,4) - 24*x(27,6) - 9*x(27,11) - 29*x(27,14) - 36*x(27,18) - 14*x(27,21) - 99999*x(27,24) - 1000*x(27,27) - 99999*x(27,29)
+     
+      - 99999*x(29,8) - 30*x(29,1) - 34*x(29,4) - 40*x(29,6) - 17*x(29,11) - 15*x(29,14) - 24*x(29,18) - 19*x(29,21) - 99999*x(29,24) - 99999*x(29,27) - 1000*x(29,29) + z =E= 0 ; (LHS = 0)
+     
+
+---- out_constrain  =L=  
+
+out_constrain(8)..  x(8,1) + x(8,4) + x(8,6) + x(8,11) + x(8,14) + x(8,18) + x(8,21) + x(8,24) + x(8,27) + x(8,29) =L= 1 ; (LHS = 0)
+     
+out_constrain(1)..  x(1,8) + x(1,4) + x(1,6) + x(1,11) + x(1,14) + x(1,18) + x(1,21) + x(1,24) + x(1,27) + x(1,29) =L= 1 ; (LHS = 0)
+     
+out_constrain(4)..  x(4,8) + x(4,1) + x(4,6) + x(4,11) + x(4,14) + x(4,18) + x(4,21) + x(4,24) + x(4,27) + x(4,29) =L= 1 ; (LHS = 0)
+     
+REMAINING 8 ENTRIES SKIPPED
+
+
+---- in_constrain  =E=  
+
+in_constrain(8)..  x(8,8) + x(1,8) + x(4,8) + x(6,8) + x(11,8) + x(14,8) + x(18,8) + x(21,8) + x(24,8) + x(27,8) + x(29,8) =E= 1 ; (LHS = 0, INFES = 1 ****)
+     
+in_constrain(1)..  x(8,1) + x(1,1) + x(4,1) + x(6,1) + x(11,1) + x(14,1) + x(18,1) + x(21,1) + x(24,1) + x(27,1) + x(29,1) =E= 1 ; (LHS = 0, INFES = 1 ****)
+     
+in_constrain(4)..  x(8,4) + x(1,4) + x(4,4) + x(6,4) + x(11,4) + x(14,4) + x(18,4) + x(21,4) + x(24,4) + x(27,4) + x(29,4) =E= 1 ; (LHS = 0, INFES = 1 ****)
+     
+REMAINING 8 ENTRIES SKIPPED
+
+GAMS 24.7.3  r58181 Released Jul 11, 2016 WEX-WEI x86 64bit/MS Windows                                                                                                                                                                 12/27/17 09:14:02 Page 7
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Column Listing      SOLVE model_group Using MIP From line 170
+
+
+---- x  
+
+x(8,8)
+                (.LO, .L, .UP, .M = 0, 0, 1, 0)
+    -1000       obj_main
+        1       in_constrain(8)
+
+x(8,1)
+                (.LO, .L, .UP, .M = 0, 0, 1, 0)
+      -31       obj_main
+        1       out_constrain(8)
+        1       in_constrain(1)
+
+x(8,4)
+                (.LO, .L, .UP, .M = 0, 0, 1, 0)
+      -35       obj_main
+        1       out_constrain(8)
+        1       in_constrain(4)
+
+REMAINING 118 ENTRIES SKIPPED
+
+---- z  
+
+z
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+        1       obj_main
+
+GAMS 24.7.3  r58181 Released Jul 11, 2016 WEX-WEI x86 64bit/MS Windows                                                                                                                                                                 12/27/17 09:14:02 Page 8
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Model Statistics    SOLVE model_group Using MIP From line 170
+
+
+MODEL STATISTICS
+
+BLOCKS OF EQUATIONS           3     SINGLE EQUATIONS           23
+BLOCKS OF VARIABLES           2     SINGLE VARIABLES          122
+NON ZERO ELEMENTS           353     DISCRETE VARIABLES        121
+
+
+GENERATION TIME      =        0.015 SECONDS      4 MB  24.7.3 r58181 WEX-WEI
+
+
+EXECUTION TIME       =        0.015 SECONDS      4 MB  24.7.3 r58181 WEX-WEI
+GAMS 24.7.3  r58181 Released Jul 11, 2016 WEX-WEI x86 64bit/MS Windows                                                                                                                                                                 12/27/17 09:14:02 Page 9
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE model_group Using MIP From line 170
+
+
+               S O L V E      S U M M A R Y
+
+     MODEL   model_group         OBJECTIVE  z
+     TYPE    MIP                 DIRECTION  MINIMIZE
+     SOLVER  CPLEX               FROM LINE  170
+
+**** SOLVER STATUS     1 Normal Completion         
+**** MODEL STATUS      1 Optimal                   
+**** OBJECTIVE VALUE             5084.0000
+
+ RESOURCE USAGE, LIMIT          0.000      1000.000
+ ITERATION COUNT, LIMIT        19    2000000000
+
+IBM ILOG CPLEX   24.7.3 r58181 Released Jul 11, 2016 WEI x86 64bit/MS Windows 
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.6.3.0
+
+Space for names approximately 0.00 Mb
+Use option 'names no' to turn use of names off
+MIP status(101): integer optimal solution
+Cplex Time: 0.00sec (det. 0.36 ticks)
+Fixing integer variables, and solving final LP...
+Fixed MIP status(1): optimal
+Cplex Time: 0.00sec (det. 0.04 ticks)
+Proven optimal solution.
+
+MIP Solution:         5084.000000    (19 iterations, 0 nodes)
+Final Solve:          5084.000000    (0 iterations)
+
+Best possible:        5084.000000
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+
+                           LOWER          LEVEL          UPPER         MARGINAL
+
+---- EQU obj_main            .              .              .             1.0000      
+
+---- EQU out_constrain  
+
+          LOWER          LEVEL          UPPER         MARGINAL
+
+8         -INF            1.0000         1.0000          .          
+1         -INF             .             1.0000          .          
+4         -INF             .             1.0000          .          
+6         -INF             .             1.0000          .          
+11        -INF             .             1.0000          .          
+14        -INF             .             1.0000          .          
+18        -INF            1.0000         1.0000          .          
+21        -INF            1.0000         1.0000          .          
+24        -INF            1.0000         1.0000          .          
+27        -INF            1.0000         1.0000          .          
+29        -INF            1.0000         1.0000          .          
+GAMS 24.7.3  r58181 Released Jul 11, 2016 WEX-WEI x86 64bit/MS Windows                                                                                                                                                                12/27/17 09:14:02 Page 10
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE model_group Using MIP From line 170
+
+
+---- EQU in_constrain  
+
+          LOWER          LEVEL          UPPER         MARGINAL
+
+8          1.0000         1.0000         1.0000          .          
+1          1.0000         1.0000         1.0000          .          
+4          1.0000         1.0000         1.0000          .          
+6          1.0000         1.0000         1.0000          .          
+11         1.0000         1.0000         1.0000          .          
+14         1.0000         1.0000         1.0000          .          
+18         1.0000         1.0000         1.0000          .          
+21         1.0000         1.0000         1.0000          .          
+24         1.0000         1.0000         1.0000          .          
+27         1.0000         1.0000         1.0000          .          
+29         1.0000         1.0000         1.0000          .          
+
+---- VAR x  
+
+             LOWER          LEVEL          UPPER         MARGINAL
+
+8 .8           .             1.0000         1.0000      1000.0000      
+8 .1           .              .             1.0000        31.0000      
+8 .4           .              .             1.0000        35.0000      
+8 .6           .              .             1.0000        38.0000      
+8 .11          .              .             1.0000        30.0000      
+8 .14          .              .             1.0000         8.0000      
+8 .18          .             1.0000         1.0000         7.0000      
+8 .21          .              .             1.0000        24.0000      
+8 .24          .              .             1.0000     99999.0000      
+8 .27          .              .             1.0000     99999.0000      
+8 .29          .              .             1.0000     99999.0000      
+1 .8           .              .             1.0000     99999.0000      
+1 .1           .              .             1.0000      1000.0000      
+1 .4           .              .             1.0000     99999.0000      
+1 .6           .              .             1.0000     99999.0000      
+1 .11          .              .             1.0000     99999.0000      
+1 .14          .              .             1.0000     99999.0000      
+1 .18          .              .             1.0000     99999.0000      
+1 .21          .              .             1.0000     99999.0000      
+1 .24          .              .             1.0000     99999.0000      
+1 .27          .              .             1.0000     99999.0000      
+1 .29          .              .             1.0000     99999.0000      
+4 .8           .              .             1.0000     99999.0000      
+4 .1           .              .             1.0000     99999.0000      
+4 .4           .             1.0000         1.0000      1000.0000      
+4 .6           .              .             1.0000     99999.0000      
+4 .11          .              .             1.0000     99999.0000      
+4 .14          .              .             1.0000     99999.0000      
+4 .18          .              .             1.0000     99999.0000      
+4 .21          .              .             1.0000     99999.0000      
+4 .24          .              .             1.0000     99999.0000      
+4 .27          .              .             1.0000     99999.0000      
+4 .29          .              .             1.0000     99999.0000      
+GAMS 24.7.3  r58181 Released Jul 11, 2016 WEX-WEI x86 64bit/MS Windows                                                                                                                                                                12/27/17 09:14:02 Page 11
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE model_group Using MIP From line 170
+
+
+     VAR x  
+
+             LOWER          LEVEL          UPPER         MARGINAL
+
+6 .8           .              .             1.0000     99999.0000      
+6 .1           .              .             1.0000     99999.0000      
+6 .4           .              .             1.0000     99999.0000      
+6 .6           .              .             1.0000      1000.0000      
+6 .11          .              .             1.0000     99999.0000      
+6 .14          .              .             1.0000     99999.0000      
+6 .18          .              .             1.0000     99999.0000      
+6 .21          .              .             1.0000     99999.0000      
+6 .24          .              .             1.0000     99999.0000      
+6 .27          .              .             1.0000     99999.0000      
+6 .29          .              .             1.0000     99999.0000      
+11.8           .              .             1.0000     99999.0000      
+11.1           .              .             1.0000     99999.0000      
+11.4           .              .             1.0000     99999.0000      
+11.6           .              .             1.0000     99999.0000      
+11.11          .              .             1.0000      1000.0000      
+11.14          .              .             1.0000     99999.0000      
+11.18          .              .             1.0000     99999.0000      
+11.21          .              .             1.0000     99999.0000      
+11.24          .              .             1.0000     99999.0000      
+11.27          .              .             1.0000     99999.0000      
+11.29          .              .             1.0000     99999.0000      
+14.8           .              .             1.0000     99999.0000      
+14.1           .              .             1.0000     99999.0000      
+14.4           .              .             1.0000     99999.0000      
+14.6           .              .             1.0000     99999.0000      
+14.11          .              .             1.0000     99999.0000      
+14.14          .              .             1.0000      1000.0000      
+14.18          .              .             1.0000     99999.0000      
+14.21          .              .             1.0000     99999.0000      
+14.24          .              .             1.0000     99999.0000      
+14.27          .              .             1.0000     99999.0000      
+14.29          .              .             1.0000     99999.0000      
+18.8           .              .             1.0000     99999.0000      
+18.1           .              .             1.0000        21.0000      
+18.4           .              .             1.0000        25.0000      
+18.6           .              .             1.0000        30.0000      
+18.11          .             1.0000         1.0000         4.0000      
+18.14          .              .             1.0000        26.0000      
+18.18          .              .             1.0000      1000.0000      
+18.21          .              .             1.0000     99999.0000      
+18.24          .              .             1.0000     99999.0000      
+18.27          .              .             1.0000     99999.0000      
+18.29          .              .             1.0000     99999.0000      
+21.8           .              .             1.0000     99999.0000      
+21.1           .              .             1.0000        14.0000      
+21.4           .              .             1.0000         9.0000      
+21.6           .             1.0000         1.0000         4.0000      
+21.11          .              .             1.0000     99999.0000      
+GAMS 24.7.3  r58181 Released Jul 11, 2016 WEX-WEI x86 64bit/MS Windows                                                                                                                                                                12/27/17 09:14:02 Page 12
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE model_group Using MIP From line 170
+
+
+     VAR x  
+
+             LOWER          LEVEL          UPPER         MARGINAL
+
+21.14          .              .             1.0000     99999.0000      
+21.18          .              .             1.0000     99999.0000      
+21.21          .              .             1.0000      1000.0000      
+21.24          .              .             1.0000     99999.0000      
+21.27          .              .             1.0000     99999.0000      
+21.29          .              .             1.0000     99999.0000      
+24.8           .              .             1.0000     99999.0000      
+24.1           .              .             1.0000        49.0000      
+24.4           .              .             1.0000        53.0000      
+24.6           .              .             1.0000        59.0000      
+24.11          .              .             1.0000        32.0000      
+24.14          .             1.0000         1.0000        34.0000      
+24.18          .              .             1.0000        42.0000      
+24.21          .              .             1.0000        38.0000      
+24.24          .             1.0000         1.0000      1000.0000      
+24.27          .              .             1.0000     99999.0000      
+24.29          .              .             1.0000     99999.0000      
+27.8           .              .             1.0000     99999.0000      
+27.1           .             1.0000         1.0000        16.0000      
+27.4           .              .             1.0000        19.0000      
+27.6           .              .             1.0000        24.0000      
+27.11          .              .             1.0000         9.0000      
+27.14          .              .             1.0000        29.0000      
+27.18          .              .             1.0000        36.0000      
+27.21          .              .             1.0000        14.0000      
+27.24          .              .             1.0000     99999.0000      
+27.27          .             1.0000         1.0000      1000.0000      
+27.29          .              .             1.0000     99999.0000      
+29.8           .              .             1.0000     99999.0000      
+29.1           .              .             1.0000        30.0000      
+29.4           .              .             1.0000        34.0000      
+29.6           .              .             1.0000        40.0000      
+29.11          .              .             1.0000        17.0000      
+29.14          .              .             1.0000        15.0000      
+29.18          .              .             1.0000        24.0000      
+29.21          .             1.0000         1.0000        19.0000      
+29.24          .              .             1.0000     99999.0000      
+29.27          .              .             1.0000     99999.0000      
+29.29          .             1.0000         1.0000      1000.0000      
+
+                           LOWER          LEVEL          UPPER         MARGINAL
+
+---- VAR z                 -INF         5084.0000        +INF             .          
+
+
+**** REPORT SUMMARY :        0     NONOPT
+                             0 INFEASIBLE
+                             0  UNBOUNDED
+GAMS 24.7.3  r58181 Released Jul 11, 2016 WEX-WEI x86 64bit/MS Windows                                                                                                                                                                12/27/17 09:14:02 Page 13
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+E x e c u t i o n
+
+
+----    171 VARIABLE x.L  
+
+             8           1           4           6          11          14          18          21          24          27          29
+
+8        1.000                                                                   1.000
+4                                1.000
+18                                                       1.000
+21                                           1.000
+24                                                                   1.000                               1.000
+27                   1.000                                                                                           1.000
+29                                                                                           1.000                               1.000
+
+
+----    172 VARIABLE z.L                   =     5084.000  
+
+**** REPORT FILE SUMMARY
+
+output_results_x E:\new_pro\AA300_dominate\MvrpLite\bin\Debug\gams_vehicle_connection_output.txt
+
+
+EXECUTION TIME       =        0.000 SECONDS      3 MB  24.7.3 r58181 WEX-WEI
+
+
+USER: School of Sustainable Engineering              G150407:1621AO-WIN
+      Arizona State University                                  DC11708
+      License for teaching and research at degree granting institutions
+
+
+**** FILE SUMMARY
+
+Input      E:\new_pro\AA300_dominate\MvrpLite\bin\Debug\gmas\gams_exe_vehicle_connection.gms
+Output     E:\new_pro\AA300_dominate\MvrpLite\bin\Debug\gmas\gams_exe_vehicle_connection.lst

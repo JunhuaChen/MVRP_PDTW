@@ -1,0 +1,138 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+using Microsoft.SolverFoundation.Common;
+using Microsoft.SolverFoundation.Services;
+//using SolverFoundation.Plugin.LpSolve;
+
+namespace MvrpLite.adminFuc
+{
+    class Cost_gp_Def
+    {
+        public int Passenger { get; set; }
+        public int Group { get; set; }       
+        public double Price { get; set; }
+        public double X_int { get; set; }
+        public Cost_gp_Def( int group,int passenger, float price)
+        {
+            Group = group;
+            Passenger = passenger;
+            Price = price;
+            X_int = 0;
+        }
+    }
+  
+    class Model_GroupPassenger
+    {
+        public double[,] X{ get; set; }
+        public string String_Report { get; set; }
+       
+
+        private Cost_gp_Def[] Cost_data_list;       
+        private int Max_P_in_group;
+
+         public void g_algorithmn_mip(float[,] cost_value, int max_p_in_group,int num_g,int num_p)
+        {
+            input_data(cost_value,max_p_in_group, num_g,num_p);////init cost value and assign matrix
+            solver_main();
+            get_decision_x(num_g,num_p);
+        }
+
+
+        private void get_decision_x(int num_g,int num_p)
+        {
+            X=new double[num_g+1,num_p+1];
+            for (int i = 0; i < Cost_data_list.Length; i++)
+            {
+                int g = Cost_data_list[i].Group;
+                int p = Cost_data_list[i].Passenger;
+                double value=Cost_data_list[i].X_int;
+                X[g, p] = value;    
+            }
+        }
+
+
+        private void input_data(float[,] cost_value,int max_p_in_group, int num_g,int num_p)
+        {
+            Max_P_in_group = max_p_in_group;
+
+            Cost_data_list =new Cost_gp_Def[num_g * num_p];
+            int n_count = 0;
+            for(int g=1;g<=num_g;g++)
+            for(int p=1;p<=num_p;p++)            
+            {
+                Cost_gp_Def cost_data_one = new Cost_gp_Def(g,p,cost_value[g, p]);
+                Cost_data_list[n_count] = cost_data_one;
+                n_count++;
+            }
+
+        }
+        private void solver_main()
+        {
+            SolverContext context = SolverContext.GetContext();
+            context.ClearModel();
+            Model model = context.CreateModel();
+
+            Set Passengers = new Set(Domain.IntegerNonnegative, "Passengers");
+            Set Groups = new Set(Domain.IntegerNonnegative, "groups");           
+
+            Decision x = new Decision(Domain.IntegerRange(0, 1), "x_g_p",Groups,Passengers);
+            x.SetBinding(Cost_data_list, "X_int","Group", "Passenger"); ////
+            model.AddDecisions(x);
+
+           
+            Parameter cost = new Parameter(Domain.Real, "Price",  Groups,Passengers);
+            cost.SetBinding(Cost_data_list, "Price","Group", "Passenger" );           
+            model.AddParameters(cost);
+
+
+            model.AddConstraint("at_leat_select_one_group_for_each_Passenger",
+                Model.ForEach(
+                Passengers, p =>
+                Model.Sum(Model.ForEach(Groups, g => x[g, p])) 
+                        >= 1)
+                );
+
+            model.AddConstraint("max_passenger_number_in_one_group",
+                Model.ForEach(
+                Groups, g =>
+                Model.Sum(Model.ForEach(Passengers, p => x[g, p]))
+                        <= Max_P_in_group)
+                );
+
+         
+
+
+            Goal z_main= model.AddGoal("z_main", GoalKind.Maximize,
+                Model.Sum(Model.ForEach(
+                    Groups, g =>
+                    Model.Sum(Model.ForEach(Passengers, p => cost[g, p] * x[g, p]))
+                             ))                   
+                     );
+
+            //SimplexDirective directive = new SimplexDirective();
+            SolverFoundation.Plugin.LpSolve.LpSolveDirective directive = new SolverFoundation.Plugin.LpSolve.LpSolveDirective();
+            directive.GetSensitivity = true;
+            
+            //directive.Arithmetic = Arithmetic.Exact;
+            try
+            {
+                Solution solution = context.Solve(directive); 
+                //Report report = solution.GetReport();
+                //this.String_Report += report.ToString();
+                //System.Windows.Forms.MessageBox.Show(z_main.ToDouble().ToString() +  "\n" + report.ToString());
+            }
+            catch(Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+            }
+            context.PropagateDecisions();
+
+                        
+            context.ClearModel();
+
+        }
+    }
+}

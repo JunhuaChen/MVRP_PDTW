@@ -1,0 +1,855 @@
+
+--- Job lr_set_partition.gms Start 04/09/16 11:56:31 24.4.3 r51699 WEX-WEI x86 64bit/MS Windows
+GAMS 24.4.3   Copyright (C) 1987-2015 GAMS Development. All rights reserved
+Licensee: School of Sustainable Engineering              G150407:1621AO-WIN
+          Arizona State University                                  DC11708
+          License for teaching and research at degree granting institutions
+--- Starting compilation
+--- lr_set_partition.gms(18) 2 Mb
+--- .../input_gams_data.txt(382) 3 Mb
+--- lr_set_partition.gms(165) 3 Mb
+--- Starting execution: elapsed 0:00:00.003
+--- lr_set_partition.gms(421) 4 Mb
+--- Generating RMIP model model_main
+--- lr_set_partition.gms(423) 4 Mb
+---   13 rows  115 columns  490 non-zeroes
+---   114 discrete-columns
+--- Executing CPLEX: elapsed 0:00:00.009
+
+IBM ILOG CPLEX   24.4.3 r51699 Released Apr  2, 2015 WEI x86 64bit/MS Windows 
+Cplex 12.6.1.0
+
+Reading data...
+Starting Cplex...
+Space for names approximately 0.00 Mb
+Use option 'names no' to turn use of names off
+Tried aggregator 1 time.
+LP Presolve eliminated 1 rows and 31 columns.
+Reduced LP has 12 rows, 84 columns, and 345 nonzeros.
+Presolve time = 0.00 sec. (0.07 ticks)
+
+Iteration      Dual Objective            In Variable           Out Variable
+     1              15.500000                 x(1.1)assign_pattern(1) artif
+     2              31.000000                 x(2.1)assign_pattern(2) artif
+     3              33.000000                 x(2.7)assign_passenger( artif
+     4              33.000000                 x(1.5)assign_passenger( artif
+     5              35.500000                x(1.10)assign_passenger( artif
+     6              37.500000                x(1.19)assign_passenger( artif
+     7              37.500000                x(1.16)assign_passenger( artif
+     8              40.000000                 x(1.6)assign_passenger( artif
+     9              40.000000                x(1.25)                 x(1.5)
+    10              44.000000                 x(1.8)                x(1.19)
+    11              44.000000                x(2.10)assign_passenger( artif
+    12              46.000000                 x(2.6)assign_passenger( artif
+    13              50.500000                 x(2.8)assign_passenger( artif
+    14              52.500000                 x(2.9)assign_passenger( artif
+    15              52.500000                x(2.47)                 x(2.1)
+    16              52.500000                x(1.14)                 x(1.1)
+    17              53.000000                x(1.15)                 x(1.8)
+    18              53.000000                x(2.12)                 x(2.7)
+    19              55.500000                x(2.11)                 x(2.9)
+    20              55.500000                x(1.11)                 x(1.6)
+    21              55.500000                 x(2.2)                x(1.14)
+    22              55.500000                x(1.18)                x(1.25)
+    23              55.500000                x(2.42)                x(2.12)
+    24              55.500000                x(1.13)                x(2.10)
+    25              55.500000                x(2.27)                 x(2.2)
+    26              55.500000                x(2.15)                 x(2.6)
+    27              56.000000                x(2.34)                 x(2.8)
+    28              56.000000                x(2.49)                x(2.11)
+    29              56.000000                x(2.46)                x(2.15)
+    30              56.000000                x(2.55)                x(2.27)
+    31              56.000000                x(2.48)                x(2.42)
+    32              56.000000                x(2.57)                x(2.34)
+    33              56.000000                x(1.21)                x(1.10)
+    34              56.000000                x(1.23)                x(1.11)
+    35              73.000000                x(2.50)                x(2.55)
+    36              73.000000                x(1.24)                x(1.13)
+    37              73.000000                x(1.20)                x(1.15)
+    38              73.000000                x(1.22)                x(1.18)
+    39              75.000000                x(1.25)                x(1.20)
+    40              80.500000                x(2.51)                x(1.16)
+LP status(1): optimal
+Cplex Time: 0.08sec (det. 0.19 ticks)
+
+Optimal solution found.
+Objective :          80.500000
+
+--- Restarting execution
+--- lr_set_partition.gms(423) 2 Mb
+--- Reading solution for model model_main
+--- Executing after solve: elapsed 0:00:00.421
+--- lr_set_partition.gms(469) 3 Mb
+--- Generating MIP model model_lr
+--- lr_set_partition.gms(477) 3 Mb
+--- LOOPS iter = iter1
+---   3 rows  115 columns  229 non-zeroes
+---   114 discrete-columns
+--- Executing CPLEX: elapsed 0:00:00.426
+
+IBM ILOG CPLEX   24.4.3 r51699 Released Apr  2, 2015 WEI x86 64bit/MS Windows 
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.6.1.0
+
+Reading data...
+Starting Cplex...
+Space for names approximately 0.00 Mb
+Use option 'names no' to turn use of names off
+Found incumbent of value 43.000000 after 0.00 sec. (0.01 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 3 rows and 115 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.04 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.05 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.05 ticks)
+MIP status(101): integer optimal solution
+Cplex Time: 0.00sec (det. 0.06 ticks)
+Fixing integer variables, and solving final LP...
+Tried aggregator 1 time.
+LP Presolve eliminated 3 rows and 115 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.02 ticks)
+Fixed MIP status(1): optimal
+Cplex Time: 0.14sec (det. 0.03 ticks)
+
+Proven optimal solution.
+
+MIP Solution:           43.000000    (0 iterations, 0 nodes)
+Final Solve:            43.000000    (0 iterations)
+
+Best possible:          43.000000
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+--- Restarting execution
+--- lr_set_partition.gms(477) 2 Mb
+--- Reading solution for model model_lr
+--- Executing after solve: elapsed 0:00:00.720
+--- lr_set_partition.gms(469) 3 Mb
+--- Generating MIP model model_lr
+--- lr_set_partition.gms(477) 3 Mb
+--- LOOPS iter = iter2
+---   3 rows  115 columns  229 non-zeroes
+---   114 discrete-columns
+--- Executing CPLEX: elapsed 0:00:00.723
+
+IBM ILOG CPLEX   24.4.3 r51699 Released Apr  2, 2015 WEI x86 64bit/MS Windows 
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.6.1.0
+
+Reading data...
+Starting Cplex...
+Space for names approximately 0.00 Mb
+Use option 'names no' to turn use of names off
+Found incumbent of value 319.750000 after 0.00 sec. (0.01 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 3 rows and 115 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.04 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.06 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.06 ticks)
+MIP status(101): integer optimal solution
+Cplex Time: 0.01sec (det. 0.06 ticks)
+Fixing integer variables, and solving final LP...
+Tried aggregator 1 time.
+LP Presolve eliminated 3 rows and 115 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.02 ticks)
+Fixed MIP status(1): optimal
+Cplex Time: 0.00sec (det. 0.03 ticks)
+
+Proven optimal solution.
+
+MIP Solution:           53.000000    (0 iterations, 0 nodes)
+Final Solve:            53.000000    (0 iterations)
+
+Best possible:          53.000000
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+--- Restarting execution
+--- lr_set_partition.gms(477) 2 Mb
+--- Reading solution for model model_lr
+--- Executing after solve: elapsed 0:00:00.834
+--- lr_set_partition.gms(469) 3 Mb
+--- Generating MIP model model_lr
+--- lr_set_partition.gms(477) 3 Mb
+--- LOOPS iter = iter3
+---   3 rows  115 columns  229 non-zeroes
+---   114 discrete-columns
+--- Executing CPLEX: elapsed 0:00:00.838
+
+IBM ILOG CPLEX   24.4.3 r51699 Released Apr  2, 2015 WEI x86 64bit/MS Windows 
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.6.1.0
+
+Reading data...
+Starting Cplex...
+Space for names approximately 0.00 Mb
+Use option 'names no' to turn use of names off
+Found incumbent of value 221.750000 after 0.00 sec. (0.01 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 3 rows and 115 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.04 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.06 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.06 ticks)
+MIP status(101): integer optimal solution
+Cplex Time: 0.02sec (det. 0.06 ticks)
+Fixing integer variables, and solving final LP...
+Tried aggregator 1 time.
+LP Presolve eliminated 3 rows and 115 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.02 ticks)
+Fixed MIP status(1): optimal
+Cplex Time: 0.00sec (det. 0.03 ticks)
+
+Proven optimal solution.
+
+MIP Solution:           -9.500000    (0 iterations, 0 nodes)
+Final Solve:            -9.500000    (0 iterations)
+
+Best possible:          -9.500000
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+--- Restarting execution
+--- lr_set_partition.gms(477) 2 Mb
+--- Reading solution for model model_lr
+--- Executing after solve: elapsed 0:00:00.957
+--- lr_set_partition.gms(469) 3 Mb
+--- Generating MIP model model_lr
+--- lr_set_partition.gms(477) 3 Mb
+--- LOOPS iter = iter4
+---   3 rows  115 columns  229 non-zeroes
+---   114 discrete-columns
+--- Executing CPLEX: elapsed 0:00:00.960
+
+IBM ILOG CPLEX   24.4.3 r51699 Released Apr  2, 2015 WEI x86 64bit/MS Windows 
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.6.1.0
+
+Reading data...
+Starting Cplex...
+Space for names approximately 0.00 Mb
+Use option 'names no' to turn use of names off
+Found incumbent of value 319.750000 after 0.00 sec. (0.01 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 3 rows and 115 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.04 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.06 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.06 ticks)
+MIP status(101): integer optimal solution
+Cplex Time: 0.02sec (det. 0.06 ticks)
+Fixing integer variables, and solving final LP...
+Tried aggregator 1 time.
+LP Presolve eliminated 3 rows and 115 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.02 ticks)
+Fixed MIP status(1): optimal
+Cplex Time: 0.00sec (det. 0.03 ticks)
+
+Proven optimal solution.
+
+MIP Solution:           73.000000    (0 iterations, 0 nodes)
+Final Solve:            73.000000    (0 iterations)
+
+Best possible:          73.000000
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+--- Restarting execution
+--- lr_set_partition.gms(477) 2 Mb
+--- Reading solution for model model_lr
+--- Executing after solve: elapsed 0:00:01.074
+--- lr_set_partition.gms(469) 3 Mb
+--- Generating MIP model model_lr
+--- lr_set_partition.gms(477) 3 Mb
+--- LOOPS iter = iter5
+---   3 rows  115 columns  229 non-zeroes
+---   114 discrete-columns
+--- Executing CPLEX: elapsed 0:00:01.078
+
+IBM ILOG CPLEX   24.4.3 r51699 Released Apr  2, 2015 WEI x86 64bit/MS Windows 
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.6.1.0
+
+Reading data...
+Starting Cplex...
+Space for names approximately 0.00 Mb
+Use option 'names no' to turn use of names off
+Found incumbent of value 65.750000 after 0.00 sec. (0.01 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 3 rows and 115 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.04 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.06 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.06 ticks)
+MIP status(101): integer optimal solution
+Cplex Time: 0.00sec (det. 0.06 ticks)
+Fixing integer variables, and solving final LP...
+Tried aggregator 1 time.
+LP Presolve eliminated 3 rows and 115 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.02 ticks)
+Fixed MIP status(1): optimal
+Cplex Time: 0.00sec (det. 0.03 ticks)
+
+Proven optimal solution.
+
+MIP Solution:         -165.500000    (0 iterations, 0 nodes)
+Final Solve:          -165.500000    (0 iterations)
+
+Best possible:        -165.500000
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+--- Restarting execution
+--- lr_set_partition.gms(477) 2 Mb
+--- Reading solution for model model_lr
+--- Executing after solve: elapsed 0:00:01.195
+--- lr_set_partition.gms(469) 3 Mb
+--- Generating MIP model model_lr
+--- lr_set_partition.gms(477) 3 Mb
+--- LOOPS iter = iter6
+---   3 rows  115 columns  229 non-zeroes
+---   114 discrete-columns
+--- Executing CPLEX: elapsed 0:00:01.198
+
+IBM ILOG CPLEX   24.4.3 r51699 Released Apr  2, 2015 WEI x86 64bit/MS Windows 
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.6.1.0
+
+Reading data...
+Starting Cplex...
+Space for names approximately 0.00 Mb
+Use option 'names no' to turn use of names off
+Found incumbent of value 319.750000 after 0.00 sec. (0.01 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 3 rows and 115 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.04 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.06 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.06 ticks)
+MIP status(101): integer optimal solution
+Cplex Time: 0.02sec (det. 0.06 ticks)
+Fixing integer variables, and solving final LP...
+Tried aggregator 1 time.
+LP Presolve eliminated 3 rows and 115 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.02 ticks)
+Fixed MIP status(1): optimal
+Cplex Time: 0.00sec (det. 0.03 ticks)
+
+Proven optimal solution.
+
+MIP Solution:           73.000000    (0 iterations, 0 nodes)
+Final Solve:            73.000000    (0 iterations)
+
+Best possible:          73.000000
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+--- Restarting execution
+--- lr_set_partition.gms(477) 2 Mb
+--- Reading solution for model model_lr
+--- Executing after solve: elapsed 0:00:01.316
+--- lr_set_partition.gms(469) 3 Mb
+--- Generating MIP model model_lr
+--- lr_set_partition.gms(477) 3 Mb
+--- LOOPS iter = iter7
+---   3 rows  115 columns  229 non-zeroes
+---   114 discrete-columns
+--- Executing CPLEX: elapsed 0:00:01.320
+
+IBM ILOG CPLEX   24.4.3 r51699 Released Apr  2, 2015 WEI x86 64bit/MS Windows 
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.6.1.0
+
+Reading data...
+Starting Cplex...
+Space for names approximately 0.00 Mb
+Use option 'names no' to turn use of names off
+Found incumbent of value 192.750000 after 0.00 sec. (0.01 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 3 rows and 115 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.04 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.06 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.06 ticks)
+MIP status(101): integer optimal solution
+Cplex Time: 0.02sec (det. 0.06 ticks)
+Fixing integer variables, and solving final LP...
+Tried aggregator 1 time.
+LP Presolve eliminated 3 rows and 115 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.02 ticks)
+Fixed MIP status(1): optimal
+Cplex Time: 0.00sec (det. 0.03 ticks)
+
+Proven optimal solution.
+
+MIP Solution:          -38.500000    (0 iterations, 0 nodes)
+Final Solve:           -38.500000    (0 iterations)
+
+Best possible:         -38.500000
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+--- Restarting execution
+--- lr_set_partition.gms(477) 2 Mb
+--- Reading solution for model model_lr
+--- Executing after solve: elapsed 0:00:01.434
+--- lr_set_partition.gms(469) 3 Mb
+--- Generating MIP model model_lr
+--- lr_set_partition.gms(477) 3 Mb
+--- LOOPS iter = iter8
+---   3 rows  115 columns  229 non-zeroes
+---   114 discrete-columns
+--- Executing CPLEX: elapsed 0:00:01.438
+
+IBM ILOG CPLEX   24.4.3 r51699 Released Apr  2, 2015 WEI x86 64bit/MS Windows 
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.6.1.0
+
+Reading data...
+Starting Cplex...
+Space for names approximately 0.00 Mb
+Use option 'names no' to turn use of names off
+Found incumbent of value 319.750000 after 0.00 sec. (0.01 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 3 rows and 115 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.04 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.06 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.06 ticks)
+MIP status(101): integer optimal solution
+Cplex Time: 0.02sec (det. 0.06 ticks)
+Fixing integer variables, and solving final LP...
+Tried aggregator 1 time.
+LP Presolve eliminated 3 rows and 115 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.02 ticks)
+Fixed MIP status(1): optimal
+Cplex Time: 0.00sec (det. 0.03 ticks)
+
+Proven optimal solution.
+
+MIP Solution:           73.000000    (0 iterations, 0 nodes)
+Final Solve:            73.000000    (0 iterations)
+
+Best possible:          73.000000
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+--- Restarting execution
+--- lr_set_partition.gms(477) 2 Mb
+--- Reading solution for model model_lr
+--- Executing after solve: elapsed 0:00:01.556
+--- lr_set_partition.gms(469) 3 Mb
+--- Generating MIP model model_lr
+--- lr_set_partition.gms(477) 3 Mb
+--- LOOPS iter = iter9
+---   3 rows  115 columns  229 non-zeroes
+---   114 discrete-columns
+--- Executing CPLEX: elapsed 0:00:01.559
+
+IBM ILOG CPLEX   24.4.3 r51699 Released Apr  2, 2015 WEI x86 64bit/MS Windows 
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.6.1.0
+
+Reading data...
+Starting Cplex...
+Space for names approximately 0.00 Mb
+Use option 'names no' to turn use of names off
+Found incumbent of value 256.250000 after 0.00 sec. (0.01 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 3 rows and 115 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.04 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.06 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.06 ticks)
+MIP status(101): integer optimal solution
+Cplex Time: 0.00sec (det. 0.06 ticks)
+Fixing integer variables, and solving final LP...
+Tried aggregator 1 time.
+LP Presolve eliminated 3 rows and 115 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.02 ticks)
+Fixed MIP status(1): optimal
+Cplex Time: 0.00sec (det. 0.03 ticks)
+
+Proven optimal solution.
+
+MIP Solution:           25.000000    (0 iterations, 0 nodes)
+Final Solve:            25.000000    (0 iterations)
+
+Best possible:          25.000000
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+--- Restarting execution
+--- lr_set_partition.gms(477) 2 Mb
+--- Reading solution for model model_lr
+--- Executing after solve: elapsed 0:00:01.677
+--- lr_set_partition.gms(469) 3 Mb
+--- Generating MIP model model_lr
+--- lr_set_partition.gms(477) 3 Mb
+--- LOOPS iter = iter10
+---   3 rows  115 columns  229 non-zeroes
+---   114 discrete-columns
+--- Executing CPLEX: elapsed 0:00:01.680
+
+IBM ILOG CPLEX   24.4.3 r51699 Released Apr  2, 2015 WEI x86 64bit/MS Windows 
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.6.1.0
+
+Reading data...
+Starting Cplex...
+Space for names approximately 0.00 Mb
+Use option 'names no' to turn use of names off
+Found incumbent of value 319.750000 after 0.00 sec. (0.01 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 3 rows and 115 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.04 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.06 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.06 ticks)
+MIP status(101): integer optimal solution
+Cplex Time: 0.01sec (det. 0.06 ticks)
+Fixing integer variables, and solving final LP...
+Tried aggregator 1 time.
+LP Presolve eliminated 3 rows and 115 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.02 ticks)
+Fixed MIP status(1): optimal
+Cplex Time: 0.00sec (det. 0.03 ticks)
+
+Proven optimal solution.
+
+MIP Solution:           73.000000    (0 iterations, 0 nodes)
+Final Solve:            73.000000    (0 iterations)
+
+Best possible:          73.000000
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+--- Restarting execution
+--- lr_set_partition.gms(477) 2 Mb
+--- Reading solution for model model_lr
+--- Executing after solve: elapsed 0:00:01.798
+--- lr_set_partition.gms(469) 3 Mb
+--- Generating MIP model model_lr
+--- lr_set_partition.gms(477) 3 Mb
+--- LOOPS iter = iter11
+---   3 rows  115 columns  229 non-zeroes
+---   114 discrete-columns
+--- Executing CPLEX: elapsed 0:00:01.802
+
+IBM ILOG CPLEX   24.4.3 r51699 Released Apr  2, 2015 WEI x86 64bit/MS Windows 
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.6.1.0
+
+Reading data...
+Starting Cplex...
+Space for names approximately 0.00 Mb
+Use option 'names no' to turn use of names off
+Found incumbent of value 288.000000 after 0.00 sec. (0.01 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 3 rows and 115 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.04 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.06 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.06 ticks)
+MIP status(101): integer optimal solution
+Cplex Time: 0.01sec (det. 0.06 ticks)
+Fixing integer variables, and solving final LP...
+Tried aggregator 1 time.
+LP Presolve eliminated 3 rows and 115 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.02 ticks)
+Fixed MIP status(1): optimal
+Cplex Time: 0.00sec (det. 0.03 ticks)
+
+Proven optimal solution.
+
+MIP Solution:           56.750000    (0 iterations, 0 nodes)
+Final Solve:            56.750000    (0 iterations)
+
+Best possible:          56.750000
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+--- Restarting execution
+--- lr_set_partition.gms(477) 2 Mb
+--- Reading solution for model model_lr
+--- Executing after solve: elapsed 0:00:01.919
+--- lr_set_partition.gms(469) 3 Mb
+--- Generating MIP model model_lr
+--- lr_set_partition.gms(477) 3 Mb
+--- LOOPS iter = iter12
+---   3 rows  115 columns  229 non-zeroes
+---   114 discrete-columns
+--- Executing CPLEX: elapsed 0:00:01.923
+
+IBM ILOG CPLEX   24.4.3 r51699 Released Apr  2, 2015 WEI x86 64bit/MS Windows 
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.6.1.0
+
+Reading data...
+Starting Cplex...
+Space for names approximately 0.00 Mb
+Use option 'names no' to turn use of names off
+Found incumbent of value 319.750000 after 0.00 sec. (0.01 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 3 rows and 115 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.04 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.06 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.06 ticks)
+MIP status(101): integer optimal solution
+Cplex Time: 0.01sec (det. 0.06 ticks)
+Fixing integer variables, and solving final LP...
+Tried aggregator 1 time.
+LP Presolve eliminated 3 rows and 115 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.02 ticks)
+Fixed MIP status(1): optimal
+Cplex Time: 0.00sec (det. 0.03 ticks)
+
+Proven optimal solution.
+
+MIP Solution:           73.000000    (0 iterations, 0 nodes)
+Final Solve:            73.000000    (0 iterations)
+
+Best possible:          73.000000
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+--- Restarting execution
+--- lr_set_partition.gms(477) 2 Mb
+--- Reading solution for model model_lr
+--- Executing after solve: elapsed 0:00:02.040
+--- lr_set_partition.gms(469) 3 Mb
+--- Generating MIP model model_lr
+--- lr_set_partition.gms(477) 3 Mb
+--- LOOPS iter = iter13
+---   3 rows  115 columns  229 non-zeroes
+---   114 discrete-columns
+--- Executing CPLEX: elapsed 0:00:02.043
+
+IBM ILOG CPLEX   24.4.3 r51699 Released Apr  2, 2015 WEI x86 64bit/MS Windows 
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.6.1.0
+
+Reading data...
+Starting Cplex...
+Space for names approximately 0.00 Mb
+Use option 'names no' to turn use of names off
+Found incumbent of value 303.875000 after 0.00 sec. (0.01 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 3 rows and 115 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.04 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.02 sec. (0.06 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.02 sec. (0.06 ticks)
+MIP status(101): integer optimal solution
+Cplex Time: 0.02sec (det. 0.06 ticks)
+Fixing integer variables, and solving final LP...
+Tried aggregator 1 time.
+LP Presolve eliminated 3 rows and 115 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.02 ticks)
+Fixed MIP status(1): optimal
+Cplex Time: 0.00sec (det. 0.03 ticks)
+
+Proven optimal solution.
+
+MIP Solution:           72.625000    (0 iterations, 0 nodes)
+Final Solve:            72.625000    (0 iterations)
+
+Best possible:          72.625000
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+--- Restarting execution
+--- lr_set_partition.gms(477) 2 Mb
+--- Reading solution for model model_lr
+--- Executing after solve: elapsed 0:00:02.159
+--- lr_set_partition.gms(469) 3 Mb
+--- Generating MIP model model_lr
+--- lr_set_partition.gms(477) 3 Mb
+--- LOOPS iter = iter14
+---   3 rows  115 columns  229 non-zeroes
+---   114 discrete-columns
+--- Executing CPLEX: elapsed 0:00:02.162
+
+IBM ILOG CPLEX   24.4.3 r51699 Released Apr  2, 2015 WEI x86 64bit/MS Windows 
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.6.1.0
+
+Reading data...
+Starting Cplex...
+Space for names approximately 0.00 Mb
+Use option 'names no' to turn use of names off
+Found incumbent of value 319.750000 after 0.00 sec. (0.01 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 3 rows and 115 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.04 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.06 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.06 ticks)
+MIP status(101): integer optimal solution
+Cplex Time: 0.02sec (det. 0.06 ticks)
+Fixing integer variables, and solving final LP...
+Tried aggregator 1 time.
+LP Presolve eliminated 3 rows and 115 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.02 ticks)
+Fixed MIP status(1): optimal
+Cplex Time: 0.00sec (det. 0.03 ticks)
+
+Proven optimal solution.
+
+MIP Solution:           73.000000    (0 iterations, 0 nodes)
+Final Solve:            73.000000    (0 iterations)
+
+Best possible:          73.000000
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+--- Restarting execution
+--- lr_set_partition.gms(477) 2 Mb
+--- Reading solution for model model_lr
+--- Executing after solve: elapsed 0:00:02.277
+--- lr_set_partition.gms(469) 3 Mb
+--- Generating MIP model model_lr
+--- lr_set_partition.gms(477) 3 Mb
+--- LOOPS iter = iter15
+---   3 rows  115 columns  229 non-zeroes
+---   114 discrete-columns
+--- Executing CPLEX: elapsed 0:00:02.280
+
+IBM ILOG CPLEX   24.4.3 r51699 Released Apr  2, 2015 WEI x86 64bit/MS Windows 
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.6.1.0
+
+Reading data...
+Starting Cplex...
+Space for names approximately 0.00 Mb
+Use option 'names no' to turn use of names off
+Found incumbent of value 311.812500 after 0.00 sec. (0.01 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 3 rows and 115 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.04 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.06 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.06 ticks)
+MIP status(101): integer optimal solution
+Cplex Time: 0.00sec (det. 0.06 ticks)
+Fixing integer variables, and solving final LP...
+Tried aggregator 1 time.
+LP Presolve eliminated 3 rows and 115 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.02 ticks)
+Fixed MIP status(1): optimal
+Cplex Time: 0.00sec (det. 0.03 ticks)
+
+Proven optimal solution.
+
+MIP Solution:           80.500000    (0 iterations, 0 nodes)
+Final Solve:            80.500000    (0 iterations)
+
+Best possible:          80.500000
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+--- Restarting execution
+--- lr_set_partition.gms(477) 2 Mb
+--- Reading solution for model model_lr
+--- Executing after solve: elapsed 0:00:02.397
+--- lr_set_partition.gms(469) 3 Mb
+*** Error at line 500: division by zero (0)
+--- lr_set_partition.gms(545) 3 Mb 1 Error
+--- Putfile output_results_x E:\3 PrgStudy\MrpPlus_dominate\MvrpLite\bin\Debug\gmas\gams_out_x.txt
+--- Putfile output_results_lr E:\3 PrgStudy\MrpPlus_dominate\MvrpLite\bin\Debug\gmas\gams_out_lr.txt
+--- lr_set_partition.gms(545) 3 Mb 1 Error
+*** Status: Execution error(s)
+--- Job lr_set_partition.gms Stop 04/09/16 11:56:33 elapsed 0:00:02.398
+Exit code = 3

@@ -1,0 +1,125 @@
+B 2 C o m p i l a t i o n
+B 191 Equation Listing    SOLVE constrainedSP Using MIP From line 86
+D 192 cost_obj
+D 200 comm_flow_on_node_origin
+D 205 comm_flow_on_node_destination
+D 212 comm_flow_on_node_intermediate
+D 229 time_constraint
+B 238 Column Listing      SOLVE constrainedSP Using MIP From line 86
+E 239 Cost
+E 247 x
+B 274 Model Statistics    SOLVE constrainedSP Using MIP From line 86
+B 290 Solution Report     SOLVE constrainedSP Using MIP From line 86
+F 328 cost_obj
+F 336 comm_flow_on_node_origin
+F 342 comm_flow_on_node_destination
+F 348 comm_flow_on_node_intermediate
+F 355 time_constraint
+G 358 Cost
+G 364 x
+B 386 Model Statistics    SOLVE ldual Using MIP From line 134
+B 407 Solution Report     SOLVE ldual Using MIP From line 134
+B 449 E x e c u t i o n
+I 452 bestbound
+B 455 Model Statistics    SOLVE ldual Using MIP From line 134
+B 476 Solution Report     SOLVE ldual Using MIP From line 134
+B 518 Model Statistics    SOLVE ldual Using MIP From line 134
+B 539 Solution Report     SOLVE ldual Using MIP From line 134
+B 581 E x e c u t i o n
+I 584 bestbound
+B 587 Model Statistics    SOLVE ldual Using MIP From line 134
+B 608 Solution Report     SOLVE ldual Using MIP From line 134
+B 650 Model Statistics    SOLVE ldual Using MIP From line 134
+B 671 Solution Report     SOLVE ldual Using MIP From line 134
+B 713 Model Statistics    SOLVE ldual Using MIP From line 134
+B 734 Solution Report     SOLVE ldual Using MIP From line 134
+B 776 Model Statistics    SOLVE ldual Using MIP From line 134
+B 797 Solution Report     SOLVE ldual Using MIP From line 134
+B 839 Model Statistics    SOLVE ldual Using MIP From line 134
+B 860 Solution Report     SOLVE ldual Using MIP From line 134
+B 902 Model Statistics    SOLVE ldual Using MIP From line 134
+B 923 Solution Report     SOLVE ldual Using MIP From line 134
+B 965 Model Statistics    SOLVE ldual Using MIP From line 134
+B 986 Solution Report     SOLVE ldual Using MIP From line 134
+B 1028 Model Statistics    SOLVE ldual Using MIP From line 134
+B 1049 Solution Report     SOLVE ldual Using MIP From line 134
+B 1091 Model Statistics    SOLVE ldual Using MIP From line 134
+B 1112 Solution Report     SOLVE ldual Using MIP From line 134
+B 1154 Model Statistics    SOLVE ldual Using MIP From line 134
+B 1175 Solution Report     SOLVE ldual Using MIP From line 134
+B 1217 Model Statistics    SOLVE ldual Using MIP From line 134
+B 1238 Solution Report     SOLVE ldual Using MIP From line 134
+B 1280 Model Statistics    SOLVE ldual Using MIP From line 134
+B 1301 Solution Report     SOLVE ldual Using MIP From line 134
+B 1343 Model Statistics    SOLVE ldual Using MIP From line 134
+B 1364 Solution Report     SOLVE ldual Using MIP From line 134
+B 1406 Model Statistics    SOLVE ldual Using MIP From line 134
+B 1427 Solution Report     SOLVE ldual Using MIP From line 134
+B 1469 Model Statistics    SOLVE ldual Using MIP From line 134
+B 1490 Solution Report     SOLVE ldual Using MIP From line 134
+B 1532 Model Statistics    SOLVE ldual Using MIP From line 134
+B 1553 Solution Report     SOLVE ldual Using MIP From line 134
+B 1595 Model Statistics    SOLVE ldual Using MIP From line 134
+B 1616 Solution Report     SOLVE ldual Using MIP From line 134
+B 1658 Model Statistics    SOLVE ldual Using MIP From line 134
+B 1679 Solution Report     SOLVE ldual Using MIP From line 134
+B 1721 Model Statistics    SOLVE ldual Using MIP From line 134
+B 1742 Solution Report     SOLVE ldual Using MIP From line 134
+B 1784 Model Statistics    SOLVE ldual Using MIP From line 134
+B 1805 Solution Report     SOLVE ldual Using MIP From line 134
+B 1847 Model Statistics    SOLVE ldual Using MIP From line 134
+B 1868 Solution Report     SOLVE ldual Using MIP From line 134
+B 1910 Model Statistics    SOLVE ldual Using MIP From line 134
+B 1931 Solution Report     SOLVE ldual Using MIP From line 134
+B 1973 Model Statistics    SOLVE ldual Using MIP From line 134
+B 1994 Solution Report     SOLVE ldual Using MIP From line 134
+B 2036 Model Statistics    SOLVE ldual Using MIP From line 134
+B 2057 Solution Report     SOLVE ldual Using MIP From line 134
+B 2099 Model Statistics    SOLVE ldual Using MIP From line 134
+B 2120 Solution Report     SOLVE ldual Using MIP From line 134
+B 2162 Model Statistics    SOLVE ldual Using MIP From line 134
+B 2183 Solution Report     SOLVE ldual Using MIP From line 134
+B 2225 Model Statistics    SOLVE ldual Using MIP From line 134
+B 2246 Solution Report     SOLVE ldual Using MIP From line 134
+B 2288 Model Statistics    SOLVE ldual Using MIP From line 134
+B 2309 Solution Report     SOLVE ldual Using MIP From line 134
+B 2351 Model Statistics    SOLVE ldual Using MIP From line 134
+B 2372 Solution Report     SOLVE ldual Using MIP From line 134
+B 2414 Model Statistics    SOLVE ldual Using MIP From line 134
+B 2435 Solution Report     SOLVE ldual Using MIP From line 134
+B 2477 Model Statistics    SOLVE ldual Using MIP From line 134
+B 2498 Solution Report     SOLVE ldual Using MIP From line 134
+B 2540 Model Statistics    SOLVE ldual Using MIP From line 134
+B 2561 Solution Report     SOLVE ldual Using MIP From line 134
+B 2603 Model Statistics    SOLVE ldual Using MIP From line 134
+B 2624 Solution Report     SOLVE ldual Using MIP From line 134
+B 2666 Model Statistics    SOLVE ldual Using MIP From line 134
+B 2687 Solution Report     SOLVE ldual Using MIP From line 134
+B 2729 Model Statistics    SOLVE ldual Using MIP From line 134
+B 2750 Solution Report     SOLVE ldual Using MIP From line 134
+B 2792 Model Statistics    SOLVE ldual Using MIP From line 134
+B 2813 Solution Report     SOLVE ldual Using MIP From line 134
+B 2855 Model Statistics    SOLVE ldual Using MIP From line 134
+B 2876 Solution Report     SOLVE ldual Using MIP From line 134
+B 2918 Model Statistics    SOLVE ldual Using MIP From line 134
+B 2939 Solution Report     SOLVE ldual Using MIP From line 134
+B 2981 Model Statistics    SOLVE ldual Using MIP From line 134
+B 3002 Solution Report     SOLVE ldual Using MIP From line 134
+B 3044 Model Statistics    SOLVE ldual Using MIP From line 134
+B 3065 Solution Report     SOLVE ldual Using MIP From line 134
+B 3107 Model Statistics    SOLVE ldual Using MIP From line 134
+B 3128 Solution Report     SOLVE ldual Using MIP From line 134
+B 3170 Model Statistics    SOLVE ldual Using MIP From line 134
+B 3191 Solution Report     SOLVE ldual Using MIP From line 134
+B 3233 Model Statistics    SOLVE ldual Using MIP From line 134
+B 3254 Solution Report     SOLVE ldual Using MIP From line 134
+B 3296 Model Statistics    SOLVE ldual Using MIP From line 134
+B 3317 Solution Report     SOLVE ldual Using MIP From line 134
+B 3359 Model Statistics    SOLVE ldual Using MIP From line 134
+B 3380 Solution Report     SOLVE ldual Using MIP From line 134
+B 3422 Model Statistics    SOLVE ldual Using MIP From line 134
+B 3443 Solution Report     SOLVE ldual Using MIP From line 134
+B 3485 Model Statistics    SOLVE ldual Using MIP From line 134
+B 3506 Solution Report     SOLVE ldual Using MIP From line 134
+B 3548 E x e c u t i o n
+I 3549 results

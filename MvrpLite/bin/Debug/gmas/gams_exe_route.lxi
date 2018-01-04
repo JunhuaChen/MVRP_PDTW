@@ -1,0 +1,11 @@
+B 2 C o m p i l a t i o n
+B 4330 Include File Summary
+B 4345 Equation Listing    SOLVE model_main Using RMIP From line 4317
+D 4346 obj_main
+D 4380 assign_pattern
+D 4398 assign_passenger
+D 4400 assign_passenger
+B 4493 Column Listing      SOLVE model_main Using RMIP From line 4317
+E 4494 x
+E 4514 z
+B 4523 Model Statistics    SOLVE model_main Using RMIP From line 4317

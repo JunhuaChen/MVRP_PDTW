@@ -1,0 +1,49 @@
+[PROJECT]
+
+[RP:VRPTW]
+1=
+
+[RP:TIMETABLING_STOPPLAN]
+1=
+
+[RP:LOCOMOTIVE_ROUTING_PROBLEM]
+1=
+
+[RP:CASE6]
+1=
+
+[RP:LR_SET_PARTITION]
+1=
+
+[RP:GP_GROUP]
+1=
+
+[RP:UNTITLED_1]
+1=
+
+[RP:GP_GROUP_SMALL]
+1=
+
+[RP:SET_GROUP_3]
+1=
+
+[MRUFILES]
+1=E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\Untitled_1.gms
+2=E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\gp_group.lst
+3=E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\gp_group.gms
+4=E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\lr_set_partition.lst
+5=E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\lr_set_partition.gms
+6=E:\2 PaperStu\locomotiveRouting+trainScheduling\case6.gms
+7=E:\2 PaperStu\locomotiveRouting+trainScheduling\locomotive_routing_problem.gms
+8=E:\3 PrgStudy\gams-study\timetabling+stopPlan\timetabling_stopPlan.gms
+
+[OPENWINDOW_1]
+FILE0=E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\gp_group_small.gms
+FILE1=E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\set_group_3.gms
+FILE2=E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\set_group_3.lst
+FILE3=E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\set_group_3.gms
+MAXIM=0
+TOP=5
+LEFT=449
+HEIGHT=881
+WIDTH=1432

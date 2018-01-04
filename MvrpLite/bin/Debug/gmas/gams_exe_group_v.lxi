@@ -1,0 +1,21 @@
+B 2 C o m p i l a t i o n
+B 227 Include File Summary
+B 241 Equation Listing    SOLVE model_group Using MIP From line 213
+D 242 obj_main
+D 340 v_once_constrain
+D 357 v_in_group_constrain_1
+D 392 v_in_group_constrain_2
+B 429 Column Listing      SOLVE model_group Using MIP From line 213
+E 430 x
+E 456 z
+B 465 Model Statistics    SOLVE model_group Using MIP From line 213
+B 481 Solution Report     SOLVE model_group Using MIP From line 213
+F 520 obj_main
+F 526 v_once_constrain
+F 561 v_in_group_constrain_1
+F 571 v_in_group_constrain_2
+G 576 x
+G 731 z
+B 742 E x e c u t i o n
+I 743 x
+I 781 z

@@ -1,0 +1,49 @@
+﻿生成启动时间为 2016/6/11 21:36:19。
+     1>项目“E:\3 PrgStudy\MvrpPlus_group\MvrpPlus\MvrpPlus.vcxproj”在节点 2 上(Build 个目标)。
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /Zi /nologo /W3 /WX- /MP /Od /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _USING_V110_SDK71_ /D _UNICODE /D UNICODE /D _AFXDLL /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /openmp /Yu"stdafx.h" /Fp"x64\Debug\MvrpPlus.pch" /Fo"x64\Debug\\" /Fd"x64\Debug\vc120.pdb" /Gd /TP /errorReport:prompt MvrpPlus.cpp
+         MvrpPlus.cpp
+     1>MvrpPlus.cpp(29): warning C4603: “new”: 未定义宏或在预编译头使用后定义发生改变
+                 将宏添加到预编译头中，而不是在此处定义
+                 MvrpPlus.cpp(33) : 使用预编译头
+     1>MvrpPlus.cpp(242): warning C4305: “初始化”: 从“double”到“float”截断
+     1>MvrpPlus.cpp(834): warning C4101: “node_id”: 未引用的局部变量
+     1>MvrpPlus.cpp(833): warning C4101: “node_type”: 未引用的局部变量
+     1>MvrpPlus.cpp(838): warning C4101: “Y”: 未引用的局部变量
+     1>MvrpPlus.cpp(837): warning C4101: “X”: 未引用的局部变量
+     1>MvrpPlus.cpp(1025): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+     1>MvrpPlus.cpp(1060): warning C4267: “=”: 从“size_t”转换到“int”，可能丢失数据
+     1>MvrpPlus.cpp(1430): warning C4129: “g”: 不可识别的字符转义序列
+     1>MvrpPlus.cpp(1444): warning C4129: “%”: 不可识别的字符转义序列
+     1>MvrpPlus.cpp(1490): warning C4101: “last_v_stage”: 未引用的局部变量
+     1>MvrpPlus.cpp(1489): warning C4101: “last_s”: 未引用的局部变量
+     1>MvrpPlus.cpp(2427): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : 参见“fopen”的声明
+     1>MvrpPlus.cpp(2437): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : 参见“fopen”的声明
+     1>MvrpPlus.cpp(2798): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : 参见“fopen”的声明
+     1>MvrpPlus.cpp(2806): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : 参见“fopen”的声明
+     1>MvrpPlus.cpp(2813): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : 参见“fopen”的声明
+     1>MvrpPlus.cpp(2820): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : 参见“fopen”的声明
+     1>MvrpPlus.cpp(2826): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include\stdio.h(211) : 参见“fopen”的声明
+     1>e:\3 prgstudy\mvrpplus_group\mvrpplus\MvrpPlus.h(66): warning C4244: “=”: 从“int”转换到“float”，可能丢失数据
+                 MvrpPlus.cpp(1195): 参见对正在编译的函数 模板 实例化“T **AllocateDynamicArray<float>(int,int,int)”的引用
+                 with
+                 [
+                     T=float
+                 ]
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"E:\3 PrgStudy\MvrpPlus_group\x64\Debug\MvrpPlus.exe" /INCREMENTAL /NOLOGO /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /manifestinput:"C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\Include\Manifest\dpiaware.manifest" /DEBUG /PDB:"E:\3 PrgStudy\MvrpPlus_group\x64\Debug\MvrpPlus.pdb" /SUBSYSTEM:CONSOLE,"5.02" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\3 PrgStudy\MvrpPlus_group\x64\Debug\MvrpPlus.lib" /MACHINE:X64 x64\Debug\MvrpPlus.res
+         x64\Debug\MvrpPlus.obj
+         x64\Debug\stdafx.obj
+         MvrpPlus.vcxproj -> E:\3 PrgStudy\MvrpPlus_group\x64\Debug\MvrpPlus.exe
+     1>已完成生成项目“E:\3 PrgStudy\MvrpPlus_group\MvrpPlus\MvrpPlus.vcxproj”(Build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:01.60

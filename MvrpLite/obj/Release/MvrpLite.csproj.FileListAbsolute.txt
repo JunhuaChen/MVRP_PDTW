@@ -1,0 +1,13 @@
+E:\3 PrgStudy\MrpPlus_dominate\MvrpLite\bin\Release\MvrpLite.exe.config
+E:\3 PrgStudy\MrpPlus_dominate\MvrpLite\obj\Release\Interop.Scripting.dll
+E:\3 PrgStudy\MrpPlus_dominate\MvrpLite\obj\Release\MvrpLite.csproj.ResolveComReference.cache
+E:\3 PrgStudy\MrpPlus_dominate\MvrpLite\bin\Release\MvrpLite.exe
+E:\3 PrgStudy\MrpPlus_dominate\MvrpLite\bin\Release\MvrpLite.pdb
+E:\3 PrgStudy\MrpPlus_dominate\MvrpLite\bin\Release\ZedGraph.dll
+E:\3 PrgStudy\MrpPlus_dominate\MvrpLite\obj\Release\MvrpLite.adminFuc.panelView.resources
+E:\3 PrgStudy\MrpPlus_dominate\MvrpLite\obj\Release\MvrpLite.adminFuc.panelRealData.resources
+E:\3 PrgStudy\MrpPlus_dominate\MvrpLite\obj\Release\MvrpLite.formMain.resources
+E:\3 PrgStudy\MrpPlus_dominate\MvrpLite\obj\Release\MvrpLite.Properties.Resources.resources
+E:\3 PrgStudy\MrpPlus_dominate\MvrpLite\obj\Release\MvrpLite.csproj.GenerateResource.Cache
+E:\3 PrgStudy\MrpPlus_dominate\MvrpLite\obj\Release\MvrpLite.exe
+E:\3 PrgStudy\MrpPlus_dominate\MvrpLite\obj\Release\MvrpLite.pdb

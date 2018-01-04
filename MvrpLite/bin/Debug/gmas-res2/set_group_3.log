@@ -1,0 +1,63 @@
+
+--- Job set_group_3.gms Start 04/05/16 11:51:38 24.4.3 r51699 WEX-WEI x86 64bit/MS Windows
+GAMS 24.4.3   Copyright (C) 1987-2015 GAMS Development. All rights reserved
+Licensee: School of Sustainable Engineering              G150407:1621AO-WIN
+          Arizona State University                                  DC11708
+          License for teaching and research at degree granting institutions
+--- Starting compilation
+--- set_group_3.gms(99) 3 Mb
+--- Starting execution: elapsed 0:00:00.002
+--- set_group_3.gms(65) 4 Mb
+--- Generating MINLP model model_group
+--- set_group_3.gms(96) 6 Mb
+---   776 rows  126 columns  2,156 non-zeroes
+---   0 nl-code  0 nl-non-zeroes
+---   125 discrete-columns
+--- set_group_3.gms(96) 4 Mb
+--- Executing SCIP: elapsed 0:00:00.008
+
+SCIP             24.4.3 r51699 Released Apr  2, 2015 WEI x86 64bit/MS Windows 
+SCIP version 3.1 (67d713c)
+Copyright (c) 2002-2015 Konrad-Zuse-Zentrum fuer Informationstechnik Berlin (ZIB)
+
+External codes: 
+  CPLEX 12.6.1.0       Linear Programming Solver developed by IBM (www.cplex.com)
+  cppad-20140000.1     Algorithmic Differentiation of C++ algorithms developed by B. Bell (www.coin-or.org/CppAD)
+  Ipopt 3.11           Interior Point Optimizer developed by A. Waechter et.al. (www.coin-or.org/Ipopt)
+non-default parameter settings:
+limits/time = 1000
+limits/gap = 0.1
+lp/threads = 1
+misc/printreason = FALSE
+display/nfrac/active = 2
+
+original problem has 125 variables (125 bin, 0 int, 0 cont) and 775 constraints
+
+all solutions given by solution candidate storage are infeasible
+
+presolving:
+(round 1) 50 del vars, 325 del conss, 0 add conss, 0 chg bounds, 700 chg sides, 700 chg coeffs, 0 upgd conss, 200 impls, 15 clqs
+(round 2) 50 del vars, 485 del conss, 0 add conss, 0 chg bounds, 700 chg sides, 700 chg coeffs, 290 upgd conss, 200 impls, 15 clqs
+(round 3) 50 del vars, 485 del conss, 0 add conss, 0 chg bounds, 700 chg sides, 725 chg coeffs, 290 upgd conss, 200 impls, 15 clqs
+(round 4) 75 del vars, 485 del conss, 0 add conss, 0 chg bounds, 700 chg sides, 725 chg coeffs, 290 upgd conss, 1712 impls, 11 clqs
+presolving (5 rounds):
+ 75 deleted vars, 485 deleted constraints, 0 added constraints, 0 tightened bounds, 0 added holes, 700 changed sides, 725 changed coefficients
+ 1712 implications, 11 cliques
+presolving detected infeasibility
+Presolving Time: 0.02
+
+SCIP Status        : problem is solved [infeasible]
+Solving Time (sec) : 0.02
+Solving Nodes      : 0
+Primal Bound       : +1.00000000000000e+020 (0 solutions)
+Dual Bound         : -1.00000000000000e+020
+Gap                : infinite
+
+
+--- Restarting execution
+--- set_group_3.gms(96) 2 Mb
+--- Reading solution for model model_group
+--- Executing after solve: elapsed 0:00:00.236
+--- set_group_3.gms(99) 3 Mb
+*** Status: Normal completion
+--- Job set_group_3.gms Stop 04/05/16 11:51:38 elapsed 0:00:00.236

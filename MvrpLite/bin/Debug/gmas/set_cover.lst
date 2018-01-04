@@ -1,0 +1,573 @@
+GAMS 24.4.3  r51699 Released Apr  2, 2015 WEX-WEI x86 64bit/MS Windows 04/06/16 10:41:06 Page 1
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+C o m p i l a t i o n
+
+
+       
+          set cover problem
+          junhua Chen.   cjh@bjtu.edu.cn
+          4/4,2016
+       
+   8   
+   9  set g 'group'/1*5/;
+  10  set p 'passenger'/1*21/;
+  11   
+  12  parameter c(g,p)/
+  13  1.1 -100
+  14  1.2 -100
+  15  1.3 -100
+  16  1.4 -100
+  17  1.5 -100
+  18  1.6 -100
+  19  1.7 -100
+  20  1.8 -100
+  21  1.9 -100
+  22  1.10 -100
+  23  1.11 -100
+  24  1.12 4
+  25  1.13 4
+  26  1.14 4
+  27  1.15 4
+  28  1.16 4
+  29  1.17 4
+  30  1.18 4
+  31  1.19 4
+  32  1.20 4
+  33  1.21 4
+  34  2.1 2
+  35  2.2 2
+  36  2.3 2
+  37  2.4 2
+  38  2.5 2
+  39  2.6 2
+  40  2.7 2
+  41  2.8 2
+  42  2.9 2
+  43  2.10 2
+  44  2.11 2
+  45  2.12 -100
+  46  2.13 -100
+  47  2.14 -100
+  48  2.15 -100
+  49  2.16 -100
+  50  2.17 -100
+  51  2.18 -100
+  52  2.19 -100
+  53  2.20 -100
+  54  2.21 -100
+  55  3.1 2
+  56  3.2 2
+  57  3.3 2
+  58  3.4 2
+  59  3.5 2
+  60  3.6 2
+  61  3.7 2
+  62  3.8 2
+  63  3.9 2
+  64  3.10 2
+  65  3.11 2
+  66  3.12 -100
+  67  3.13 -100
+  68  3.14 -100
+  69  3.15 -100
+  70  3.16 -100
+  71  3.17 -100
+  72  3.18 -100
+  73  3.19 -100
+  74  3.20 -100
+  75  3.21 -100
+  76  4.1 -100
+  77  4.2 -100
+  78  4.3 -100
+  79  4.4 -100
+  80  4.5 -100
+  81  4.6 -100
+  82  4.7 2
+  83  4.8 2
+  84  4.9 2
+  85  4.10 2
+  86  4.11 2
+  87  4.12 -100
+  88  4.13 -100
+  89  4.14 -100
+  90  4.15 -100
+  91  4.16 -100
+  92  4.17 -100
+  93  4.18 -100
+  94  4.19 -100
+  95  4.20 -100
+  96  4.21 -100
+  97  5.1 -100
+  98  5.2 -100
+  99  5.3 -100
+ 100  5.4 -100
+ 101  5.5 -100
+ 102  5.6 -100
+ 103  5.7 -100
+ 104  5.8 -100
+ 105  5.9 -100
+ 106  5.10 -100
+ 107  5.11 -100
+ 108  5.12 4
+ 109  5.13 4
+ 110  5.14 4
+ 111  5.15 4
+ 112  5.16 4
+ 113  5.17 4
+ 114  5.18 4
+ 115  5.19 4
+ 116  5.20 4
+ 117  5.21 4
+ 118  /;
+ 119  scalar min_p_in_group/1/;
+ 120  scalar max_p_in_group/8/;
+ 121   
+ 122  binary variable x(g,p);
+ 123  variable z;
+ 124   
+ 125  equations
+ 126           obj_main
+ 127           assign_cover(p)
+ 128           low_capacity(g)
+ 129           up_capacity(g)
+ 130  ;
+ 131  obj_main..
+ 132           z=e=sum((g,p),c(g,p)*x(g,p));
+ 133  assign_cover(p)..
+ 134           sum(g,x(g,p))=g=1;
+ 135  low_capacity(g)..
+ 136           sum(p,x(g,p))=g=min_p_in_group;
+ 137  up_capacity(g)..
+ 138           sum(p,x(g,p))=l=max_p_in_group;
+ 139   
+ 140   
+ 141  Model model_assignment /obj_main,assign_cover,low_capacity,up_capacity/;
+ 142   
+ 143  solve model_assignment using mip maximizing z;
+ 144  display x.l;
+ 145  display z.l;
+ 146   
+
+
+COMPILATION TIME     =        0.000 SECONDS      3 MB  24.4.3 r51699 WEX-WEI
+GAMS 24.4.3  r51699 Released Apr  2, 2015 WEX-WEI x86 64bit/MS Windows 04/06/16 10:41:06 Page 2
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE model_assignment Using MIP From line 143
+
+
+---- obj_main  =E=  
+
+obj_main..  100*x(1,1) + 100*x(1,2) + 100*x(1,3) + 100*x(1,4) + 100*x(1,5)
+     
+      + 100*x(1,6) + 100*x(1,7) + 100*x(1,8) + 100*x(1,9) + 100*x(1,10)
+     
+      + 100*x(1,11) - 4*x(1,12) - 4*x(1,13) - 4*x(1,14) - 4*x(1,15) - 4*x(1,16)
+     
+      - 4*x(1,17) - 4*x(1,18) - 4*x(1,19) - 4*x(1,20) - 4*x(1,21) - 2*x(2,1)
+     
+      - 2*x(2,2) - 2*x(2,3) - 2*x(2,4) - 2*x(2,5) - 2*x(2,6) - 2*x(2,7)
+     
+      - 2*x(2,8) - 2*x(2,9) - 2*x(2,10) - 2*x(2,11) + 100*x(2,12) + 100*x(2,13)
+     
+      + 100*x(2,14) + 100*x(2,15) + 100*x(2,16) + 100*x(2,17) + 100*x(2,18)
+     
+      + 100*x(2,19) + 100*x(2,20) + 100*x(2,21) - 2*x(3,1) - 2*x(3,2) - 2*x(3,3)
+     
+      - 2*x(3,4) - 2*x(3,5) - 2*x(3,6) - 2*x(3,7) - 2*x(3,8) - 2*x(3,9)
+     
+      - 2*x(3,10) - 2*x(3,11) + 100*x(3,12) + 100*x(3,13) + 100*x(3,14)
+     
+      + 100*x(3,15) + 100*x(3,16) + 100*x(3,17) + 100*x(3,18) + 100*x(3,19)
+     
+      + 100*x(3,20) + 100*x(3,21) + 100*x(4,1) + 100*x(4,2) + 100*x(4,3)
+     
+      + 100*x(4,4) + 100*x(4,5) + 100*x(4,6) - 2*x(4,7) - 2*x(4,8) - 2*x(4,9)
+     
+      - 2*x(4,10) - 2*x(4,11) + 100*x(4,12) + 100*x(4,13) + 100*x(4,14)
+     
+      + 100*x(4,15) + 100*x(4,16) + 100*x(4,17) + 100*x(4,18) + 100*x(4,19)
+     
+      + 100*x(4,20) + 100*x(4,21) + 100*x(5,1) + 100*x(5,2) + 100*x(5,3)
+     
+      + 100*x(5,4) + 100*x(5,5) + 100*x(5,6) + 100*x(5,7) + 100*x(5,8)
+     
+      + 100*x(5,9) + 100*x(5,10) + 100*x(5,11) - 4*x(5,12) - 4*x(5,13)
+     
+      - 4*x(5,14) - 4*x(5,15) - 4*x(5,16) - 4*x(5,17) - 4*x(5,18) - 4*x(5,19)
+     
+      - 4*x(5,20) - 4*x(5,21) + z =E= 0 ; (LHS = 0)
+     
+
+---- assign_cover  =G=  
+
+assign_cover(1)..  x(1,1) + x(2,1) + x(3,1) + x(4,1) + x(5,1) =G= 1 ;
+     
+      (LHS = 0, INFES = 1 ****)
+     
+assign_cover(2)..  x(1,2) + x(2,2) + x(3,2) + x(4,2) + x(5,2) =G= 1 ;
+     
+      (LHS = 0, INFES = 1 ****)
+     
+assign_cover(3)..  x(1,3) + x(2,3) + x(3,3) + x(4,3) + x(5,3) =G= 1 ;
+     
+      (LHS = 0, INFES = 1 ****)
+     
+REMAINING 18 ENTRIES SKIPPED
+
+
+---- low_capacity  =G=  
+
+low_capacity(1)..  x(1,1) + x(1,2) + x(1,3) + x(1,4) + x(1,5) + x(1,6) + x(1,7)
+     
+      + x(1,8) + x(1,9) + x(1,10) + x(1,11) + x(1,12) + x(1,13) + x(1,14)
+     
+      + x(1,15) + x(1,16) + x(1,17) + x(1,18) + x(1,19) + x(1,20) + x(1,21) =G= 
+     1 ; (LHS = 0, INFES = 1 ****)
+     
+low_capacity(2)..  x(2,1) + x(2,2) + x(2,3) + x(2,4) + x(2,5) + x(2,6) + x(2,7)
+     
+      + x(2,8) + x(2,9) + x(2,10) + x(2,11) + x(2,12) + x(2,13) + x(2,14)
+     
+      + x(2,15) + x(2,16) + x(2,17) + x(2,18) + x(2,19) + x(2,20) + x(2,21) =G= 
+     1 ; (LHS = 0, INFES = 1 ****)
+     
+low_capacity(3)..  x(3,1) + x(3,2) + x(3,3) + x(3,4) + x(3,5) + x(3,6) + x(3,7)
+     
+      + x(3,8) + x(3,9) + x(3,10) + x(3,11) + x(3,12) + x(3,13) + x(3,14)
+     
+      + x(3,15) + x(3,16) + x(3,17) + x(3,18) + x(3,19) + x(3,20) + x(3,21) =G= 
+     1 ; (LHS = 0, INFES = 1 ****)
+     
+REMAINING 2 ENTRIES SKIPPED
+
+
+---- up_capacity  =L=  
+
+up_capacity(1)..  x(1,1) + x(1,2) + x(1,3) + x(1,4) + x(1,5) + x(1,6) + x(1,7)
+     
+      + x(1,8) + x(1,9) + x(1,10) + x(1,11) + x(1,12) + x(1,13) + x(1,14)
+     
+      + x(1,15) + x(1,16) + x(1,17) + x(1,18) + x(1,19) + x(1,20) + x(1,21) =L= 
+     8 ; (LHS = 0)
+     
+up_capacity(2)..  x(2,1) + x(2,2) + x(2,3) + x(2,4) + x(2,5) + x(2,6) + x(2,7)
+     
+      + x(2,8) + x(2,9) + x(2,10) + x(2,11) + x(2,12) + x(2,13) + x(2,14)
+     
+      + x(2,15) + x(2,16) + x(2,17) + x(2,18) + x(2,19) + x(2,20) + x(2,21) =L= 
+     8 ; (LHS = 0)
+     
+up_capacity(3)..  x(3,1) + x(3,2) + x(3,3) + x(3,4) + x(3,5) + x(3,6) + x(3,7)
+     
+      + x(3,8) + x(3,9) + x(3,10) + x(3,11) + x(3,12) + x(3,13) + x(3,14)
+     
+      + x(3,15) + x(3,16) + x(3,17) + x(3,18) + x(3,19) + x(3,20) + x(3,21) =L= 
+     8 ; (LHS = 0)
+     
+REMAINING 2 ENTRIES SKIPPED
+
+GAMS 24.4.3  r51699 Released Apr  2, 2015 WEX-WEI x86 64bit/MS Windows 04/06/16 10:41:06 Page 3
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Column Listing      SOLVE model_assignment Using MIP From line 143
+
+
+---- x  
+
+x(1,1)
+                (.LO, .L, .UP, .M = 0, 0, 1, 0)
+      100       obj_main
+        1       assign_cover(1)
+        1       low_capacity(1)
+        1       up_capacity(1)
+
+x(1,2)
+                (.LO, .L, .UP, .M = 0, 0, 1, 0)
+      100       obj_main
+        1       assign_cover(2)
+        1       low_capacity(1)
+        1       up_capacity(1)
+
+x(1,3)
+                (.LO, .L, .UP, .M = 0, 0, 1, 0)
+      100       obj_main
+        1       assign_cover(3)
+        1       low_capacity(1)
+        1       up_capacity(1)
+
+REMAINING 102 ENTRIES SKIPPED
+
+---- z  
+
+z
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+        1       obj_main
+
+GAMS 24.4.3  r51699 Released Apr  2, 2015 WEX-WEI x86 64bit/MS Windows 04/06/16 10:41:06 Page 4
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Model Statistics    SOLVE model_assignment Using MIP From line 143
+
+
+MODEL STATISTICS
+
+BLOCKS OF EQUATIONS           4     SINGLE EQUATIONS           32
+BLOCKS OF VARIABLES           2     SINGLE VARIABLES          106
+NON ZERO ELEMENTS           421     DISCRETE VARIABLES        105
+
+
+GENERATION TIME      =        0.000 SECONDS      4 MB  24.4.3 r51699 WEX-WEI
+
+
+EXECUTION TIME       =        0.000 SECONDS      4 MB  24.4.3 r51699 WEX-WEI
+GAMS 24.4.3  r51699 Released Apr  2, 2015 WEX-WEI x86 64bit/MS Windows 04/06/16 10:41:06 Page 5
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE model_assignment Using MIP From line 143
+
+
+               S O L V E      S U M M A R Y
+
+     MODEL   model_assignment    OBJECTIVE  z
+     TYPE    MIP                 DIRECTION  MAXIMIZE
+     SOLVER  CPLEX               FROM LINE  143
+
+**** SOLVER STATUS     1 Normal Completion         
+**** MODEL STATUS      1 Optimal                   
+**** OBJECTIVE VALUE              106.0000
+
+ RESOURCE USAGE, LIMIT          0.047      1000.000
+ ITERATION COUNT, LIMIT         7    2000000000
+
+IBM ILOG CPLEX   24.4.3 r51699 Released Apr  2, 2015 WEI x86 64bit/MS Windows 
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.6.1.0
+
+Space for names approximately 0.00 Mb
+Use option 'names no' to turn use of names off
+MIP status(101): integer optimal solution
+Cplex Time: 0.02sec (det. 0.54 ticks)
+Fixing integer variables, and solving final LP...
+Fixed MIP status(1): optimal
+Cplex Time: 0.00sec (det. 0.04 ticks)
+Proven optimal solution.
+
+MIP Solution:          106.000000    (7 iterations, 0 nodes)
+Final Solve:           106.000000    (0 iterations)
+
+Best possible:         106.000000
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+
+                       LOWER     LEVEL     UPPER    MARGINAL
+
+---- EQU obj_main        .         .         .        1.000      
+
+---- EQU assign_cover  
+
+      LOWER     LEVEL     UPPER    MARGINAL
+
+1      1.000     2.000     +INF       .         
+2      1.000     1.000     +INF       .         
+3      1.000     2.000     +INF       .         
+4      1.000     2.000     +INF       .         
+5      1.000     2.000     +INF       .         
+6      1.000     1.000     +INF       .         
+7      1.000     1.000     +INF       .         
+8      1.000     1.000     +INF       .         
+9      1.000     3.000     +INF       .         
+10     1.000     3.000     +INF       .         
+11     1.000     3.000     +INF       .         
+12     1.000     2.000     +INF       .         
+13     1.000     2.000     +INF       .         
+14     1.000     1.000     +INF       .         
+15     1.000     1.000     +INF       .         
+16     1.000     2.000     +INF       .         
+17     1.000     2.000     +INF       .         
+18     1.000     1.000     +INF       .         
+19     1.000     1.000     +INF       .         
+20     1.000     2.000     +INF       .         
+21     1.000     2.000     +INF       .         
+
+---- EQU low_capacity  
+
+     LOWER     LEVEL     UPPER    MARGINAL
+
+1     1.000     8.000     +INF       .         
+2     1.000     8.000     +INF       .         
+3     1.000     8.000     +INF       .         
+4     1.000     5.000     +INF       .         
+5     1.000     8.000     +INF       .         
+
+---- EQU up_capacity  
+
+     LOWER     LEVEL     UPPER    MARGINAL
+
+1     -INF      8.000     8.000      .         
+2     -INF      8.000     8.000      .         
+3     -INF      8.000     8.000      .         
+4     -INF      5.000     8.000      .         
+5     -INF      8.000     8.000      .         
+
+---- VAR x  
+
+        LOWER     LEVEL     UPPER    MARGINAL
+
+1.1       .         .        1.000  -100.000      
+1.2       .         .        1.000  -100.000      
+1.3       .         .        1.000  -100.000      
+1.4       .         .        1.000  -100.000      
+1.5       .         .        1.000  -100.000      
+1.6       .         .        1.000  -100.000      
+1.7       .         .        1.000  -100.000      
+1.8       .         .        1.000  -100.000      
+1.9       .         .        1.000  -100.000      
+1.10      .         .        1.000  -100.000      
+1.11      .         .        1.000  -100.000      
+1.12      .        1.000     1.000     4.000      
+1.13      .        1.000     1.000     4.000      
+1.14      .        1.000     1.000     4.000      
+1.15      .        1.000     1.000     4.000      
+1.16      .        1.000     1.000     4.000      
+1.17      .        1.000     1.000     4.000      
+1.18      .         .        1.000     4.000      
+1.19      .         .        1.000     4.000      
+1.20      .        1.000     1.000     4.000      
+1.21      .        1.000     1.000     4.000      
+2.1       .        1.000     1.000     2.000      
+2.2       .        1.000     1.000     2.000      
+2.3       .        1.000     1.000     2.000      
+2.4       .        1.000     1.000     2.000      
+2.5       .        1.000     1.000     2.000      
+2.6       .         .        1.000     2.000      
+2.7       .         .        1.000     2.000      
+2.8       .         .        1.000     2.000      
+2.9       .        1.000     1.000     2.000      
+2.10      .        1.000     1.000     2.000      
+2.11      .        1.000     1.000     2.000      
+2.12      .         .        1.000  -100.000      
+2.13      .         .        1.000  -100.000      
+2.14      .         .        1.000  -100.000      
+2.15      .         .        1.000  -100.000      
+2.16      .         .        1.000  -100.000      
+2.17      .         .        1.000  -100.000      
+2.18      .         .        1.000  -100.000      
+2.19      .         .        1.000  -100.000      
+2.20      .         .        1.000  -100.000      
+2.21      .         .        1.000  -100.000      
+3.1       .        1.000     1.000     2.000      
+3.2       .         .        1.000     2.000      
+3.3       .        1.000     1.000     2.000      
+3.4       .        1.000     1.000     2.000      
+3.5       .        1.000     1.000     2.000      
+3.6       .        1.000     1.000     2.000      
+3.7       .         .        1.000     2.000      
+3.8       .         .        1.000     2.000      
+3.9       .        1.000     1.000     2.000      
+3.10      .        1.000     1.000     2.000      
+3.11      .        1.000     1.000     2.000      
+3.12      .         .        1.000  -100.000      
+3.13      .         .        1.000  -100.000      
+3.14      .         .        1.000  -100.000      
+3.15      .         .        1.000  -100.000      
+3.16      .         .        1.000  -100.000      
+3.17      .         .        1.000  -100.000      
+3.18      .         .        1.000  -100.000      
+3.19      .         .        1.000  -100.000      
+3.20      .         .        1.000  -100.000      
+3.21      .         .        1.000  -100.000      
+4.1       .         .        1.000  -100.000      
+4.2       .         .        1.000  -100.000      
+4.3       .         .        1.000  -100.000      
+4.4       .         .        1.000  -100.000      
+4.5       .         .        1.000  -100.000      
+4.6       .         .        1.000  -100.000      
+4.7       .        1.000     1.000     2.000      
+4.8       .        1.000     1.000     2.000      
+4.9       .        1.000     1.000     2.000      
+4.10      .        1.000     1.000     2.000      
+4.11      .        1.000     1.000     2.000      
+4.12      .         .        1.000  -100.000      
+4.13      .         .        1.000  -100.000      
+4.14      .         .        1.000  -100.000      
+4.15      .         .        1.000  -100.000      
+4.16      .         .        1.000  -100.000      
+4.17      .         .        1.000  -100.000      
+4.18      .         .        1.000  -100.000      
+4.19      .         .        1.000  -100.000      
+4.20      .         .        1.000  -100.000      
+4.21      .         .        1.000  -100.000      
+5.1       .         .        1.000  -100.000      
+5.2       .         .        1.000  -100.000      
+5.3       .         .        1.000  -100.000      
+5.4       .         .        1.000  -100.000      
+5.5       .         .        1.000  -100.000      
+5.6       .         .        1.000  -100.000      
+5.7       .         .        1.000  -100.000      
+5.8       .         .        1.000  -100.000      
+5.9       .         .        1.000  -100.000      
+5.10      .         .        1.000  -100.000      
+5.11      .         .        1.000  -100.000      
+5.12      .        1.000     1.000     4.000      
+5.13      .        1.000     1.000     4.000      
+5.14      .         .        1.000     4.000      
+5.15      .         .        1.000     4.000      
+5.16      .        1.000     1.000     4.000      
+5.17      .        1.000     1.000     4.000      
+5.18      .        1.000     1.000     4.000      
+5.19      .        1.000     1.000     4.000      
+5.20      .        1.000     1.000     4.000      
+5.21      .        1.000     1.000     4.000      
+
+                       LOWER     LEVEL     UPPER    MARGINAL
+
+---- VAR z              -INF    106.000     +INF       .         
+
+
+**** REPORT SUMMARY :        0     NONOPT
+                             0 INFEASIBLE
+                             0  UNBOUNDED
+GAMS 24.4.3  r51699 Released Apr  2, 2015 WEX-WEI x86 64bit/MS Windows 04/06/16 10:41:06 Page 6
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+E x e c u t i o n
+
+
+----    144 VARIABLE x.L  
+
+            1           2           3           4           5           6
+
+2       1.000       1.000       1.000       1.000       1.000
+3       1.000                   1.000       1.000       1.000       1.000
+
++           7           8           9          10          11          12
+
+1                                                                   1.000
+2                               1.000       1.000       1.000
+3                               1.000       1.000       1.000
+4       1.000       1.000       1.000       1.000       1.000
+5                                                                   1.000
+
++          13          14          15          16          17          18
+
+1       1.000       1.000       1.000       1.000       1.000
+5       1.000                               1.000       1.000       1.000
+
++          19          20          21
+
+1                   1.000       1.000
+5       1.000       1.000       1.000
+
+
+----    145 VARIABLE z.L                   =      106.000  
+
+
+EXECUTION TIME       =        0.000 SECONDS      3 MB  24.4.3 r51699 WEX-WEI
+
+
+USER: School of Sustainable Engineering              G150407:1621AO-WIN
+      Arizona State University                                  DC11708
+      License for teaching and research at degree granting institutions
+
+
+**** FILE SUMMARY
+
+Input      E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\set_cover.gms
+Output     E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\set_cover.lst

@@ -1,0 +1,9 @@
+E:\3 PrgStudy\VRP_SELF\dataTrans\dataTrans\bin\Debug\dataTrans.exe.config
+E:\3 PrgStudy\VRP_SELF\dataTrans\dataTrans\bin\Debug\dataTrans.exe
+E:\3 PrgStudy\VRP_SELF\dataTrans\dataTrans\bin\Debug\dataTrans.pdb
+E:\3 PrgStudy\VRP_SELF\dataTrans\dataTrans\obj\Debug\dataTrans.csprojResolveAssemblyReference.cache
+E:\3 PrgStudy\VRP_SELF\dataTrans\dataTrans\obj\Debug\dataTrans.FormMain.resources
+E:\3 PrgStudy\VRP_SELF\dataTrans\dataTrans\obj\Debug\dataTrans.Properties.Resources.resources
+E:\3 PrgStudy\VRP_SELF\dataTrans\dataTrans\obj\Debug\dataTrans.csproj.GenerateResource.Cache
+E:\3 PrgStudy\VRP_SELF\dataTrans\dataTrans\obj\Debug\dataTrans.exe
+E:\3 PrgStudy\VRP_SELF\dataTrans\dataTrans\obj\Debug\dataTrans.pdb

@@ -1,0 +1,30 @@
+B 2 C o m p i l a t i o n
+B 185 Include File Summary
+B 199 Equation Listing    SOLVE model_main Using RMIP From line 61
+D 200 obj_main
+D 208 assign_pattern
+D 219 assign_passenger
+B 229 Column Listing      SOLVE model_main Using RMIP From line 61
+E 230 x
+E 252 z
+B 261 Model Statistics    SOLVE model_main Using RMIP From line 61
+B 277 Solution Report     SOLVE model_main Using RMIP From line 61
+F 306 obj_main
+F 312 assign_pattern
+F 319 assign_passenger
+G 321 x
+G 334 z
+B 345 E x e c u t i o n
+I 346 u
+I 353 upperbound
+B 356 Model Statistics    SOLVE model_lr Using MIP From line 113
+B 377 Solution Report     SOLVE model_lr Using MIP From line 113
+F 415 obj_lr
+F 421 assign_pattern
+G 423 x
+G 436 z_bound
+B 447 E x e c u t i o n
+I 450 bestbound
+I 452 u
+I 459 x
+I 467 results

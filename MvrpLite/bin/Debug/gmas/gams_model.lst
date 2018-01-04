@@ -1,0 +1,94 @@
+GAMS 24.7.3  r58181 Released Jul 11, 2016 WEX-WEI x86 64bit/MS Windows                                                                                                                                                                 12/27/17 09:14:02 Page 1
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+C o m p i l a t i o n
+
+
+   1  [PROJECT]
+****  $409
+   2   
+   3  [RP:VRPTW]
+   4  1=
+   5   
+   6  [RP:TIMETABLING_STOPPLAN]
+   7  1=
+   8   
+   9  [RP:LOCOMOTIVE_ROUTING_PROBLEM]
+  10  1=
+  11   
+  12  [RP:LR_SET_PARTITION]
+  13  1=
+  14   
+  15  [RP:GP_GROUP_SMALL]
+  16  1=
+  17   
+  18  [RP:SET_GROUP_3]
+  19  1=
+  20   
+  21  [RP:UNTITLED_1]
+  22  1=
+  23   
+  24  [SOLVERS]
+  25  MINLP=COUENNE
+  26  MIP=CPLEX
+  27   
+  28  [RP:CASE6]
+  29  1=
+  30   
+  31  [RP:GP_GROUP]
+  32  1=
+  33   
+  34  [RP:GAMS_EXE_GROUP_P]
+  35  1=
+  36   
+  37  [RP:GAMS_EXE_GROUP_V]
+  38  1=
+  39   
+  40  [MRUFILES]
+  41  1=E:\new_pro\AA300_dominate\MvrpLite\bin\Debug\gmas\gams_exe_group_v.lst
+  42  2=E:\3 PrgStudy\MrpPlus_dominate\MvrpLite\bin\Debug\gmas\Untitled_1.gms
+  43  3=E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\set_group_3.lst
+  44  4=E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\set_group_3.gms
+  45  5=E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\gp_group_small.gms
+  46  6=E:\3 PrgStudy\MrpPlus_dominate\MvrpLite\bin\Debug\gmas\set_group_3.gms
+  47  7=E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\Untitled_1.gms
+  48  8=E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\gp_group.lst
+  49  9=E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\gp_group.gms
+  50   
+  51  [OPENWINDOW_1]
+  52  FILE0=E:\new_pro\AA300_dominate\MvrpLite\bin\Debug\gmas\gams_exe_group_v.gms
+GAMS 24.7.3  r58181 Released Jul 11, 2016 WEX-WEI x86 64bit/MS Windows                                                                                                                                                                 12/27/17 09:14:02 Page 2
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+C o m p i l a t i o n
+
+
+  53  FILE1=E:\new_pro\AA300_dominate\MvrpLite\bin\Debug\gmas\gams_exe_group_v.gms
+  54  MAXIM=0
+  55  TOP=-2
+  56  LEFT=78
+  57  HEIGHT=881
+  58  WIDTH=1021
+GAMS 24.7.3  r58181 Released Jul 11, 2016 WEX-WEI x86 64bit/MS Windows                                                                                                                                                                 12/27/17 09:14:02 Page 3
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Error Messages
+
+
+409  Unrecognizable item - skip to find a new statement
+       looking for a ';' or a key word to get started again
+
+**** 1 ERROR(S)   0 WARNING(S)
+
+
+COMPILATION TIME     =        0.000 SECONDS      2 MB  24.7.3 r58181 WEX-WEI
+
+
+USER: School of Sustainable Engineering              G150407:1621AO-WIN
+      Arizona State University                                  DC11708
+      License for teaching and research at degree granting institutions
+
+
+**** FILE SUMMARY
+
+Input      E:\new_pro\AA300_dominate\MvrpLite\bin\Debug\gmas\gams_model.gpr
+Output     E:\new_pro\AA300_dominate\MvrpLite\bin\Debug\gmas\gams_model.lst
+
+**** USER ERROR(S) ENCOUNTERED

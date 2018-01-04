@@ -1,0 +1,179 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+using Microsoft.SolverFoundation.Common;
+using Microsoft.SolverFoundation.Services;
+//using SolverFoundation.Plugin.LpSolve;
+
+namespace MvrpLite.adminFuc
+{
+    class Cost_pg_Def
+    {
+        public int Passenger { get; set; }
+        public int Group { get; set; }       
+        public double Price { get; set; }
+        public double X_int { get; set; }
+        public Cost_pg_Def( int passenger,int group, float price)
+        {
+            Group = group;
+            Passenger = passenger;
+            Price = price;
+            X_int = 0;
+        }
+    }
+    class Y_P_Def
+    {
+        public int Group { get; set; }
+     
+        public double Value { get; set; }
+
+        public Y_P_Def(int group, double value)
+        {
+            Group = group;
+            Value = value;
+        }
+    }
+
+
+    class Model_GroupP_withoutV
+    {
+        public double[,] X{ get; set; }
+        public string String_Report { get; set; }
+       
+
+        private Cost_pg_Def[] Cost_data_list;
+        private Y_P_Def[] Y_data_list;
+        private int Max_p_in_group;
+        private int Max_group_number;
+
+         public void g_algorithmn_mip(float[,] cost_value,int max_group_number,  int max_p_in_group,int num_g,int num_p)
+        {
+            input_data(cost_value,max_group_number, max_p_in_group, num_g,num_p);////init cost value and assign matrix
+            solver_main();
+            get_decision_x(num_p,num_g);
+        }
+
+
+        private void get_decision_x(int num_p,int num_g)
+        {
+            X=new double[num_p+1,num_g+1];
+            for (int i = 0; i < Cost_data_list.Length; i++)
+            {
+                int g = Cost_data_list[i].Group;
+                int p = Cost_data_list[i].Passenger;
+                double value=Cost_data_list[i].X_int;
+                X[g, p] = value;    
+            }
+        }
+
+
+        private void input_data(float[,] cost_value,int max_group_number, int max_p_in_group, int num_g,int num_p)
+        {
+            Max_p_in_group = max_p_in_group;
+            Max_group_number = max_group_number;
+
+            Cost_data_list =new Cost_pg_Def[num_g * num_p];
+            int n_count = 0;
+            for(int p=1;p<=num_p;p++)
+            for(int g=1;g<=num_g;g++)            
+            {
+                Cost_pg_Def cost_data_one = new Cost_pg_Def(p,g,cost_value[p, g]);
+                Cost_data_list[n_count] = cost_data_one;
+                n_count++;
+            }
+
+            Y_data_list = new Y_P_Def[num_g];
+            n_count = 0;
+            for (int g = 1; g <= num_g; g++)           
+            {
+                Y_P_Def assign_data_one = new Y_P_Def(g, 0);
+                Y_data_list[n_count] = assign_data_one;
+                n_count++;
+            }
+        }
+        private void solver_main()
+        {
+            SolverContext context = SolverContext.GetContext();
+            context.ClearModel();
+            Model model = context.CreateModel();
+
+            Set Passengers = new Set(Domain.IntegerNonnegative, "Passengers");
+            Set Groups = new Set(Domain.IntegerNonnegative, "groups");           
+
+            Decision x = new Decision(Domain.IntegerRange(0, 1), "x_p_g", Passengers,Groups);
+            x.SetBinding(Cost_data_list, "X_int", "Passenger","Group"); ////
+            model.AddDecisions(x);
+
+            Decision y = new Decision(Domain.IntegerRange(0, 1), "y_g", Groups);
+            y.SetBinding(Y_data_list, "Value",  "Group"); ////
+            model.AddDecisions(y);
+
+            Parameter cost = new Parameter(Domain.RealNonnegative, "Price", Passengers, Groups);
+            cost.SetBinding(Cost_data_list, "Price", "Passenger", "Group");           
+            model.AddParameters(cost);
+
+
+            model.AddConstraint("select_one_group_for_each_passenger",
+                Model.ForEach(
+                Passengers, p =>
+                Model.Sum(Model.ForEach(Groups, g => x[p, g])) 
+                        == 1)
+                );
+
+            model.AddConstraint("max_passenger_number_in_one_group",
+                Model.ForEach(
+                Groups, g =>
+                Model.Sum(Model.ForEach(Passengers, p => x[p, g]))
+                        <= Max_p_in_group*y[g])
+                );
+
+            model.AddConstraint("max_group_number",
+               Model.Sum(Model.ForEach(Groups, g => y[g]))
+                       <= Max_group_number
+               );
+
+            model.AddConstraint("x_y_connection_constraint",
+                Model.ForEach(
+                Groups, g =>
+                Model.Sum(Model.ForEach(Passengers, p => x[p, g]))
+                        >= y[g])
+                );
+
+
+
+
+            Goal z_main= model.AddGoal("z_main", GoalKind.Minimize,
+                Model.Sum(Model.ForEach(
+                    Groups, g =>
+                    Model.Sum(Model.ForEach(Passengers, p => cost[p, g] * x[p, g]))
+                             ))
+                    +
+                 Model.Sum(Model.ForEach(Groups, g => y[g])) 
+                     );
+
+            //SimplexDirective directive = new SimplexDirective();
+            SolverFoundation.Plugin.LpSolve.LpSolveDirective directive = new SolverFoundation.Plugin.LpSolve.LpSolveDirective();
+            directive.GetSensitivity = true;
+            
+            //directive.Arithmetic = Arithmetic.Exact;
+            try
+            {
+                Solution solution = context.Solve(directive); 
+                //Report report = solution.GetReport();
+                //this.String_Report += report.ToString();
+                //System.Windows.Forms.MessageBox.Show(z_main.ToDouble().ToString() +  "\n" + report.ToString());
+            }
+            catch(Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.ToString());
+            }
+            context.PropagateDecisions();
+
+                        
+            context.ClearModel();
+
+        }
+    }
+}

@@ -1,0 +1,167 @@
+$ontext
+
+    vehicle and passenger partition problem
+    junhua Chen.   cjh@bjtu.edu.cn
+    4/4,2016
+
+$offtext
+
+set v 'group'/1*19/;
+set p 'passenger'/1*29/;
+alias (v,g);
+
+parameter d(v,p);
+
+parameter d(v,p)/
+1.1 999
+1.2 999
+1.3 999
+1.4 999
+1.5 999
+1.6 999
+1.7 999
+1.8 999
+1.9 999
+1.10 999
+1.11 999
+1.12 999
+1.13 999
+1.14 999
+1.15 26
+1.16 24
+1.17 24
+1.18 24
+1.19 24
+1.20 24
+1.21 18
+1.22 18
+1.23 22
+1.24 20
+1.25 20
+1.26 20
+1.27 18
+1.28 16
+1.29 16
+6.1 21
+6.2 21
+6.3 19
+6.4 23
+6.5 19
+6.6 20
+6.7 18
+6.8 18
+6.9 18
+6.10 16
+6.11 16
+6.12 20
+6.13 18
+6.14 16
+6.15 999
+6.16 999
+6.17 999
+6.18 999
+6.19 999
+6.20 999
+6.21 999
+6.22 999
+6.23 999
+6.24 999
+6.25 999
+6.26 999
+6.27 999
+6.28 999
+6.29 999
+16.1 999
+16.2 999
+16.3 999
+16.4 999
+16.5 999
+16.6 19
+16.7 17
+16.8 17
+16.9 17
+16.10 15
+16.11 15
+16.12 19
+16.13 17
+16.14 15
+16.15 999
+16.16 999
+16.17 999
+16.18 999
+16.19 999
+16.20 999
+16.21 999
+16.22 999
+16.23 999
+16.24 999
+16.25 999
+16.26 999
+16.27 999
+16.28 999
+16.29 999
+/;
+d('2',p)=d('1',p);
+d('3',p)=d('1',p);
+d('4',p)=d('1',p);
+d('5',p)=d('1',p);
+
+d('7',p)=d('6',p);
+d('8',p)=d('6',p);
+d('9',p)=d('6',p);
+d('10',p)=d('6',p);
+d('11',p)=d('6',p);
+d('12',p)=d('6',p);
+d('13',p)=d('6',p);
+d('14',p)=d('6',p);
+d('15',p)=d('6',p);
+
+d('17',p)=d('16',p);
+d('18',p)=d('16',p);
+d('19',p)=d('16',p);
+
+
+
+parameter c(v,g);
+c(v,g)=sqrt(sum(p,(d(v,p)-d(g,p))*(d(v,p)-d(g,p))));
+
+display c;
+
+parameter matrix_v_e_g(v,g);
+          matrix_v_e_g(v,v)=1;
+
+scalar max_v/5/;
+scalar max_g/5/;
+
+binary variable x(v,g);
+binary variable y(g);
+variable z;
+
+equations
+         obj_main,
+         v_once_constrain(v),
+         v_in_group_constrain(g),
+*         g_number_constrain
+         xy_connect(g)
+;
+obj_main..
+         z=e=sum((v,g),c(v,g)*x(v,g))+sum(g,y(g));
+v_once_constrain(v)..
+         sum(g,x(v,g))=e=1;
+v_in_group_constrain(g)..
+         sum(v,x(v,g))=l=max_v*y(g);
+*g_number_constrain..
+*         sum(g,y(g))=l=max_g;
+xy_connect(g)..
+         sum(v,x(v,g))=g=y(g);
+
+model model_group / obj_main,
+         v_once_constrain,
+         v_in_group_constrain,
+         xy_connect
+         /;
+
+solve model_group minimizing z using minlp;
+display x.l;
+display y.l;
+display z.l;

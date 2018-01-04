@@ -1,0 +1,2 @@
+run_model,max_number_of_threads_to_be_used,max_v_in_group,max_p_in_group,vehicle_capacity,min_finish_task_each_vehicle,max_finish_task_each_vehicle,max_group_number
+0,6,3,6,2,1,3,2

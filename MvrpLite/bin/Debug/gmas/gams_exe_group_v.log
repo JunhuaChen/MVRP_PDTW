@@ -1,0 +1,89 @@
+
+--- Job gams_exe_group_v.gms Start 12/18/17 16:49:37 24.7.3 r58181 WEX-WEI x86 64bit/MS Windows
+GAMS 24.7.3   Copyright (C) 1987-2016 GAMS Development. All rights reserved
+Licensee: School of Sustainable Engineering              G150407:1621AO-WIN
+          Arizona State University                                  DC11708
+          License for teaching and research at degree granting institutions
+--- Starting compilation
+--- gams_exe_group_v.gms(46) 2 Mb
+--- .gams_group_v_input.txt(163) 3 Mb
+--- gams_exe_group_v.gms(59) 3 Mb
+--- Starting execution: elapsed 0:00:00.002
+--- Generating MIP model model_group
+--- gams_exe_group_v.gms(213) 4 Mb
+---   41 rows  151 columns  601 non-zeroes
+---   150 discrete-columns
+--- Executing CPLEX: elapsed 0:00:00.006
+
+IBM ILOG CPLEX   24.7.3 r58181 Released Jul 11, 2016 WEI x86 64bit/MS Windows 
+--- GAMS/Cplex licensed for continuous and discrete problems.
+Cplex 12.6.3.0
+
+Reading data...
+Starting Cplex...
+Space for names approximately 0.00 Mb
+Use option 'names no' to turn use of names off
+Found incumbent of value 9992.417220 after 0.00 sec. (0.01 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 6 rows and 1 columns.
+Reduced MIP has 35 rows, 150 columns, and 300 nonzeros.
+Reduced MIP has 150 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.30 ticks)
+Probing time = 0.00 sec. (0.08 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 35 rows, 150 columns, and 300 nonzeros.
+Reduced MIP has 150 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.20 ticks)
+Probing time = 0.00 sec. (0.08 ticks)
+Clique table members: 30.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Tried aggregator 1 time.
+No LP presolve or aggregator reductions.
+Presolve time = 0.09 sec. (0.04 ticks)
+
+Iteration log . . .
+Iteration:     1   Dual objective     =            79.871860
+Root relaxation solution time = 0.09 sec. (0.14 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                         9992.4172        0.0000           100.00%
+Found incumbent of value 9992.417220 after 0.09 sec. (0.96 ticks)
+      0     0        cutoff           9992.4172                     42    0.00%
+
+Root node processing (before b&c):
+  Real time             =    0.09 sec. (0.97 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.09 sec. (0.97 ticks)
+MIP status(101): integer optimal solution
+Cplex Time: 0.09sec (det. 0.97 ticks)
+Fixing integer variables, and solving final LP...
+Tried aggregator 1 time.
+LP Presolve eliminated 41 rows and 151 columns.
+All rows and columns eliminated.
+Presolve time = 0.01 sec. (0.04 ticks)
+Fixed MIP status(1): optimal
+Cplex Time: 0.01sec (det. 0.06 ticks)
+
+Proven optimal solution.
+
+MIP Solution:         9992.417220    (42 iterations, 0 nodes)
+Final Solve:          9992.417220    (0 iterations)
+
+Best possible:        9992.417220
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+--- Restarting execution
+--- gams_exe_group_v.gms(213) 2 Mb
+--- Reading solution for model model_group
+--- Executing after solve: elapsed 0:00:00.217
+--- gams_exe_group_v.gms(222) 3 Mb
+--- Putfile output_results_x E:\new_pro\AA300_dominate\MvrpLite\bin\Debug\gams_group_v_output.txt
+*** Status: Normal completion
+--- Job gams_exe_group_v.gms Stop 12/18/17 16:49:37 elapsed 0:00:00.218

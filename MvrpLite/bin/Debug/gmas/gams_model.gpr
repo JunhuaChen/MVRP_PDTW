@@ -1,0 +1,58 @@
+[PROJECT]
+
+[RP:VRPTW]
+1=
+
+[RP:TIMETABLING_STOPPLAN]
+1=
+
+[RP:LOCOMOTIVE_ROUTING_PROBLEM]
+1=
+
+[RP:LR_SET_PARTITION]
+1=
+
+[RP:GP_GROUP_SMALL]
+1=
+
+[RP:SET_GROUP_3]
+1=
+
+[RP:UNTITLED_1]
+1=
+
+[SOLVERS]
+MINLP=COUENNE
+MIP=CPLEX
+
+[RP:CASE6]
+1=
+
+[RP:GP_GROUP]
+1=
+
+[RP:GAMS_EXE_GROUP_P]
+1=
+
+[RP:GAMS_EXE_GROUP_V]
+1=
+
+[MRUFILES]
+1=E:\new_pro\AA300_dominate\MvrpLite\bin\Debug\gmas\gams_exe_group_v.lst
+2=E:\3 PrgStudy\MrpPlus_dominate\MvrpLite\bin\Debug\gmas\Untitled_1.gms
+3=E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\set_group_3.lst
+4=E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\set_group_3.gms
+5=E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\gp_group_small.gms
+6=E:\3 PrgStudy\MrpPlus_dominate\MvrpLite\bin\Debug\gmas\set_group_3.gms
+7=E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\Untitled_1.gms
+8=E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\gp_group.lst
+9=E:\3 PrgStudy\MvrpPlus_group\TestDataSet\gmas\gp_group.gms
+
+[OPENWINDOW_1]
+FILE0=E:\new_pro\AA300_dominate\MvrpLite\bin\Debug\gmas\gams_exe_group_v.gms
+FILE1=E:\new_pro\AA300_dominate\MvrpLite\bin\Debug\gmas\gams_exe_group_v.gms
+MAXIM=0
+TOP=-2
+LEFT=78
+HEIGHT=881
+WIDTH=1021
